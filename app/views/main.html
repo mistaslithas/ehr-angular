@@ -1,6 +1,4 @@
-
 <section id="BODY">
-	
 	<div id="CONTENT">
 		<div></div>
 	</div>
@@ -24,4 +22,11 @@
 	<div class="ad"></div>
 </div>
 
-<nav id="NAV_MAIN"></nav>
+<nav id="NAV_MAIN">
+	<img src="images/logo.png">
+	{{model.activeSection}}
+	<a ng-class="{nav_active:model.activeSection=='home'}" ng-click="model.activeSection='home'"><img src="images/nav_home.png"></a>
+	<a ng-class="{nav_active:model.activeSection=='tasks'}" ng-click="model.activeSection='tasks'"><img src="images/nav_tasks.png"></a>
+	<a ng-class="{nav_active:model.activeSection=='charts'}" ng-click="model.activeSection='charts'"><img src="images/nav_charts.png"></a>
+	<a ng-class="{nav_active:model.activeSection=='messages'}" ng-click="model.activeSection='messages'"><img src="images/nav_messages.png"></a>
+</nav>
