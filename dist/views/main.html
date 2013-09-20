@@ -1,14 +1,6 @@
-<section id="BODY">
-	<div id="CONTENT">
-		<div></div>
-	</div>
-</section>
+<view_charts ng-show="model.activeSection=='charts'"></view_charts>
 
-<div id="HEADER_MAIN">
-	<div id="TABS_1"></div>
-	<div id="TITLE"></div>
-	<div id="CONTROLS"></div>
-</div>
+
 
 <div id="AD_RIGHT">
 	<div class="ad"></div>
@@ -24,7 +16,6 @@
 
 <nav id="NAV_MAIN">
 	<img src="images/logo.png">
-	{{model.activeSection}}
 	<a ng-class="{nav_active:model.activeSection=='home'}" ng-click="model.activeSection='home'"><img src="images/nav_home.png"></a>
 	<a ng-class="{nav_active:model.activeSection=='tasks'}" ng-click="model.activeSection='tasks'"><img src="images/nav_tasks.png"></a>
 	<a ng-class="{nav_active:model.activeSection=='charts'}" ng-click="model.activeSection='charts'"><img src="images/nav_charts.png"></a>
