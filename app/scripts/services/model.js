@@ -3,6 +3,6 @@
 angular.module('ehrApp')
   .factory('model', function () {
     return {
-      activeSection: 'home'
+      activeSection: 'charts'
     };
   });

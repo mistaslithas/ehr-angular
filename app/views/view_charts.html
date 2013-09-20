@@ -1,0 +1,95 @@
+
+<div id="HEADER_MAIN">
+	<div id="TABS_1">
+		<a class="static_link">Scheduled</a>
+		<a class="static_link">Recently Seen</a>
+		<span class="patient_tab" ng-repeat="patient in charts">
+			<a ng-class="{patient_selected:selectedPatient.id==patient.id}" ng-click="selectPatient(patient)">{{patient.firstName}} {{patient.lastName}}</a>
+			<a>X</a>
+		</span>
+	</div>
+	<div id="TITLE">
+		<img ng-src="{{selectedPatient.image}}">
+		<div id="TITLES">
+			<div class="info">
+				<p class="patient_name">{{selectedPatient.firstName}} {{selectedPatient.lastName}}</p>
+				<div class="patient_details">
+					<p>{{selectedPatient.age}} {{selectedPatient.sex}}</p>
+					<p>{{selectedPatient.dob | date:'MM/dd/yyyy'}}</p>
+				</div>
+				<div class="patient_details">
+					<p>{{selectedPatient.phone | phone}}</p>
+					<p>{{selectedPatient.insurance}}</p>
+				</div>
+				<div class="controls">
+					<div class="btn-group">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#base">
+							Actions
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu .pull-right">
+							<li><a href="#base">Menu item one</a></li>
+							<li><a href="#base">Menu item two</a></li>
+							<li><a href="#base">Menu item three</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="tabs">
+				<div class="tab" ng-class="{selected_tab:selectedTab=='facesheet'}" ng-click="selectedTab='facesheet'">
+					<p class="title">Facesheet</p>
+					<img src="images/tab_arrow.png" ng-show="selectedTab=='facesheet'">
+				</div>
+				<div class="tab" ng-class="{selected_tab:selectedTab=='timeline'}" ng-click="selectedTab='timeline'">
+					<p class="title">Timeline</p>
+					<img src="images/tab_arrow.png" ng-show="selectedTab=='timeline'">
+				</div>
+				<div class="tab" ng-class="{selected_tab:selectedTab=='visit'}" ng-click="selectedTab='visit'">
+					<p class="title">Office Visit</p>
+					<img src="images/tab_arrow.png" ng-show="selectedTab=='visit'">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section id="BODY">
+	<div class="view" ng-show="selectedTab=='facesheet'">
+		Facesheet
+	</div>
+	<div class="view" ng-show="selectedTab=='timeline'">
+		Timeline
+	</div>
+	<div class="view" ng-show="selectedTab=='visit'">
+		<div class="controls">
+			<button class="show_button">Show...</button>
+			<div id="CHART_VISIT_SEARCH" class="input-append">
+				<input type="search" placeholder="Search">
+				<button class="btn" type="button"><img src="images/search_icon.png"></button>
+			</div>
+			<div class="controls_right">
+				<p class="tasks">Tasks <span class="badge badge-success">2</span></p>
+				<button class="gray">Save</button>
+				<button class="orange">Sign</button>
+			</div>
+		</div>
+		<div class="content">
+			<section>
+				<header>
+					<p class="section_title">Chief Complaint</p>
+				</header>
+				<div class="section_content">
+					<a>Panic Attack</a>
+				</div>
+			</section>
+			<section>
+				<header>
+					<p class="section_title">Vital Signs</p>
+				</header>
+				<div class="section_content">
+					<a>Panic Attack</a>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>
