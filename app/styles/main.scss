@@ -12,6 +12,21 @@ html,body,.container {
 	height: 100%;
 }
 
+select {
+	display: block;
+	width: 100%;
+	height: 38px;
+	font-size: 15px;
+	color: #555;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	background: transparent url("/images/icon_select_arrow.png") no-repeat right center;
+}
+
+select:focus {
+	outline: none;
+}
+
 #NAV_MAIN {
 	position: fixed;
 	left: 0;
@@ -53,6 +68,64 @@ html,body,.container {
 }
 
 #HEADER_PHONE {
+	display: none;
+	margin: 10px;
+
+	.h_block {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.right_aligned {
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.info {
+		position: relative;
+		margin-bottom: 8px;
+
+		.patient_details_phone {
+			line-height: 10px;
+			margin: 0 10px 0 8px;
+		}
+
+		select {
+			width: 100px;
+		}
+	}
+
+	.controls {
+		position: relative;
+
+		.phone_row {
+			position: relative;
+
+			select {
+				width: 180px;
+			}
+
+			button {
+				width: 49px;
+				height: 38px;
+				border: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			input[type='search'] {
+				width: 100px;
+				height: 38px;
+				padding: 0 0 0 8px;
+				font-size: 15px;
+				color: #555;
+				box-sizing: border-box;
+				-webkit-appearance: none;
+			}
+		}
+	}
 
 }
 
@@ -546,8 +619,13 @@ html,body,.container {
 		display: none;
 	}
 
+	#HEADER_PHONE {
+		display: block;
+	}
+
 	#BODY {
 		left: 0;
+		top: 290px;
 		bottom: 0;
 
 		.view {
@@ -555,14 +633,15 @@ html,body,.container {
 				display: none;
 			}
 
-		.content {
-		}
+			.content {
+				top: 0;
+			}
 
-		.content_reduced {
-			right: 0 !important;
-			opacity: .3;
-			z-index: -1;
-		}			
+			.content_reduced {
+				right: 0 !important;
+				opacity: .3;
+				z-index: -1;
+			}			
 		}
 	}
 

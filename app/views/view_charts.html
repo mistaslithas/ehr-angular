@@ -1,4 +1,39 @@
 <div id="HEADER_PHONE">
+	<select ng-model="model.activeSection" ng-options="s for s in model.sections"></select>
+	<select ng-model="selectedPatient" ng-options="p as patientLabel(p.firstName, p.lastName) for p in charts"></select>
+	<div class="info">
+		<div class="h_block patient_details_phone">
+			<p>{{selectedPatient.age}} {{selectedPatient.sex}}</p>
+			<p>{{selectedPatient.dob | date:'MM/dd/yyyy'}}</p>
+		</div>
+		<div class="h_block patient_details_phone">
+			<p>{{selectedPatient.phone | phone}}</p>
+			<p>{{selectedPatient.insurance}}</p>
+		</div>
+		<select class="right_aligned">
+			<option value="">Actions</option>
+		</select>
+	</div>
+	<div class="phone_tabs">
+		<select ng-model="selectedTab" ng-options="t.value as t.label for t in tabs"></select>
+		<div class="controls">
+			<div class="phone_row">
+				<select class="h_block">
+					<option value="">Show</option>
+				</select>
+				<input class="h_block right_aligned" type="search" placeholder="Search">
+			</div>
+			<div class="phone_row">
+				<select>
+					<option value="">Tasks</option>
+				</select>
+				<div class="right_aligned">
+					<button class="h_block">Save</button>
+					<button class="h_block">Sign</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
@@ -31,9 +66,9 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu .pull-right">
-							<li><a href="#base">Menu item one</a></li>
-							<li><a href="#base">Menu item two</a></li>
-							<li><a href="#base">Menu item three</a></li>
+							<li><a href="#base">Menu item one</option>
+							<li><a href="#base">Menu item two</option>
+							<li><a href="#base">Menu item three</option>
 						</ul>
 					</div>
 				</div>
