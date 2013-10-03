@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('ehrApp', ['ui.router'])
+
 .config(function($stateProvider, $urlRouterProvider) {
+
   // For any unmatched url, redirect to /home
   $urlRouterProvider.otherwise('/ehr');
+
+  // Reroute /charts to /charts/scheduled
+  $urlRouterProvider.when('/ehr/charts', '/ehr/charts/scheduled');
+
+
 
   // States
   $stateProvider
@@ -26,7 +33,23 @@ angular.module('ehrApp', ['ui.router'])
     })
     .state('ehr.charts', {
       url: '/charts',
-      templateUrl: 'views/charts.html'
+      templateUrl: 'views/charts.html',
+      controller: 'ChartsCtrl'
+    })
+    .state('ehr.charts.scheduled', {
+      url: '/scheduled',
+      templateUrl: 'views/charts.scheduled.html',
+      controller: 'ChartsScheduledCtrl'
+    })
+    .state('ehr.charts.recent', {
+      url: '/recent',
+      templateUrl: 'views/charts.recent.html',
+      // controller: 'ChartsCtrl'
+    })
+    .state('ehr.charts.search', {
+      url: '/search',
+      templateUrl: 'views/charts.search.html',
+      // controller: 'ChartsCtrl'
     })
     .state('ehr.messages', {
       url: '/messages',

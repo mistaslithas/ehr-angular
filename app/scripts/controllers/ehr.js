@@ -5,6 +5,6 @@ angular.module('ehrApp')
 
   	// this allows the main navigation to show selected state
   	$scope.$on('$stateChangeSuccess', function(){
-  		$scope.stateName = $state.current.name;
+  		$scope.stateName = $state.current.name.split('.')[1];
   	})
   });
