@@ -1,0 +1,16 @@
+<nav id="nav2">
+	<div class="item">
+		<a href="#/ehr/charts/scheduled" ng-class="{active:nav2=='scheduled'}">Scheduled</a>
+		<div class="arrow" ng-show="nav2=='scheduled'"></div>
+	</div>
+	<div class="item">
+		<a href="#/ehr/charts/recent" ng-class="{active:nav2=='recent'}">Recently Seen</a>
+		<div class="arrow" ng-show="nav2=='recent'"></div>
+	</div>
+	<div class="item" ng-show="nav2=='search'">
+		<a class="active">Search</a>
+		<div class="arrow"></div>
+	</div>
+</nav>
+
+<div class="subview" ui-view=""></div>
