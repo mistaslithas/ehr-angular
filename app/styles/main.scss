@@ -8,6 +8,11 @@ $section_header_bg: rgba(24,98,162,.4);
 $section_header: #1862A2;
 $nav2_active: #37A4EC;
 $table_blue: #045EA5;
+$tab_bg: rgba(4,94,195,.3);
+$control_bg_gray: #eee;
+$section_title_bg: #1862A2;
+$section_active: rgba(24,98,162,.4);
+$body_bg: #f2f2f2;
 
 html,body,.container {
 	width: 100% !important;
@@ -15,19 +20,69 @@ html,body,.container {
 }
 
 select {
-	// display: block !important;
-	// width: 100% !important;
-	height: 38px !important;
-	font-size: 15px !important;
-	color: #555 !important;
-	box-sizing: border-box;
+	height: 30px !important;
 	-webkit-appearance: none;
-	background: transparent url("../images/icon_select_arrow.png") no-repeat right center;
+	margin: 0;
+	padding: 0;
+	width: 100px !important;
+	font-family: 'source sans pro';
+	font-size: 18px !important;
+	font-weight: 200;
+	text-indent: 4px;
+	color: #444 !important;
+	border: none;
+	background: white url("../images/icon_select_arrow.png") no-repeat right center;
 }
 
 select:focus {
 	outline: none;
 }
+
+.select_show {
+	width: 170px !important;
+	margin-right: 20px;
+	background: $control_bg_gray url("../images/icon_select_arrow.png") no-repeat right center;
+}
+
+button {
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	border: none;
+	font-weight: 200;
+	background: $header_blue;
+}
+
+button:hover {
+	color: white;
+}
+
+.button_gray {
+	padding: 0 10px !important;
+	background: #ddd !important;
+}
+
+.button_orange {
+	padding: 0 10px !important;
+	background: #ddd !important;
+}
+
+.input-append {
+	margin: 0;
+}
+
+.align-items-left {
+	display: flex;
+	flex: 1;
+	justify-content: space-between;
+}
+
+.align-items-right {
+	display: flex;
+	flex: 1;
+	justify-content: flex-end;
+}
+
 
 #NAV_MAIN {
 	position: fixed;
@@ -69,225 +124,224 @@ select:focus {
 	}
 }
 
-#HEADER_PHONE {
-	display: none;
-	margin: 10px;
+// #HEADER_PHONE {
+// 	display: none;
+// 	margin: 10px;
 
-	.h_block {
-		display: inline-block;
-		vertical-align: top;
-	}
+// 	.h_block {
+// 		display: inline-block;
+// 		vertical-align: top;
+// 	}
 
-	.right_aligned {
-		display: inline-block;
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
+// 	.right_aligned {
+// 		display: inline-block;
+// 		position: absolute;
+// 		right: 0;
+// 		top: 0;
+// 	}
 
-	.info {
-		position: relative;
-		margin-bottom: 8px;
+// 	.info {
+// 		position: relative;
+// 		margin-bottom: 8px;
 
-		.patient_details_phone {
-			line-height: 10px;
-			margin: 0 10px 0 8px;
-		}
+// 		.patient_details_phone {
+// 			line-height: 10px;
+// 			margin: 0 10px 0 8px;
+// 		}
 
-		select {
-			width: 100px !important;
-		}
-	}
+// 		select {
+// 			width: 100px !important;
+// 		}
+// 	}
 
-	.controls {
-		position: relative;
+// 	.controls {
+// 		position: relative;
 
-		.phone_row {
-			position: relative;
+// 		.phone_row {
+// 			position: relative;
 
-			select {
-				width: 180px !important;
-			}
+// 			select {
+// 				width: 180px !important;
+// 			}
 
-			button {
-				width: 49px;
-				height: 38px;
-				border: none;
-				margin: 0;
-				padding: 0;
-			}
+// 			button {
+// 				width: 49px;
+// 				height: 38px;
+// 				border: none;
+// 				margin: 0;
+// 				padding: 0;
+// 			}
 
-			input[type='search'] {
-				width: 100px;
-				height: 38px;
-				padding: 0 0 0 8px;
-				font-size: 15px;
-				color: #555;
-				box-sizing: border-box;
-				-webkit-appearance: none;
-			}
-		}
-	}
+// 			input[type='search'] {
+// 				width: 100px;
+// 				height: 38px;
+// 				padding: 0 0 0 8px;
+// 				font-size: 15px;
+// 				color: #555;
+// 				box-sizing: border-box;
+// 				-webkit-appearance: none;
+// 			}
+// 		}
+// 	}
+// }
 
-}
+// #HEADER_MAIN {
+// 	position: fixed;
+// 	top: 0;
+// 	bottom: 0;
+// 	left: 70px;
+// 	right: 420px;
+// 	border-right: 1px solid #eee;
+// 	box-sizing: border-box;
 
-#HEADER_MAIN {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 70px;
-	right: 420px;
-	border-right: 1px solid #eee;
-	box-sizing: border-box;
+// 	#TABS_1 {
+// 		height: 29px;
+// 		background: rgba(0,0,0,.8);
+// 		padding: 4px 10px 0 30px;
+// 		box-sizing: border-box;
+// 		overflow: hidden;
 
-	#TABS_1 {
-		height: 29px;
-		background: rgba(0,0,0,.8);
-		padding: 4px 10px 0 30px;
-		box-sizing: border-box;
-		overflow: hidden;
+// 		a {
+// 			display: inline-block;
+// 			min-width: 50px;
+// 			font-size: 12px;
+// 			color: #aaa;
+// 			text-decoration: none;
+// 		}
 
-		a {
-			display: inline-block;
-			min-width: 50px;
-			font-size: 12px;
-			color: #aaa;
-			text-decoration: none;
-		}
+// 		a:hover {
+// 			cursor: pointer;
+// 			color: #ddd;
+// 		}
 
-		a:hover {
-			cursor: pointer;
-			color: #ddd;
-		}
+// 		a:active {
+// 			color: white;
+// 		}
 
-		a:active {
-			color: white;
-		}
+// 		.static_link {
+// 			min-width: 80px;
+// 		}
 
-		.static_link {
-			min-width: 80px;
-		}
+// 		.patient_tab {
+// 			display: inline-block;
 
-		.patient_tab {
-			display: inline-block;
+// 			a:first-of-type {
+// 				margin-right: 6px;
+// 			}
+// 		}
 
-			a:first-of-type {
-				margin-right: 6px;
-			}
-		}
+// 		.patient_tab:first-of-type {
+// 			margin-left: 30px;
+// 		}
 
-		.patient_tab:first-of-type {
-			margin-left: 30px;
-		}
+// 		.patient_selected,
+// 		.patient_selected:hover {
+// 			color: $header_blue;
+// 		}
+// 	}
 
-		.patient_selected,
-		.patient_selected:hover {
-			color: $header_blue;
-		}
-	}
+// 	#TITLE {
+// 		height: 90px;
+// 		background: $header_blue;
 
-	#TITLE {
-		height: 90px;
-		background: $header_blue;
+// 		img {
+// 			display: inline-block;
+// 		}
 
-		img {
-			display: inline-block;
-		}
+// 		#TITLES {
+// 			display: inline-block;
+// 			vertical-align: top;
+// 			padding-left: 8px;
 
-		#TITLES {
-			display: inline-block;
-			vertical-align: top;
-			padding-left: 8px;
+// 			.info {
+// 				height: 40px;
+// 				padding-top: 20px;
 
-			.info {
-				height: 40px;
-				padding-top: 20px;
+// 				.patient_name {
+// 					display: inline-block;
+// 					font-size: 36px;
+// 					font-weight: 200;
+// 					font-style: normal;
+// 					line-height: 12px;
+// 					color: white;
+// 				}
 
-				.patient_name {
-					display: inline-block;
-					font-size: 36px;
-					font-weight: 200;
-					font-style: normal;
-					line-height: 12px;
-					color: white;
-				}
+// 				.patient_details {
+// 					display: inline-block;
+// 					margin-left: 60px;
 
-				.patient_details {
-					display: inline-block;
-					margin-left: 60px;
+// 					p {
+// 						font-family: 'open sans';
+// 						font-size: 14px;
+// 						font-weight: 200;
+// 						color: #fefefe !important;
+// 						line-height: 10px;
+// 					}
+// 				}
 
-					p {
-						font-family: 'open sans';
-						font-size: 14px;
-						font-weight: 200;
-						color: #fefefe !important;
-						line-height: 10px;
-					}
-				}
+// 				.controls {
+// 					display: inline-block;
+// 					position: absolute;
+// 					top: 46px;
+// 					right: 20px;
+// 				}
+// 			}
 
-				.controls {
-					display: inline-block;
-					position: absolute;
-					top: 46px;
-					right: 20px;
-				}
-			}
+// 			.tabs {
+// 				width: 500px;
+// 				height: 30px;
 
-			.tabs {
-				width: 500px;
-				height: 30px;
+// 				.tab {
+// 					display: inline-block;
+// 					vertical-align: top;
+// 					min-width: 122px;
+// 					height: 30px;
+// 					margin-right: 6px;
+// 					background: rgba(4,94,165,.3);
+// 					cursor: pointer;
 
-				.tab {
-					display: inline-block;
-					vertical-align: top;
-					min-width: 122px;
-					height: 30px;
-					margin-right: 6px;
-					background: rgba(4,94,165,.3);
-					cursor: pointer;
+// 					.title {
+// 						display: inline-block;
+// 						font-size: 15px;
+// 						font-weight: 200;
+// 						color: #ddd;
+// 						padding-top: 4px;
+// 						width: 100%;
+// 						text-align: center;
+// 						font-family: 'open sans';
+// 					}
 
-					.title {
-						display: inline-block;
-						font-size: 15px;
-						font-weight: 200;
-						color: #ddd;
-						padding-top: 4px;
-						width: 100%;
-						text-align: center;
-						font-family: 'open sans';
-					}
+// 					img {
+// 						display: inline-block;
+// 					}
+// 				}
 
-					img {
-						display: inline-block;
-					}
-				}
+// 				.tab:hover {
+// 					.title {
+// 						color: white;
+// 					}
+// 				}
 
-				.tab:hover {
-					.title {
-						color: white;
-					}
-				}
+// 				.selected_tab {
+// 					background: white;
+// 					padding-right: 10px;
 
-				.selected_tab {
-					background: white;
-					padding-right: 10px;
+// 					.title {
+// 						color: #18304c;
+// 						width: auto;
+// 						padding: 0 8px 0 28px;
+// 					}
+// 				}
 
-					.title {
-						color: #18304c;
-						width: auto;
-						padding: 0 8px 0 28px;
-					}
-				}
-
-				.selected_tab:hover {
-					.title {
-						color: #18304c;
-					}
-				}
-			}
-		}
-	}
-}
+// 				.selected_tab:hover {
+// 					.title {
+// 						color: #18304c;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 #BODY {
 	position: absolute;
@@ -296,7 +350,7 @@ select:focus {
 	left: 70px;
 	right: 420px;
 	border-right: 1px solid #eee;
-	background: #f2f2f2;
+	background: $body_bg;
 	overflow: hidden;
 
 	#nav2 {
@@ -348,99 +402,48 @@ select:focus {
 		height: 100%;
 
 		header {
-			height: 61px;
+			display: flex;
+			align-items: center;
 			background: $header_blue;
-			position: relative;
-			padding: 0 20px;
 			font-family: 'open sans';
 			font-weight: 200;
-
-			.info, .date {
-				display: inline-block;
-				vertical-align: middle;
-				line-height: 61px;
-			}
-
-			.info {
-				font-size: 36px;
-				color: white;
-				padding-right: 50px;
-			}
-
-			.date {
-				font-size: 28px;
-				color: rgba(255,255,255,.6);
-			}
-
-			select {
-				margin-top: 10px;
-				width: 100px !important;
-				font-family: 'source sans pro';
-				font-size: 18px !important;
-				font-weight: 200;
-				text-indent: 4px;
-				color: #444 !important;
-				border: none;
-				background: white url("../images/icon_select_arrow.png") no-repeat right center;
-			}
 		}
 
-		.search {
+		.controls {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 			height: 44px;
-			box-sizing: border-box;
-			padding: 6px 20px;
+			padding: 0 20px;
 			background: white;
-
-			input[type='search'] {
-				height: 30px;
-				width: 428px;
-				padding: 0;
-				margin: 0;
-				text-indent: 10px;
-			}
-
-			button {
-				height: 32px;
-				margin: 0;
-				padding: 0;
-				border: none;
-				background: $header_blue;
-			}
-
-			.button_gray {
-				padding: 0 10px;
-				font-weight: 200;
-				color: #444;
-				background: #ddd;
-			}
-
-			.button_gray:hover {
-				background: black;
-				color: white;
-			}
-
 		}
 
-		.test {
+		.table {
 			display: flex;
 			flex-direction: column;
 			flex: 1;
 
-			.test_header {
+			.table_header {
 				font-size: 12px;
 				font-weight: 200;
 				color: white;
 				background: $header_blue !important;
 			}
 
-			.test_body {
+			.table_body {
 				flex: 1;
 				background: #F2F2F2;
 				overflow: scroll;
 				margin-bottom: 30px; //WTF? why is this needed?
 			}
 
-			.test_row {
+			.patient_row:hover {
+				cursor: pointer;
+				background: #eee;
+				text-decoration: none;
+			}
+
+			.table_row {
 				display: flex;
 				align-items: center;
 				margin-bottom: 1px;
@@ -473,7 +476,7 @@ select:focus {
 				}
 			}
 
-			.test_cell {
+			.table_cell {
 				flex: 1;
 			}
 
@@ -484,79 +487,158 @@ select:focus {
 			.col_last {
 				width: 120px;
 			}
-
 		}
 
+		.content {
+			padding-top: 50px;
+			border-top: 6px solid $header_blue;
+		}
 
+		#CHARTS_SCHEDULED {
+			header {
+				padding: 20px;
 
-
-
-
-
-
-		.table {
-			display: table;
-			border-collapse: collapse;
-			-webkit-box-flex: 1;
-			overflow: scroll;
-
-			.header_row {
-				display: table-row;
-				height: 20px;
-				background: $header_blue !important;
-
-				p {
-					font-size: 12px;
-					font-weight: 200;
+				.info {
+					font-size: 36px;
 					color: white;
-					line-height: 0;
+					padding-right: 50px;
+				}
+
+				.date {
+					font-size: 28px;
+					color: rgba(255,255,255,.6);
 				}
 			}
 
-			.table_row {
-				display: table-row;
-				background: white;
-				border-bottom: 1px solid #f2f2f2 !important;
-
-				.table_cell {
-					display: table-cell;
-					vertical-align: middle;
-
-					p {
-						padding: 0;
-						margin: 0;
-					}
-
-					.general {
-						font-size: 15px;
-						font-weight: 300;
-						color: #aaa;
-					}
-
-					.patient_name {
-						font-size: 20px;
-						font-weight: 300;
-						color: $table_blue;
-					}
-
-					.date_encounter {
-						font-size: 15px;
-						color: $table_blue;
-					}
-
-					.location {
-						color: $orange;
-					}
+			.controls {
+				input[type='search'] {
+					width: 380px;
 				}
-
-				.table_cell:first-of-type {
-					width: 80px;
-				}
-
-				.table_cell:last-of-type {
-					width: 120px;
-				}			
 			}
+		}
+
+		#CHARTS_PATIENT {
+			header {
+				align-items: flex-end;
+
+				img {
+					width: 91px;
+				}
+
+				.info {
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-end;
+					flex: 1;
+					padding-right: 20px;
+
+					.row {
+						display: flex;
+						align-items: flex-end;
+						margin-left: 20px;
+
+						.h_block {
+							margin-right: 40px;
+						}
+
+						.patient_name {
+							font-size: 36px;
+							font-weight: 200;
+							color: white;
+							// padding-bottom: 3px;
+						}
+
+						.general {
+							font-size: 14px;
+							font-weight: 200;
+							color: #eee;
+							line-height: 10px;
+						}
+					}
+
+					.tabs {
+						display: flex;
+						margin-left: 20px;
+						padding-top: 12px;
+
+						.tab {
+							padding: 5px 20px;
+							margin-right: 10px;
+							font-size: 15px;
+							color: #eee;
+							background: $tab_bg;
+
+							p {
+								margin: 0 auto;
+							}
+						}
+
+						.tab:hover {
+							text-decoration: none;
+							color: white;
+						}
+
+						.active {
+							color: #18304C;
+							background: white;
+							pointer-events: none;
+						}
+
+						.active:hover {
+							color: #18304C;
+						}
+					}
+				}
+			}
+		}
+
+		#CHARTS_PATIENT_FACESHEET {
+			section {
+				height: 200px;
+				background: $body_bg;
+
+				header {
+					font-weight: 200;
+					font-size: 18px;
+					line-height: 28px;
+					padding-right: 20px;
+					background: none;
+
+					.section_title {
+						padding: 0 20px;
+						color: #ddd;
+						background: $section_title_bg;
+						margin-right: 20px;
+					}
+
+					a {
+						color: $header_blue;
+						margin-right: 30px;
+					}
+				}
+
+				ul {
+					width: 100%;
+					height: 100%;
+					background: $body_bg;
+					margin: 0;
+					padding: 0;
+				}
+			}
+
+			section:hover {
+				background: $section_active;
+
+				a {
+					color: #eee;
+				}
+
+				a:hover {
+					color: white;
+					text-decoration: none;
+				}
+			}
+
 		}
 	}
 

@@ -1,0 +1,31 @@
+<div id="CHARTS_PATIENT">
+	<header>
+		<img ng-src="{{patient.image}}">
+		<div class="info">
+			<div class="row">
+				<div class="h_block">
+					<p class="patient_name">{{patient.firstName}} {{patient.lastName}}</p>
+				</div>
+				<div class="h_block">
+					<p class="general">{{patient.dob | age}} {{patient.sex}}</p>
+					<p class="general">{{patient.dob | date:'MMM d, yyyy'}}</p>
+				</div>
+				<div class="h_block">
+					<p class="general">{{patient.phone | phone}}</p>
+					<p class="general">{{patient.insurance}}</p>
+				</div>
+				<div class="align-items-right">
+					<select>
+						<option>Actions</option>
+					</select>
+				</div>
+			</div>
+			<div class="tabs">
+				<a class="tab" ng-class="{active: nav3=='facesheet'}" ui-sref="ehr.charts.patient.facesheet">Facesheet</a>
+				<a class="tab" ng-class="{active: nav3=='timeline'}" ui-sref="ehr.charts.patient.timeline">Timeline</a>
+			</div>
+		</div>
+	</header>
+
+	<div class="subview" ui-view></div>
+</div>

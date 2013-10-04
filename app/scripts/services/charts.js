@@ -5,10 +5,8 @@ angular.module('ehrApp')
     return {
       getScheduledPatients: function () {
         // apply a 'scheduled' transformation to a sample of our core patients
-        // var patients = _.sample(model.patients, _.random(1,model.patients.length));
+        var patients = _.sample(model.patients, _.random(1,model.patients.length));
 
-        var patients = model.patients;
-        
         _.each(patients, function(val){
           val.cc = _.sample(model.ccs, 1)[0];
           val.last_visit = moment().subtract('days', _.random(365)).format();
@@ -17,7 +15,23 @@ angular.module('ehrApp')
           val.status = 'In Room ' + _.random(1,10);
         })
 
-        return patients;
-      }
+        model.scheduledPatients = patients;
+      },
+      getPatientFacesheet: function(id) {
+        // apply a 'facesheet' transformation to basic patient object
+        var patient = _.where(model.patients, {id:id})[0];
+
+        return patient;
+      },
+      getSearchablePatients: function(id) {
+        // apply a 'search' transformation to basic patient object
+        var patients = model.patients;
+
+        _.each(patients, function(val){
+          val.last_visit = moment().subtract('days', _.random(365)).format();
+        })
+
+        model.searchablePatients = patients;
+      },
     };
   });

@@ -7,11 +7,6 @@ angular.module('ehrApp', ['ui.router'])
   // For any unmatched url, redirect to /home
   $urlRouterProvider.otherwise('/ehr');
 
-  // Reroute /charts to /charts/scheduled
-  $urlRouterProvider.when('/ehr/charts', '/ehr/charts/scheduled');
-
-
-
   // States
   $stateProvider
     .state('ehr', {
@@ -34,22 +29,36 @@ angular.module('ehrApp', ['ui.router'])
     .state('ehr.charts', {
       url: '/charts',
       templateUrl: 'views/charts.html',
-      controller: 'ChartsCtrl'
+      controller: 'ChartsCtrl',
+      abstract: true
     })
     .state('ehr.charts.scheduled', {
-      url: '/scheduled',
+      url: '',
       templateUrl: 'views/charts.scheduled.html',
       controller: 'ChartsScheduledCtrl'
     })
     .state('ehr.charts.recent', {
       url: '/recent',
       templateUrl: 'views/charts.recent.html',
-      // controller: 'ChartsCtrl'
     })
     .state('ehr.charts.search', {
       url: '/search',
       templateUrl: 'views/charts.search.html',
-      // controller: 'ChartsCtrl'
+      controller: 'ChartsSearchCtrl'
+    })
+    .state('ehr.charts.patient', {
+      url: '/:id',
+      templateUrl: 'views/charts.patient.html',
+      controller: 'ChartsPatientCtrl',
+      abstract: true
+    })
+    .state('ehr.charts.patient.facesheet', {
+      url: '',
+      templateUrl: 'views/charts.patient.facesheet.html',
+    })
+    .state('ehr.charts.patient.timeline', {
+      url: '/timeline',
+      templateUrl: 'views/charts.patient.timeline.html',
     })
     .state('ehr.messages', {
       url: '/messages',

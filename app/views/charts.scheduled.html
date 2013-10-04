@@ -1,46 +1,53 @@
-<header>
-	<div class="info">{{patients.length}} Scheduled Patient<span ng-show="patients.length > 1">s</span></div>
-	<div class="date">{{today}}</div>
-	<select class="pull-right">
-		<option>Actions</option>
-	</select>
-</header>
+<div id="CHARTS_SCHEDULED">
+	<header>
+		<div class="info">{{model.scheduledPatients.length}} Scheduled Patient<span ng-show="model.scheduledPatients.length > 0">s</span></div>
+		<div class="date">{{today}}</div>
 
-<section class="search">
-	<div class="input-append">
-		<input type="search" placeholder="Search using first, last name, SS#, MedID or DOB" ng-model="search" ng-change="searchUpdate(search)" autofocus>
-	  	<button class="btn" type="button"><img src="images/search_icon.png"></button>
-	</div>
-	<button class="button_gray pull-right">Add New Patient</button>
-</section>
-
-<section class="test">
-	<div class="test_row test_header">
-		<div class="col1"></div>
-		<div class="test_cell">PATIENT/CC</div>
-		<div class="test_cell">AGE, GENDER/DOB</div>
-		<div class="test_cell">LAST ENCOUNTER/DX</div>
-		<div class="col_last">APPT/STATUS</div>
-	</div>
-	<div class="test_body">
-		<div class="test_row" ng-repeat="patient in patients | orderBy:'appt'">
-			<div class="col1"><img ng-src="{{patient.image}}"></div>
-			<div class="test_cell">
-				<p class="patient_name">{{patient.firstName}} {{patient.lastName}}</p>
-				<p class="general">{{patient.cc}}</p>
-			</div>
-			<div class="test_cell">
-				<p class="general">{{patient.dob | age}} {{patient.sex}}</p>
-				<p class="general">{{patient.dob | date:'MMM d, yyyy'}}</p>
-			</div>
-			<div class="test_cell">
-				<p class="date_encounter">{{patient.last_visit | date:'MMM d, yyyy'}}</p>
-				<p class="general">{{patient.last_dx}}</p>
-			</div>
-			<div class="col_last">
-				<p class="date_encounter">{{patient.appt | date:'h:mm a'}}</p>
-				<p class="location">{{patient.status}}</p>
-			</div>
+		<div class="align-items-right">
+			<select>
+				<option>Actions</option>
+			</select>
 		</div>
-	</div>
-</section>
+	</header>
+
+	<section class="controls">
+		<div class="input-append">
+			<input type="search" placeholder="Search using first, last name, SS#, MedID or DOB" ng-model="search" ng-change="searchUpdate(search)" autofocus>
+		  	<button><img src="images/search_icon.png"></button>
+		</div>
+		<div class="align-items-right">
+			<button class="button_gray">Add New Patient</button>
+		</div>
+	</section>
+
+	<section class="table">
+		<div class="table_row table_header">
+			<div class="col1"></div>
+			<div class="table_cell">PATIENT/CC</div>
+			<div class="table_cell">AGE, GENDER/DOB</div>
+			<div class="table_cell">LAST ENCOUNTER/DX</div>
+			<div class="col_last">APPT/STATUS</div>
+		</div>
+		<div class="table_body">
+			<a class="table_row patient_row" ng-repeat="patient in model.scheduledPatients | orderBy:'appt'" ui-sref="ehr.charts.patient({id:patient.id})">
+				<div class="col1"><img ng-src="{{patient.image}}"></div>
+				<div class="table_cell">
+					<p class="patient_name">{{patient.firstName}} {{patient.lastName}}</p>
+					<p class="general">{{patient.cc}}</p>
+				</div>
+				<div class="table_cell">
+					<p class="general">{{patient.dob | age}} {{patient.sex}}</p>
+					<p class="general">{{patient.dob | date:'MMM d, yyyy'}}</p>
+				</div>
+				<div class="table_cell">
+					<p class="date_encounter">{{patient.last_visit | date:'MMM d, yyyy'}}</p>
+					<p class="general">{{patient.last_dx}}</p>
+				</div>
+				<div class="col_last">
+					<p class="date_encounter">{{patient.appt | date:'h:mm a'}}</p>
+					<p class="location">{{patient.status}}</p>
+				</div>
+			</a>
+		</div>
+	</section>
+</div>
