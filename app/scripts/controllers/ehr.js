@@ -10,4 +10,5 @@ angular.module('ehrApp')
   	$scope.$on('$stateChangeSuccess', function(){
   		$scope.stateName = $state.current.name.split('.')[1];
   	})
+
   });

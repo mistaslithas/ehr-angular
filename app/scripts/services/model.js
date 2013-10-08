@@ -7,6 +7,14 @@ angular.module('ehrApp')
   .factory('model', function () {
     return {
     	ccs: ['Influenza','Panic Attack','Hypertension','Diabetes','Anemia'],
+    	drugs: ['Naproxen','Neurontin (gabapentin)','Mobic (meloxicam)','Flexeril (cyclobeuraprine)','Ibuprofen','Xanax (ALPRAZolam)','MS Contin (morphine)'],
+    	drugMethods: ['oral tablet'],
+    	doctors: ['Dr. Marie Sheffield','Dr. Jekyll','Dr. Kavorkian'],
+    	refills: ['No refills','1x refill','refill due'],
+    	problems: ['Sciatica', 'Obesity, unspecified', 'Lumbosacral Spondylosis Without Myelopathy', 'Lumbago', 'Unspecified Essential Hypertension'],
+    	surgeries: ['Appendectomy','Tonsilectomy','Quadruple Bypass','Liver Transplant','Root Canal'],
+    	diseases: ['Heart Disease','Kidney Disease','Diabetes','Flatulitis'],
+    	relations: ['Mother','Father','Sister','Brother','Uncle','Aunt','Grandmother','Grandfather','Son','Daughter'],
     	patients: [
 			{
 	            id:'00000001',

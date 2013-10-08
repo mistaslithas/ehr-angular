@@ -55,6 +55,7 @@ angular.module('ehrApp', ['ui.router'])
     .state('ehr.charts.patient.facesheet', {
       url: '',
       templateUrl: 'views/charts.patient.facesheet.html',
+      controller: 'ChartsFacesheetCtrl'
     })
     .state('ehr.charts.patient.timeline', {
       url: '/timeline',

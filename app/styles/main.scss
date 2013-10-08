@@ -19,11 +19,16 @@ html,body,.container {
 	height: 100%;
 }
 
+a:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
 select {
 	height: 30px !important;
 	-webkit-appearance: none;
 	margin: 0;
-	padding: 0;
+	padding: 0 0 0 6px;
 	width: 100px !important;
 	font-family: 'source sans pro';
 	font-size: 18px !important;
@@ -64,7 +69,8 @@ button:hover {
 
 .button_orange {
 	padding: 0 10px !important;
-	background: #ddd !important;
+	background: $orange !important;
+	color: #eee;
 }
 
 .input-append {
@@ -108,7 +114,6 @@ button:hover {
 	}
 
 	a:hover {
-		cursor: pointer;
 
 		img {
 			opacity: 1;
@@ -344,6 +349,9 @@ button:hover {
 // }
 
 #BODY {
+	display: flex;
+	flex-direction: column;
+
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -372,7 +380,6 @@ button:hover {
 
 			a:hover {
 				color: white;
-				text-decoration: none;
 			}
 
 			.active {
@@ -397,10 +404,6 @@ button:hover {
 	}
 
 	.subview {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-
 		header {
 			display: flex;
 			align-items: center;
@@ -421,7 +424,6 @@ button:hover {
 		.table {
 			display: flex;
 			flex-direction: column;
-			flex: 1;
 
 			.table_header {
 				font-size: 12px;
@@ -434,13 +436,11 @@ button:hover {
 				flex: 1;
 				background: #F2F2F2;
 				overflow: scroll;
-				margin-bottom: 30px; //WTF? why is this needed?
+				// margin-bottom: 30px; //WTF? why is this needed?
 			}
 
 			.patient_row:hover {
-				cursor: pointer;
 				background: #eee;
-				text-decoration: none;
 			}
 
 			.table_row {
@@ -489,12 +489,59 @@ button:hover {
 			}
 		}
 
-		.content {
-			padding-top: 50px;
+		.body {
+			display: flex;
 			border-top: 6px solid $header_blue;
+
+			.content {
+				flex: 1;
+				padding-top: 50px;
+			}
+
+			.editor {
+				width: 0px;
+				height: 447px;
+				margin: 20px 0; 
+				background: white;
+				transition: .3s;
+				box-shadow: 0 0 2px 2px rgba(0,0,0,0);
+
+				header {
+					display: flex;
+					align-items: center !important;
+					height: 44px;
+					box-sizing: border-box;
+					background: white;
+					border-bottom: 6px solid $header_blue;
+
+					.title {
+						flex: 1;
+						font-size: 24px;
+						color: #333;
+						text-align: center;
+					}
+
+					a {
+						color: #aaa;
+						padding-right: 10px;
+					}
+
+					a:hover {
+						color: white;
+					}
+
+				}
+			}
+
+			.editor_open {
+				width: 380px;
+				margin: 20px 10px;
+				box-shadow: 0 0 2px 2px rgba(0,0,0,.2);
+			}
 		}
 
 		#CHARTS_SCHEDULED {
+
 			header {
 				padding: 20px;
 
@@ -574,7 +621,6 @@ button:hover {
 						}
 
 						.tab:hover {
-							text-decoration: none;
 							color: white;
 						}
 
@@ -593,49 +639,95 @@ button:hover {
 		}
 
 		#CHARTS_PATIENT_FACESHEET {
-			section {
-				height: 200px;
-				background: $body_bg;
 
-				header {
-					font-weight: 200;
-					font-size: 18px;
-					line-height: 28px;
-					padding-right: 20px;
-					background: none;
+			.body {
 
-					.section_title {
-						padding: 0 20px;
-						color: #ddd;
-						background: $section_title_bg;
-						margin-right: 20px;
+				.content {
+
+					section {
+						background: $body_bg;
+						margin-right: 10px;
+						margin-bottom: 20px;
+
+						header {
+							font-weight: 200;
+							font-size: 18px;
+							line-height: 28px;
+							padding-right: 20px;
+							background: none;
+
+							.section_title {
+								padding: 0 20px;
+								color: #ddd;
+								background: $section_title_bg;
+								margin-right: 20px;
+							}
+
+							a {
+								font-size: 16px;
+								color: $header_blue;
+								margin-right: 30px;
+							}
+						}
+
+						ul {
+							width: 100%;
+							height: 100%;
+							background: $body_bg;
+							margin: 0;
+							padding: 10px 0 0 30px;
+
+							list-style: none;
+
+							li {
+								font-size: 15px;
+								font-weight: 300;
+								color: #888;
+								margin-bottom: 6px;
+								text-indent: -10px;
+
+								span {
+									margin-right: 10px;
+								}
+
+								.light {
+									color: #ccc;
+								}
+							}
+
+							li:before {
+								content:' - ';
+								color: $header_blue;
+							}
+						}
+
+						footer {
+							padding-left: 20px;
+							background: $body_bg;
+
+							a {
+								font-size: 16px !important;
+								font-weight: 200;
+								color: $header_blue;
+							}
+
+							a:hover {
+								color: black;
+							}
+						}
 					}
 
-					a {
-						color: $header_blue;
-						margin-right: 30px;
+					section:hover {
+						background: $section_active;
+
+						header a {
+							color: #eee;
+						}
+
+						header a:hover {
+							color: white;
+						}
 					}
-				}
-
-				ul {
-					width: 100%;
-					height: 100%;
-					background: $body_bg;
-					margin: 0;
-					padding: 0;
-				}
-			}
-
-			section:hover {
-				background: $section_active;
-
-				a {
-					color: #eee;
-				}
-
-				a:hover {
-					color: white;
-					text-decoration: none;
 				}
 			}
 
@@ -751,9 +843,7 @@ button:hover {
 	// 			}
 
 	// 			.icon_close:hover {
-	// 				text-decoration: none;
 	// 				color: black;
-	// 				cursor: pointer;
 	// 			}
 	// 		}
 	// 	}
@@ -804,8 +894,6 @@ button:hover {
 
 	// 					a:hover {
 	// 						color: white;
-	// 						text-decoration: none;
-	// 						cursor: pointer;
 	// 					}
 	// 				}
 	// 			}
@@ -816,11 +904,6 @@ button:hover {
 	// 				a {
 	// 					font-size: 15px;
 	// 					font-weight: 300;
-	// 				}
-
-	// 				a:hover {
-	// 					text-decoration: none;
-	// 					cursor: pointer;
 	// 				}
 
 	// 				.table_h {
@@ -873,8 +956,6 @@ button:hover {
 
 	// 				.link_historical:hover {
 	// 					opacity: 1;
-	// 					text-decoration: none;
-	// 					cursor: pointer;
 	// 				}
 
 	// 			}
