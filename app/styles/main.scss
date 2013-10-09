@@ -21,14 +21,13 @@ html,body,.container {
 
 a:hover {
 	cursor: pointer;
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 select {
 	height: 30px !important;
 	-webkit-appearance: none;
-	margin: 0;
-	padding: 0 0 0 6px;
+	margin: 0 !important;
 	width: 100px !important;
 	font-family: 'source sans pro';
 	font-size: 18px !important;
@@ -45,7 +44,7 @@ select:focus {
 
 .select_show {
 	width: 170px !important;
-	margin-right: 20px;
+	margin-right: 20px !important;
 	background: $control_bg_gray url("../images/icon_select_arrow.png") no-repeat right center;
 }
 
@@ -74,13 +73,14 @@ button:hover {
 }
 
 .input-append {
-	margin: 0;
+	margin: 0 !important;
 }
 
 .align-items-left {
 	display: flex;
 	flex: 1;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .align-items-right {
