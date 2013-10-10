@@ -78,8 +78,39 @@ angular.module('ehrApp')
           var famHis = {};
           famHis.name = _.sample(model.diseases,1)[0];
           famHis.relation = _.sample(model.relations,1)[0];
-          famHis.date = moment().subtract('days', _.random(1000)).format();
+          famHis.date = moment().subtract('years', _.random(100)).format();
           patient.familyHistory.push(famHis);
+        }
+
+        // create social history
+        patient.socialHistory = [];
+
+        for(var i=0; i<_.random(1,model.socials.length); i++) {
+          patient.socialHistory.push((_.sample(model.socials,1)[0]));
+        }
+
+        // create psych assessments
+        patient.psychAssessments = [];
+
+        for(var i=0; i<_.random(1,model.psychs.length); i++) {
+          var psych = {};
+          psych.name = _.sample(model.psychs,1)[0];
+          psych.doctor = _.sample(model.doctors,1)[0];
+          psych.date = moment().subtract('years', _.random(10)).format();
+          patient.psychAssessments.push(psych);
+        }
+
+        // create medications
+        patient.orders = [];
+
+        for(var i=0; i<_.random(1,model.drugs.length); i++) {
+          var order = {};
+          order.name = _.sample(model.drugs,1)[0];
+          order.method = _.sample(model.drugMethods,1)[0];
+          order.dosage = Math.round(Math.random() * 1000)/10 + ' mg';
+          order.doctor = _.sample(model.doctors,1)[0];
+          order.date = moment().subtract('days', _.random(1000)).format();
+          patient.orders.push(order);
         }
 
         return patient;

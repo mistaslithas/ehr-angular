@@ -1,16 +1,16 @@
 <nav id="nav2">
-	<div class="item">
-		<a ui-sref="ehr.charts.scheduled" ng-class="{active:nav2=='scheduled'}">Scheduled</a>
-		<div class="arrow" ng-show="nav2=='scheduled'"></div>
-	</div>
-	<div class="item">
-		<a ui-sref="ehr.charts.recent" ng-class="{active:nav2=='recent'}">Recently Seen</a>
-		<div class="arrow" ng-show="nav2=='recent'"></div>
-	</div>
-	<div class="item" ng-show="nav2=='search'">
+	<li>
+		<a ui-sref="ehr.charts.scheduled" ng-class="{active:state.current.name=='ehr.charts.scheduled'}">Scheduled</a>
+		<div class="arrow" ng-show="state.current.name=='ehr.charts.scheduled'"></div>
+	</li>
+	<li class="item">
+		<a ui-sref="ehr.charts.recent" ng-class="{active:state.current.name=='ehr.charts.recent'}">Recently Seen</a>
+		<div class="arrow" ng-show="state.current.name=='ehr.charts.recent'"></div>
+	</li>
+	<li class="item" ng-show="state.current.name=='ehr.charts.search'">
 		<a class="active">Search</a>
 		<div class="arrow"></div>
-	</div>
+	</li>
 </nav>
 
 <div class="subview" ui-view=""></div>

@@ -6,9 +6,7 @@ angular.module('ehrApp')
   	// create a global reference to the model
   	$scope.model = model;
 
-  	// this allows the main navigation to show selected state
-  	$scope.$on('$stateChangeSuccess', function(){
-  		$scope.stateName = $state.current.name.split('.')[1];
-  	})
+  	// create a global reference to the state
+  	$scope.state = $state;
 
   });

@@ -1,4 +1,4 @@
-<div id="CHARTS_PATIENT_FACESHEET">
+<div id="CHARTS_PATIENT_FACESHEET" class="view">
 
 	<div class="controls">
 		<div class="align-items-left">
@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="body">
-		<div class="content">
+		<div class="content scroll">
 			<section>
 				<header>
 					<div class="section_title">Medications</div>
@@ -83,7 +83,7 @@
 						<span><a ng-click="showEditor('Editor')">{{sur.name}}</a></span>
 						<span class="light">{{sur.metric}}</span>
 						<span>{{sur.doctor}}</span>
-						<span>{{sur.date | date:'MM/dd/yyyy'}}</span>
+						<span>{{sur.date | date:'yyyy'}}</span>
 					</li>
 				</ul>
 			</section>
@@ -96,9 +96,86 @@
 					<li ng-repeat="fam in patient.familyHistory | orderBy:'name'">
 						<span><a ng-click="showEditor('Editor')">{{fam.name}}</a></span>
 						<span>{{fam.relation}}</span>
-						<span class="light">{{fam.date | age}}</span>
+						<span class="light">Age {{fam.date | age}}</span>
 					</li>
 				</ul>
+			</section>
+			<section>
+				<header>
+					<div class="section_title">Social History</div>
+					<a href="#">Record</a>
+				</header>
+				<ul>
+					<li ng-repeat="soc in patient.socialHistory | orderBy:'name'">
+						<span><a ng-click="showEditor('Editor')">{{soc.name}}</a></span>
+						<span>{{soc.info}}</span>
+						<span class="light">{{soc.detail}}</span>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<div class="section_title">Activities of Daily Living</div>
+					<a href="#">Record</a>
+				</header>
+				<ul>
+					<li>None Recorded</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<div class="section_title">Advisories</div>
+				</header>
+				<ul>
+					<li>
+						<span>No smoking status recorded</span>
+						<span><a>Record</a></span>
+					</li>
+					<li>
+						<span>BP may not be adequately controlled</span>
+						<span class="orange">Last recorded BP 142/94 (today)</span>
+						<span><a>Document Plan</a></span>
+					</li>
+					<li>
+						<span>High risk medication for patients over 65 years old</span>
+						<span class="orange">Ativan</span>
+						<span><a>Document Reason</a></span>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<div class="section_title">Assessments Psychological</div>
+					<a href="#">Record</a>
+				</header>
+				<ul>
+					<li ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
+						<span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
+						<span>{{psych.doctor}}</span>
+						<span class="light">{{psych.date | date:'yyyy'}}</span>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<div class="section_title">Orders</div>
+					<a href="#">Add Order</a>
+				</header>
+				<ul>
+					<li ng-repeat="order in patient.orders | orderBy:'date'">
+						<span><a ng-click="showEditor('Editor')">{{order.name}}</a></span>
+						<span>{{order.method}}</span>
+						<span>{{order.dosage}}</span>
+						<span class="light">{{order.doctor}}</span>
+						<span>{{order.date | date:'MM/dd/yyyy'}}</span>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<div class="section_title">Clinical Summary</div>
+					<a href="#">Print</a>
+				</header>
 			</section>
 		</div>
 

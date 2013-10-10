@@ -1,9 +1,13 @@
-// @import "compass_twitter_bootstrap";
+@import "compass_twitter_bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+@import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css);
+
 
 $header_blue: #14A4EC;
 $banner: #E86666;
 $orange: #FF9326;
-$gray: #EEE;
+$gray: #DDD;
 $section_header_bg: rgba(24,98,162,.4);
 $section_header: #1862A2;
 $nav2_active: #37A4EC;
@@ -15,8 +19,13 @@ $section_active: rgba(24,98,162,.4);
 $body_bg: #f2f2f2;
 
 html,body,.container {
-	width: 100% !important;
+	width: 100%;
 	height: 100%;
+  	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+
+.orange {
+	color: $orange;
 }
 
 a:hover {
@@ -24,17 +33,24 @@ a:hover {
 	text-decoration: none !important;
 }
 
+button,
+input,
 select {
-	height: 30px !important;
-	-webkit-appearance: none;
-	margin: 0 !important;
-	width: 100px !important;
+	height: 30px;
+  	margin-bottom: 0 !important;
 	font-family: 'source sans pro';
-	font-size: 18px !important;
+	font-size: 16px;
 	font-weight: 200;
-	text-indent: 4px;
-	color: #444 !important;
+	line-height: 16px;
+	color: #444;
+	vertical-align: middle;
+	appearance: none;
 	border: none;
+	border-radius: 0 !important;
+}
+
+select {
+	text-indent: 4px;
 	background: white url("../images/icon_select_arrow.png") no-repeat right center;
 }
 
@@ -42,38 +58,36 @@ select:focus {
 	outline: none;
 }
 
+.select_actions {
+	width: 100px;
+}
+
 .select_show {
-	width: 170px !important;
-	margin-right: 20px !important;
+	width: 170px;
+	margin-right: 20px;
 	background: $control_bg_gray url("../images/icon_select_arrow.png") no-repeat right center;
 }
 
 button {
-	height: 30px;
-	margin: 0;
-	padding: 0;
-	border: none;
-	font-weight: 200;
-	background: $header_blue;
-}
-
-button:hover {
-	color: white;
+	padding: 0 20px;
 }
 
 .button_gray {
-	padding: 0 10px !important;
-	background: #ddd !important;
+	background: $gray;
 }
 
 .button_orange {
-	padding: 0 10px !important;
-	background: $orange !important;
-	color: #eee;
+	background: $orange;
+	color: white;
 }
 
 .input-append {
 	margin: 0 !important;
+
+	button {
+		padding: 0;
+		background: $header_blue;
+	}
 }
 
 .align-items-left {
@@ -89,6 +103,7 @@ button:hover {
 	justify-content: flex-end;
 }
 
+// PRIMARY RESPONSIVE SECTIONS
 
 #NAV_MAIN {
 	position: fixed;
@@ -129,229 +144,9 @@ button:hover {
 	}
 }
 
-// #HEADER_PHONE {
-// 	display: none;
-// 	margin: 10px;
-
-// 	.h_block {
-// 		display: inline-block;
-// 		vertical-align: top;
-// 	}
-
-// 	.right_aligned {
-// 		display: inline-block;
-// 		position: absolute;
-// 		right: 0;
-// 		top: 0;
-// 	}
-
-// 	.info {
-// 		position: relative;
-// 		margin-bottom: 8px;
-
-// 		.patient_details_phone {
-// 			line-height: 10px;
-// 			margin: 0 10px 0 8px;
-// 		}
-
-// 		select {
-// 			width: 100px !important;
-// 		}
-// 	}
-
-// 	.controls {
-// 		position: relative;
-
-// 		.phone_row {
-// 			position: relative;
-
-// 			select {
-// 				width: 180px !important;
-// 			}
-
-// 			button {
-// 				width: 49px;
-// 				height: 38px;
-// 				border: none;
-// 				margin: 0;
-// 				padding: 0;
-// 			}
-
-// 			input[type='search'] {
-// 				width: 100px;
-// 				height: 38px;
-// 				padding: 0 0 0 8px;
-// 				font-size: 15px;
-// 				color: #555;
-// 				box-sizing: border-box;
-// 				-webkit-appearance: none;
-// 			}
-// 		}
-// 	}
-// }
-
-// #HEADER_MAIN {
-// 	position: fixed;
-// 	top: 0;
-// 	bottom: 0;
-// 	left: 70px;
-// 	right: 420px;
-// 	border-right: 1px solid #eee;
-// 	box-sizing: border-box;
-
-// 	#TABS_1 {
-// 		height: 29px;
-// 		background: rgba(0,0,0,.8);
-// 		padding: 4px 10px 0 30px;
-// 		box-sizing: border-box;
-// 		overflow: hidden;
-
-// 		a {
-// 			display: inline-block;
-// 			min-width: 50px;
-// 			font-size: 12px;
-// 			color: #aaa;
-// 			text-decoration: none;
-// 		}
-
-// 		a:hover {
-// 			cursor: pointer;
-// 			color: #ddd;
-// 		}
-
-// 		a:active {
-// 			color: white;
-// 		}
-
-// 		.static_link {
-// 			min-width: 80px;
-// 		}
-
-// 		.patient_tab {
-// 			display: inline-block;
-
-// 			a:first-of-type {
-// 				margin-right: 6px;
-// 			}
-// 		}
-
-// 		.patient_tab:first-of-type {
-// 			margin-left: 30px;
-// 		}
-
-// 		.patient_selected,
-// 		.patient_selected:hover {
-// 			color: $header_blue;
-// 		}
-// 	}
-
-// 	#TITLE {
-// 		height: 90px;
-// 		background: $header_blue;
-
-// 		img {
-// 			display: inline-block;
-// 		}
-
-// 		#TITLES {
-// 			display: inline-block;
-// 			vertical-align: top;
-// 			padding-left: 8px;
-
-// 			.info {
-// 				height: 40px;
-// 				padding-top: 20px;
-
-// 				.patient_name {
-// 					display: inline-block;
-// 					font-size: 36px;
-// 					font-weight: 200;
-// 					font-style: normal;
-// 					line-height: 12px;
-// 					color: white;
-// 				}
-
-// 				.patient_details {
-// 					display: inline-block;
-// 					margin-left: 60px;
-
-// 					p {
-// 						font-family: 'open sans';
-// 						font-size: 14px;
-// 						font-weight: 200;
-// 						color: #fefefe !important;
-// 						line-height: 10px;
-// 					}
-// 				}
-
-// 				.controls {
-// 					display: inline-block;
-// 					position: absolute;
-// 					top: 46px;
-// 					right: 20px;
-// 				}
-// 			}
-
-// 			.tabs {
-// 				width: 500px;
-// 				height: 30px;
-
-// 				.tab {
-// 					display: inline-block;
-// 					vertical-align: top;
-// 					min-width: 122px;
-// 					height: 30px;
-// 					margin-right: 6px;
-// 					background: rgba(4,94,165,.3);
-// 					cursor: pointer;
-
-// 					.title {
-// 						display: inline-block;
-// 						font-size: 15px;
-// 						font-weight: 200;
-// 						color: #ddd;
-// 						padding-top: 4px;
-// 						width: 100%;
-// 						text-align: center;
-// 						font-family: 'open sans';
-// 					}
-
-// 					img {
-// 						display: inline-block;
-// 					}
-// 				}
-
-// 				.tab:hover {
-// 					.title {
-// 						color: white;
-// 					}
-// 				}
-
-// 				.selected_tab {
-// 					background: white;
-// 					padding-right: 10px;
-
-// 					.title {
-// 						color: #18304c;
-// 						width: auto;
-// 						padding: 0 8px 0 28px;
-// 					}
-// 				}
-
-// 				.selected_tab:hover {
-// 					.title {
-// 						color: #18304c;
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }
-
 #BODY {
 	display: flex;
 	flex-direction: column;
-
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -362,15 +157,16 @@ button:hover {
 	overflow: hidden;
 
 	#nav2 {
-		height: 29px;
+		display: flex;
+		align-items: center;
+		height: 30px;
 		background: rgba(0,0,0,.8);
-		padding-top: 2px;
 		box-sizing: border-box;
 
-		.item {
-			display: inline-block;
+		li {
 			width: 120px;
 			text-align: center;
+			position: relative;
 
 			a {
 				font-size: 12px;
@@ -392,18 +188,23 @@ button:hover {
 			}
 
 			.arrow {
+				position: absolute;
+				left: 50%;
 				width: 0; 
 				height: 0; 
-				border-left: 5px solid transparent;
-				border-right: 5px solid transparent;
-				border-bottom: 5px solid $header_blue;
-				margin: 0 auto;
+				border-left: 4px solid transparent;
+				border-right: 4px solid transparent;
+				border-bottom: 4px solid $header_blue;
 			}
 
 		}
 	}
 
 	.subview {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+
 		header {
 			display: flex;
 			align-items: center;
@@ -424,6 +225,7 @@ button:hover {
 		.table {
 			display: flex;
 			flex-direction: column;
+			margin-bottom: 0;
 
 			.table_header {
 				font-size: 12px;
@@ -436,7 +238,6 @@ button:hover {
 				flex: 1;
 				background: #F2F2F2;
 				overflow: scroll;
-				// margin-bottom: 30px; //WTF? why is this needed?
 			}
 
 			.patient_row:hover {
@@ -490,6 +291,7 @@ button:hover {
 		}
 
 		.body {
+			flex: 1;
 			display: flex;
 			border-top: 6px solid $header_blue;
 
@@ -540,8 +342,22 @@ button:hover {
 			}
 		}
 
-		#CHARTS_SCHEDULED {
+		// VIEWS
+		// views are specific screens, defined by html templates
+		// they are defined using flexbox to make defining nested scrolling areas easier
+		.view {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+		}
 
+		.scroll {
+			flex: 1; 
+			overflow-y: auto;
+			overflow-x: hidden; 
+		}
+
+		#CHARTS_SCHEDULED {
 			header {
 				padding: 20px;
 
@@ -565,6 +381,7 @@ button:hover {
 		}
 
 		#CHARTS_PATIENT {
+
 			header {
 				align-items: flex-end;
 
@@ -734,239 +551,6 @@ button:hover {
 		}
 	}
 
-	// .view {
-	// 	position: relative;
-	// 	top: 120px;
-	// 	height: 100%;
-
-	// 	.controls {
-	// 		height: 50px;
-	// 		border-bottom: 6px solid $header_blue;
-	// 		box-sizing: border-box;
-	// 		background: white;
-	// 		padding: 6px 20px;
-	// 		position: absolute;
-	// 		left: 0;
-	// 		right: 0;
-
-	// 		button {
-	// 			height: 30px;
-	// 			border: none;
-	// 			font-weight: 200;
-	// 			padding: 0 28px;
-	// 		}
-
-	// 		.show_button {
-	// 			width: 180px;
-	// 			height: 30px;
-	// 			background: $gray;
-	// 			margin-right: 9px;
-	// 			text-align: left;
-	// 			padding-left: 10px;
-	// 			font-weight: 300;
-	// 		}
-
-	// 		#CHART_VISIT_SEARCH {
-	// 			display: inline-block;
-	// 			vertical-align: top;
-
-	// 			input {
-	// 				width: 178px;
-	// 			}
-
-	// 			button {
-	// 				border: none;
-	// 				margin: 0;
-	// 				padding: 0;
-	// 				background: $header_blue;
-	// 			}
-	// 		}
-
-	// 		.controls_right {
-	// 			position: absolute;
-	// 			right: 20px;
-	// 			display: inline-block;
-	// 			vertical-align: top;
-	// 			text-align: right;
-
-	// 			.orange {
-	// 				background: $orange;
-	// 				color: #eee;
-	// 			}
-
-	// 			.gray {
-	// 				background: $gray;
-	// 				color: #444;
-	// 			}
-
-	// 			.tasks {
-	// 				display: inline-block;
-	// 				margin-right: 10px;
-	// 				color: #045EA5;
-	// 				font-size: 16px;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	.info_box {
-	// 		width: 0px;
-	// 		height: 437px;
-	// 		position: absolute;
-	// 		top: 67px;
-	// 		right: 17px;
-	// 		box-shadow: 0 0 10px rgba(0,0,0,.4);
-	// 		background: white;
-	// 		transition: .2s;
-	// 		opacity: 0;
-	// 		overflow: hidden;
-
-	// 		header {
-	// 			width: 100%;
-	// 			height: 50px;
-	// 			box-sizing: border-box;
-	// 			border-bottom: 6px solid $header_blue;
-	// 			text-align: center;
-	// 			font-family: 'open sans';
-	// 			font-size: 20px;
-	// 			font-weight: 200;
-	// 			padding-top: 10px;
-	// 			color: #333;
-	// 			position: relative;
-
-	// 			.icon_close {
-	// 				position: absolute;
-	// 				top: 4px;
-	// 				right: 10px;
-	// 				font-size: 28px;
-	// 				font-weight: 200;
-	// 				color: #ddd;
-	// 			}
-
-	// 			.icon_close:hover {
-	// 				color: black;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	.info_box_visible {
-	// 		width: 383px;
-	// 		opacity: 1;
-	// 	}
-
-	// 	.content {
-	// 		overflow-x: hidden;
-	// 		overflow-y: scroll; 
-	// 		position: absolute;
-	// 		left: 0;
-	// 		right: 0;
-	// 		top: 50px;
-	// 		bottom: 0;
-	// 		padding-top: 17px;
-	// 		transition: .2s;
-
-	// 		section {
-	// 			padding-bottom: 20px;
-
-	// 			header {
-	// 				background: $section_header_bg;
-	// 				margin-bottom: 10px;
-
-	// 				.section_title {
-	// 					display: inline-block;
-	// 					padding: 0 20px;
-	// 					font-family: 'Source sans pro';
-	// 					font-size: 19px;
-	// 					font-weight: 200;
-	// 					line-height: 30px;
-	// 					color: white;
-	// 					background: #1862A2;
-	// 				}
-
-	// 				.options {
-	// 					display: inline-block;
-	// 					padding-left: 10px;
-
-	// 					a {
-	// 						margin-right: 30px;
-	// 						font-weight: 200;
-	// 						color: #eee;
-	// 					}
-
-	// 					a:hover {
-	// 						color: white;
-	// 					}
-	// 				}
-	// 			}
-
-	// 			.section_content {
-	// 				padding-left: 20px;
-
-	// 				a {
-	// 					font-size: 15px;
-	// 					font-weight: 300;
-	// 				}
-
-	// 				.table_h {
-	// 					display: table;
-	// 					line-height: 10px;
-
-	// 					.table_h_cell {
-	// 						display: table-cell;
-	// 						width: 115px;
-
-	// 						.cell_header {
-	// 							font-size: 12px !important;
-	// 							color: #888 !important;
-	// 						}
-	// 					}
-	// 				}
-
-	// 				ul {
-	// 					list-style: none;
-	// 					margin: 0;
-	// 					margin-left: 10px;
-
-	// 					li {
-	// 						font-size: 15px;
-	// 						font-weight: 300;
-	// 						color: #888;
-	// 						margin-bottom: 6px;
-	// 						text-indent: -10px;
-
-	// 						span {
-	// 							margin-right: 10px;
-	// 						}
-
-	// 						.light {
-	// 							color: #ccc;
-	// 						}
-	// 					}
-
-	// 					li:before {
-	// 						content:' - ';
-	// 						color: $header_blue;
-	// 					}
-	// 				}
-
-	// 				.link_historical {
-	// 					color: #14A4EC;
-	// 					margin-left: 9px;
-	// 					opacity: .6;
-	// 				}
-
-	// 				.link_historical:hover {
-	// 					opacity: 1;
-	// 				}
-
-	// 			}
-	// 		}
-	// 	}
-
-	// 	.content_reduced {
-	// 		right: 400px !important;
-	// 		border-right: none !important;
-	// 	}
-	// }
 }
 
 #AD_RIGHT {
@@ -1004,8 +588,6 @@ button:hover {
 		margin-top: 30px;
 	}
 }
-
-
 
 
 
@@ -1080,6 +662,4 @@ button:hover {
 			}	
 		}
 	}
-
-	
 }

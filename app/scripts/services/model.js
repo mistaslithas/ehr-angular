@@ -15,6 +15,13 @@ angular.module('ehrApp')
     	surgeries: ['Appendectomy','Tonsilectomy','Quadruple Bypass','Liver Transplant','Root Canal'],
     	diseases: ['Heart Disease','Kidney Disease','Diabetes','Flatulitis'],
     	relations: ['Mother','Father','Sister','Brother','Uncle','Aunt','Grandmother','Grandfather','Son','Daughter'],
+    	socials: [
+    		{name: 'Current Smoker', info:'22 packs/year', detail:''},
+    		{name: 'Alcohol Use', info:'5 drinks/week', detail:''},
+    		{name: 'Illicit Drug Use', info:'Occasional marijuana', detail:''},
+    		{name: 'Sexually Active', info:'Male & female partners', detail:'Condom contraception'}
+    	],
+    	psychs: ['Depression','Schizophrenia','Demonic Posession','Narcissism','Egotism'],
     	patients: [
 			{
 	            id:'00000001',

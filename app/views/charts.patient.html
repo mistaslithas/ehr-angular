@@ -1,4 +1,4 @@
-<div id="CHARTS_PATIENT">
+<div id="CHARTS_PATIENT" class="view">
 	<header>
 		<img ng-src="{{patient.image}}">
 		<div class="info">
@@ -15,14 +15,14 @@
 					<p class="general">{{patient.insurance}}</p>
 				</div>
 				<div class="align-items-right">
-					<select>
+					<select class="select_actions">
 						<option>Actions</option>
 					</select>
 				</div>
 			</div>
 			<div class="tabs">
-				<a class="tab" ng-class="{active: nav3=='facesheet'}" ui-sref="ehr.charts.patient.facesheet">Facesheet</a>
-				<a class="tab" ng-class="{active: nav3=='timeline'}" ui-sref="ehr.charts.patient.timeline">Timeline</a>
+				<a class="tab" ng-class="{active: state.current.name=='ehr.charts.patient.facesheet'}" ui-sref="ehr.charts.patient.facesheet">Facesheet</a>
+				<a class="tab" ng-class="{active: state.current.name=='ehr.charts.patient.timeline'}" ui-sref="ehr.charts.patient.timeline">Timeline</a>
 			</div>
 		</div>
 	</header>

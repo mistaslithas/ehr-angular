@@ -1,11 +1,10 @@
-
-<div id="CHARTS_SCHEDULED">
+<div id="CHARTS_SCHEDULED" class="view">
 	<header>
 		<div class="info">{{model.scheduledPatients.length}} Scheduled Patient<span ng-show="model.scheduledPatients.length > 0">s</span></div>
 		<div class="date">{{today}}</div>
 
 		<div class="align-items-right">
-			<select>
+			<select class="select_actions">
 				<option>Actions</option>
 			</select>
 		</div>
@@ -21,7 +20,7 @@
 		</div>
 	</section>
 
-	<section class="table">
+	<section class="table scroll">
 		<div class="table_row table_header">
 			<div class="col1"></div>
 			<div class="table_cell">PATIENT/CC</div>
