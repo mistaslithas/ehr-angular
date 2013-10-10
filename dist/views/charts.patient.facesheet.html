@@ -17,6 +17,19 @@
 		</div>
 	</div>
 
+	<div class="cds" ng-class="{cds_open:showCDS}">
+		<div class="info">
+			<p>{{patient.cds.cds}}</p>
+			<p><span class="row_header">Intervention Developer: </span>{{patient.cds.interventor}}</p>
+			<p><span class="row_header">Citation: </span>{{patient.cds.citor}}</p>
+			<p><span class="row_header">Sponsored By: </span>{{patient.cds.sponsor}}</p>
+		</div>
+		<div class="learn_more">
+			<a>Learn More</a>
+		</div>
+		<a class="button_close" ng-click="showCDS=!showCDS"><img src="images/icon_close.png"></a>
+	</div>
+
 	<div class="body">
 		<div class="content scroll">
 			<section>
@@ -182,7 +195,7 @@
 		<div class="editor" ng-class="{editor_open:editing}">
 			<header>
 				<div class="title">{{editorTitle}}</div>
-				<a ng-click="closeEditor()">x</a>
+				<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
 			</header>
 		</div>
 	</div>

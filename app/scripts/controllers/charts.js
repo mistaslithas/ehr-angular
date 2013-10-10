@@ -3,11 +3,6 @@
 angular.module('ehrApp')
   .controller('ChartsCtrl', function ($scope, $state) {
 
-  	// this allows the terciary navigation to show selected state
-  	// $scope.$on('$stateChangeSuccess', function(){
-  	// 	$scope.nav3 = $state.current.name.split('.')[3];
-  	// })
-
   	// when the search term changes, show/hide the search screen
   	// return the user to the screen they were on when they cancel the search
   	$scope.searchUpdate = function(search) {

@@ -21,6 +21,14 @@ angular.module('ehrApp')
         // apply a 'facesheet' transformation to basic patient object
         var patient = _.where(model.patients, {id:id})[0];
 
+        // create cds
+        patient.cds = {
+          cds: 'This patient is at high risk for COPD based on smoking history patient reported symptoms',
+          interventor: 'Boehringer Ingelheim Pharmaceuticals, Inc',
+          citor: 'Boehringer Ingelheim Pharmaceuticals, Inc',
+          sponsor: 'Boehringer Ingelheim Pharmaceuticals, Inc'
+        }
+
         // create medications
         patient.medications = [];
 

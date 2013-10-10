@@ -8,6 +8,7 @@ $header_blue: #14A4EC;
 $banner: #E86666;
 $orange: #FF9326;
 $gray: #DDD;
+$yellow: #FFFFBF;
 $section_header_bg: rgba(24,98,162,.4);
 $section_header: #1862A2;
 $nav2_active: #37A4EC;
@@ -31,6 +32,11 @@ html,body,.container {
 a:hover {
 	cursor: pointer;
 	text-decoration: none !important;
+}
+
+p {
+	margin: 0;
+	padding: 0;
 }
 
 button,
@@ -79,6 +85,16 @@ button {
 .button_orange {
 	background: $orange;
 	color: white;
+}
+
+.button_close {
+	width: 10px;
+	height: auto;
+	opacity: .7;
+}
+
+.button_close:hover {
+	opacity: 1;
 }
 
 .input-append {
@@ -220,6 +236,7 @@ button {
 			height: 44px;
 			padding: 0 20px;
 			background: white;
+			border-bottom: 6px solid $header_blue;
 		}
 
 		.table {
@@ -290,14 +307,50 @@ button {
 			}
 		}
 
+		.cds {
+			display: flex;
+			align-items: flex-start;
+			justify-content: flex-start;
+			max-height: 0;
+			padding: 0 20px 0 22px;
+			color: #444;
+			font-size: 15px;
+			font-weight: 300;
+			background: $yellow;
+			transition: max-height .2s;
+			overflow: hidden;
+
+			.info {
+				max-width: 80%;
+
+				p:not(:first-of-type) {
+					margin: 8px 0;
+				}
+
+				.row_header {
+					font-weight: 400;
+				}
+			}
+
+			.learn_more {
+				flex: 1;
+				color: $table_blue;
+				padding: 0 30px;
+			}
+		}
+
+		.cds_open {
+			padding: 8px 20px 8px 22px;
+			max-height: 100px;
+		}
+
 		.body {
 			flex: 1;
 			display: flex;
-			border-top: 6px solid $header_blue;
 
 			.content {
 				flex: 1;
-				padding-top: 50px;
+				padding-top: 30px;
 			}
 
 			.editor {
@@ -305,13 +358,15 @@ button {
 				height: 447px;
 				margin: 20px 0; 
 				background: white;
-				transition: .3s;
 				box-shadow: 0 0 2px 2px rgba(0,0,0,0);
+				transition: .3s;
+				overflow: hidden;
 
 				header {
 					display: flex;
 					align-items: center !important;
 					height: 44px;
+					padding-right: 10px;
 					box-sizing: border-box;
 					background: white;
 					border-bottom: 6px solid $header_blue;
@@ -322,16 +377,6 @@ button {
 						color: #333;
 						text-align: center;
 					}
-
-					a {
-						color: #aaa;
-						padding-right: 10px;
-					}
-
-					a:hover {
-						color: white;
-					}
-
 				}
 			}
 
@@ -409,14 +454,14 @@ button {
 							font-size: 36px;
 							font-weight: 200;
 							color: white;
-							// padding-bottom: 3px;
+							line-height: 36px;
 						}
 
 						.general {
 							font-size: 14px;
 							font-weight: 200;
 							color: #eee;
-							line-height: 10px;
+							line-height: 18px;
 						}
 					}
 
