@@ -9,7 +9,7 @@ angular.module('ehrApp')
   		$scope.search = search;
 
   		if(search) {
-  			if($scope.nav2 != 'search')
+  			if($state.current.name != 'ehr.charts.search')
   			{
 	  			$scope.preSearchState = $state.current.name;
 		  		$state.go('ehr.charts.search');
