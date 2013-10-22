@@ -154,6 +154,18 @@ button {
 	}
 }
 
+.grid-left {
+	margin-left: -11px !important;
+}
+
+.grid-right {
+	margin-right: 10px !important;
+}
+
+.grid-25 {
+	margin-left: 25px !important;
+}
+
 
 
 
@@ -344,76 +356,47 @@ button {
 		}
 
 		.controls {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			height: 44px;
-			padding: 0 20px;
+			padding: 6px 20px;
 			background: white;
+		}
+
+		.border_b_blue {
 			border-bottom: 6px solid $header_blue;
 		}
 
 		.table {
-			display: flex;
-			flex-direction: column;
-			margin-bottom: 0;
-
 			.table_header {
-				font-size: 12px;
+				padding: 3px 0;
+				font-size: 11px;
 				font-weight: 200;
-				color: white;
-				background: $header_blue !important;
+				color: #ddd;
+				background: $table_blue;
 			}
 
-			.table_body {
-				flex: 1;
-				background: #F2F2F2;
-				overflow: scroll;
-			}
-
-			.patient_row:hover {
-				background: #eee;
-			}
-
-			.table_row {
+			.row {
 				display: flex;
 				align-items: center;
-				margin-bottom: 1px;
-				background: white;
-
-				.general {
-					font-size: 15px;
-					font-weight: 300;
-					color: #aaa;
-				}
-
-				.patient_name {
-					font-size: 20px;
-					font-weight: 300;
-					color: $table_blue;
-				}
-
-				.date_encounter {
-					font-size: 15px;
-					color: $table_blue;
-				}
-
-				.location {
-					color: $orange;
-				}
 			}
 
-			.table_cell {
-				flex: 1;
+			a {
+				border-bottom: 1px solid $border_gray;
 			}
 
-			.col1 {
-				width: 80px;
+			a:hover {
+				background: $border_gray;
 			}
+		}
 
-			.col_last {
-				width: 120px;
-			}
+		.charts_scheduled_name {
+			font-size: 16px;
+			font-weight: 400;
+			color: $table_blue;
+		}
+
+		.charts_scheduled_default {
+			font-size: 13px;
+			font-weight: 200;
+			color: $font_gray;
 		}
 
 		.cds {
