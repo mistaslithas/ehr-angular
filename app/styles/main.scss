@@ -119,6 +119,41 @@ button {
 }
 
 
+// BOOTSTRAP GRID DEFINITIONS
+.row {
+	margin: 0;
+}
+
+[class*="col-"] {
+	padding: 0 10px;
+}
+
+.grid {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+
+	.row {
+		margin: 0;
+		height: 100%;
+	}	
+
+	[class*="col-"] {
+		height: 100%;
+		border: 1px dashed #ddd;
+		padding: 0 10px;
+
+		div {
+			height: 100%;
+			color: white;
+			background: rgba(255,0,0,.1);
+		}
+	}
+}
+
 
 
 
