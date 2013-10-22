@@ -1,4 +1,4 @@
-@import "compass_twitter_bootstrap";
+@import "../components/bootstrap/dist/css/bootstrap.min.css";
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css);
@@ -19,7 +19,7 @@ $section_title_bg: #1862A2;
 $section_active: rgba(24,98,162,.4);
 $body_bg: #f2f2f2;
 
-html,body,.container {
+html,body {
 	width: 100%;
 	height: 100%;
   	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
