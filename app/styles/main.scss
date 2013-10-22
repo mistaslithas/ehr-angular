@@ -18,12 +18,114 @@ $control_bg_gray: #eee;
 $section_title_bg: #1862A2;
 $section_active: rgba(24,98,162,.4);
 $body_bg: #f2f2f2;
+$font_gray: #666;
+$border_gray: #EEE;
+$form_blue_border: rgba(19,164,236,.5);
+$disabled_gray: #BABABA;
+
 
 html,body {
-	width: 100%;
-	height: 100%;
-  	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  	font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+button,
+input,
+select {
+	height: 30px !important;
+	font-family: 'source sans pro';
+	font-size: 16px;
+	font-weight: 200;
+	line-height: 16px;
+	color: #444;
+	vertical-align: middle;
+	appearance: none;
+	border: none;
+	border-radius: 0 !important;
+	background: none;
+	padding: 0;
+	margin: 0;
+}
+
+::-webkit-input-placeholder {
+	color: $disabled_gray !important;
+}
+
+
+// SELECT DEFINITIONS
+// the collection of styles for select components
+select {
+	text-indent: 10px;
+}
+
+select:focus {
+	outline: none;
+}
+
+.select_actions {
+	width: 100px;
+	color: $border_gray;
+	border: 1px solid $border_gray;
+	background: url("../images/icon_select_arrow_light.png") no-repeat right center;
+}
+
+.select_show {
+	width: 180px;
+	color: $table_blue;
+	border: 1px solid $form_blue_border;	
+	background: url("../images/icon_plus.png") no-repeat right center;
+}
+
+
+// BUTTON DEFINITIONS
+// the collection of styles for button components
+button {
+	padding: 0 10px;
+}
+
+.button_orange {
+	color: white;
+	background: $orange;
+}
+
+
+// BOOTSTRAP OVERRIDES
+.input-group {
+	border: 1px solid $form_blue_border;
+
+	.form-control {
+		box-shadow: none;
+		border: none;
+	}
+}
+
+// CONTAINER
+// the container is the baseline of bootstrap's grid
+// adjust these properties to turn the grid responsiveness on/off
+.container {
+	max-width: none !important;
+	width: 910px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+
+
+
+
+
+
+
+
 
 .orange {
 	color: $orange;
@@ -205,6 +307,7 @@ button {
 
 			.arrow {
 				position: absolute;
+				bottom: -5px;
 				left: 50%;
 				width: 0; 
 				height: 0; 
