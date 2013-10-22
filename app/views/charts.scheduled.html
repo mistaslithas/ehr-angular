@@ -1,9 +1,9 @@
 <div id="CHARTS_SCHEDULED" class="view">
-	<header>
-		<div class="info">{{model.scheduledPatients.length}} Scheduled Patient<span ng-show="model.scheduledPatients.length > 0">s</span></div>
-		<div class="date">{{today}}</div>
+	<header class="row">
+		<div class="col-xs-6 info">{{model.scheduledPatients.length}} Scheduled Patient<span ng-show="model.scheduledPatients.length > 1">s</span></div>
+		<div class="col-xs-4 date">{{today}}</div>
 
-		<div class="align-items-right">
+		<div class="col-xs-2 text-right">
 			<select class="select_actions">
 				<option>Actions</option>
 			</select>

@@ -162,99 +162,75 @@ button {
 
 
 
-.orange {
-	color: $orange;
-}
+// .orange {
+// 	color: $orange;
+// }
 
-a:hover {
-	cursor: pointer;
-	text-decoration: none !important;
-}
+// a:hover {
+// 	cursor: pointer;
+// 	text-decoration: none !important;
+// }
 
-p {
-	margin: 0 !important;
-	padding: 0;
-}
+// button,
+// input,
+// select {
+// 	height: 30px;
+//   	margin-bottom: 0 !important;
+// 	font-family: 'source sans pro';
+// 	font-size: 16px;
+// 	font-weight: 200;
+// 	line-height: 16px;
+// 	color: #444;
+// 	vertical-align: middle;
+// 	appearance: none;
+// 	border: none;
+// 	border-radius: 0 !important;
+// }
 
-button,
-input,
-select {
-	height: 30px;
-  	margin-bottom: 0 !important;
-	font-family: 'source sans pro';
-	font-size: 16px;
-	font-weight: 200;
-	line-height: 16px;
-	color: #444;
-	vertical-align: middle;
-	appearance: none;
-	border: none;
-	border-radius: 0 !important;
-}
+// button {
+// 	padding: 0 20px;
+// }
 
-select {
-	text-indent: 4px;
-	background: white url("../images/icon_select_arrow.png") no-repeat right center;
-}
+// .button_gray {
+// 	background: $gray;
+// }
 
-select:focus {
-	outline: none;
-}
+// .button_orange {
+// 	background: $orange;
+// 	color: white;
+// }
 
-.select_actions {
-	width: 100px;
-}
+// .button_close {
+// 	width: 10px;
+// 	height: auto;
+// 	opacity: .7;
+// }
 
-.select_show {
-	width: 170px;
-	margin-right: 20px;
-	background: $control_bg_gray url("../images/icon_select_arrow.png") no-repeat right center;
-}
+// .button_close:hover {
+// 	opacity: 1;
+// }
 
-button {
-	padding: 0 20px;
-}
+// .input-append {
+// 	margin: 0 !important;
 
-.button_gray {
-	background: $gray;
-}
+// 	button {
+// 		padding: 0;
+// 		background: $header_blue;
+// 	}
+// }
 
-.button_orange {
-	background: $orange;
-	color: white;
-}
+// .align-items-left {
+// 	display: flex;
+// 	flex: 1;
+// 	justify-content: space-between;
+// 	align-items: center;
+// }
 
-.button_close {
-	width: 10px;
-	height: auto;
-	opacity: .7;
-}
-
-.button_close:hover {
-	opacity: 1;
-}
-
-.input-append {
-	margin: 0 !important;
-
-	button {
-		padding: 0;
-		background: $header_blue;
-	}
-}
-
-.align-items-left {
-	display: flex;
-	flex: 1;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.align-items-right {
-	display: flex;
-	flex: 1;
-	justify-content: flex-end;
-}
+// .align-items-right {
+// 	display: flex;
+// 	flex: 1;
+// 	justify-content: flex-end;
+// }
 
 // PRIMARY RESPONSIVE SECTIONS
 
@@ -317,7 +293,7 @@ button {
 		box-sizing: border-box;
 
 		li {
-			width: 120px;
+			width: 106px;
 			text-align: center;
 			position: relative;
 
@@ -360,11 +336,11 @@ button {
 		flex-direction: column;
 
 		header {
-			display: flex;
-			align-items: center;
+			padding: 20px 20px 10px 20px;
 			background: $header_blue;
 			font-family: 'open sans';
 			font-weight: 200;
+			line-height: 24px;
 		}
 
 		.controls {
@@ -537,16 +513,16 @@ button {
 
 		#CHARTS_SCHEDULED {
 			header {
-				padding: 20px;
+				height: 60px;
 
 				.info {
-					font-size: 36px;
+					font-size: 32px;
 					color: white;
 					padding-right: 50px;
 				}
 
 				.date {
-					font-size: 28px;
+					font-size: 24px;
 					color: rgba(255,255,255,.6);
 				}
 			}
