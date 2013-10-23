@@ -1,18 +1,19 @@
 <div id="CHARTS_PATIENT_FACESHEET" class="view">
 
-	<div class="controls">
-		<div class="align-items-left">
+	<div class="row controls border_b_blue">
+		<div class="col-xs-3">
 			<select class="select_show">
 				<option>Show...</option>
 			</select>
-
-			<div class="input-append">
-				<input type="search" placeholder="Search">
-			  	<button><img src="images/search_icon.png"></button>
-			</div>
 		</div>
-		
-		<div class="align-items-right">
+
+		<div class="col-xs-4 input-group">
+			<input type="search" placeholder="Search">
+			<span class="input-group-btn">
+				<button><img src="images/search_icon.png"></button>
+			</span>
+		</div>
+		<div class="col-xs-5 text-right">
 			<button class="button_orange">Start Encounter</button>
 		</div>
 	</div>
@@ -39,8 +40,8 @@
 					<a href="#">Order</a>
 				</header>
 				<ul>
-					<li ng-repeat="med in patient.medications | orderBy:'date'">
-						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
+					<li ng-class="{editor_source:editing}" ng-repeat="med in patient.medications | orderBy:'date'">
+						<span><a ng-click="showEditor($event,'Editor')">{{med.name}}</a></span>
 						<span>{{med.method}}</span>
 						<span>{{med.dosage}}</span>
 						<span class="light">{{med.doctor}}</span>
@@ -193,10 +194,10 @@
 		</div>
 
 		<div class="editor" ng-class="{editor_open:editing}">
-			<header>
+			<div class="editor_header">
 				<div class="title">{{editorTitle}}</div>
 				<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
-			</header>
+			</div>
 		</div>
 	</div>
 	
