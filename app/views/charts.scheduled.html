@@ -12,10 +12,10 @@
 
 	<section class="row controls">
 		<div class="col-xs-6">
-			<div class="input-group">
+		    <div class="input-group">
 		      <input type="text" class="form-control" placeholder="Search using first, last name, SS#, Med ID or DOB" ng-model="search" ng-change="searchUpdate(search)" autofocus>
 		      <span class="input-group-btn">
-		        <button><img src="images/search_icon.png"></button>
+		        <button class="btn btn-default" type="button"><img src="images/search_icon.png"></button>
 		      </span>
 		    </div>
 		</div>
@@ -32,7 +32,7 @@
 			<div class="col-xs-3">LAST ENCOUNTER/DX</div>
 			<div class="col-xs-2 text-right">APPT/STATUS</div>
 		</div>
-		<div class="scrollable">
+		<div class="table_body">
 			<a class="row charts_scheduled_default" ng-repeat="patient in model.scheduledPatients | orderBy:'appt'" ui-sref="ehr.charts.patient({id:patient.id})">
 				<div class="col-xs-1"><img class="grid-left" ng-src="{{patient.image}}"></div>
 				<div class="col-xs-3">
@@ -53,5 +53,5 @@
 				</div>
 			</a>
 		</div>
-	</section> 
+	</section>
 </div> 

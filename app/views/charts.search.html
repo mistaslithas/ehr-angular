@@ -1,51 +1,54 @@
 <div id="CHARTS_SCHEDULED" class="view">
-	<header>
-		<div class="info">{{(model.searchablePatients | filter:search).length}} Patient<span ng-show="(model.searchablePatients | filter:search).length > 1">s</span><span ng-show="(model.searchablePatients | filter:search).length == 0">s</span> Found</div>
-
-		<div class="align-items-right">
+	<header class="row header_padding">
+		<div class="col-xs-10 info">{{(model.searchablePatients | filter:search).length}} Patient<span ng-show="(model.searchablePatients | filter:search).length > 1">s</span><span ng-show="(model.searchablePatients | filter:search).length == 0">s</span> Found</div>
+		<div class="col-xs-2 text-right">
 			<select class="select_actions">
 				<option>Actions</option>
 			</select>
 		</div>
 	</header>
 
-	<section class="controls">
-		<div class="input-append">
-			<input type="search" placeholder="Search using first, last name, SS#, MedID or DOB" ng-model="search" ng-change="searchUpdate(search)" autofocus>
-		  	<button><img src="images/search_icon.png"></button>
+	<section class="row controls">
+		<div class="col-xs-6">
+		    <div class="input-group">
+		      <input type="search" class="form-control" placeholder="Search using first, last name, SS#, MedID or DOB" ng-model="search" ng-change="searchUpdate(search)" autofocus>
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button"><img src="images/search_icon.png"></button>
+		      </span>
+		    </div>
 		</div>
-		<div class="align-items-right">
-			<button class="button_gray">Add New Patient</button>
+		<div class="col-xs-6 text-right">
+			<button class="button_orange">Add New Patient</button>
 		</div>
 	</section>
 
-	<section class="table scroll">
-		<div class="table_row table_header">
-			<div class="col1"></div>
-			<div class="table_cell">PATIENT/ID</div>
-			<div class="table_cell">DOB/SS#</div>
-			<div class="table_cell">PHONE/ADDRESS</div>
-			<div class="col_last">LAST SEEN</div>
+	<section class="table">
+		<div class="row table_header">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-3">PATIENT/ID</div>
+			<div class="col-xs-3">DOB/SS#</div>
+			<div class="col-xs-3">PHONE/ADDRESS</div>
+			<div class="col-xs-2 text-right">LAST SEEN</div>
 		</div>
 		<div class="table_body">
-			<a class="table_row patient_row" ng-repeat="patient in model.searchablePatients | filter:search" ui-sref="ehr.charts.patient({id:patient.id})">
-				<div class="col1"><img ng-src="{{patient.image}}"></div>
-				<div class="table_cell">
-					<p class="patient_name">{{patient.firstName}} {{patient.lastName}}</p>
-					<p class="general">{{patient.id}}</p>
+			<a class="row charts_scheduled_default" ng-repeat="patient in model.searchablePatients | filter:search" ui-sref="ehr.charts.patient({id:patient.id})">
+				<div class="col-xs-1"><img class="grid-left" ng-src="{{patient.image}}"></div>
+				<div class="col-xs-3">
+					<p class="charts_scheduled_name">{{patient.firstName}} {{patient.lastName}}</p>
+					<p>{{patient.id}}</p>
 				</div>
-				<div class="table_cell">
-					<p class="general">{{patient.dob | date:'MMM d, yyyy'}}</p>
-					<p class="general">{{patient.ssn}}</p>
+				<div class="col-xs-3">
+					<p>{{patient.dob | date:'MMM d, yyyy'}}</p>
+					<p>{{patient.ssn}}</p>
 				</div>
-				<div class="table_cell">
-					<p class="general">{{patient.phone | phone}}</p>
-					<p class="general">{{patient.address.city}}, {{patient.address.state}}</p>
+				<div class="col-xs-3">
+					<p>{{patient.phone | phone}}</p>
+					<p>{{patient.address.city}}, {{patient.address.state}}</p>
 				</div>
-				<div class="col_last">
-					<p class="general">{{patient.last_visit | date:'MMM d, yyyy'}}</p>
+				<div class="col-xs-2 text-right">
+					<p>{{patient.last_visit | date:'MMM d, yyyy'}}</p>
 				</div>
 			</a>
 		</div>
-	</section>
+	</section> 
 </div>
