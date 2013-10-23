@@ -8,5 +8,4 @@ angular.module('ehrApp')
 
   	// create a global reference to the state
   	$scope.state = $state;
-
   });

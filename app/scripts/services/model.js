@@ -23,42 +23,42 @@ angular.module('ehrApp')
     	],
     	psychs: ['Depression','Schizophrenia','Demonic Posession','Narcissism','Egotism'],
     	patients: [
-			{
-	            id:'00000001',
-	            image: 'images/patient_sarah.png',
-	            firstName: 'Sarah',
-	            lastName: 'Williams', 
-	            sex: 'Female',
-	            dob: '1984-02-05T00:00:00.00',
-	            phone: '4151234567',
-	            insurance: 'Blueshield',
-	            ssn: '123-45-6789',
-	            address: {city:'Berkeley',state:'CA'}
-			},
-			{
-	            id:'00000002',
-	            image: 'images/patient_alfred.png',
-	            firstName: 'Alfred',
-	            lastName: 'Zhang', 
-	            sex: 'Male',
-	            dob: '1950-04-12T00:00:00.00',
-	            phone: '4151234567',
-	            insurance: 'Blueshield',
-	            ssn: '234-56-7890',
-	            address: {city:'San Francisco',state:'CA'}
-			},
-			{
-	            id:'00000003',
-	            image: 'images/patient_elsa.png',
-	            firstName: 'Elsa',
-	            lastName: 'Freude', 
-	            sex: 'Female',
-	            dob: '1930-10-25T00:00:00.00',
-	            phone: '4151234567',
-	            insurance: 'Blueshield',
-	            ssn: '345-67-8901',
-	            address: {city:'Oakland',state:'CA'}
-			}
+			// {
+	  //           id:'00000001',
+	  //           image: 'images/patient_sarah.png',
+	  //           firstName: 'Sarah',
+	  //           lastName: 'Williams', 
+	  //           sex: 'Female',
+	  //           dob: '1984-02-05T00:00:00.00',
+	  //           phone: '4151234567',
+	  //           insurance: 'Blueshield',
+	  //           ssn: '123-45-6789',
+	  //           address: {city:'Berkeley',state:'CA'}
+			// },
+			// {
+	  //           id:'00000002',
+	  //           image: 'images/patient_alfred.png',
+	  //           firstName: 'Alfred',
+	  //           lastName: 'Zhang', 
+	  //           sex: 'Male',
+	  //           dob: '1950-04-12T00:00:00.00',
+	  //           phone: '4151234567',
+	  //           insurance: 'Blueshield',
+	  //           ssn: '234-56-7890',
+	  //           address: {city:'San Francisco',state:'CA'}
+			// },
+			// {
+	  //           id:'00000003',
+	  //           image: 'images/patient_elsa.png',
+	  //           firstName: 'Elsa',
+	  //           lastName: 'Freude', 
+	  //           sex: 'Female',
+	  //           dob: '1930-10-25T00:00:00.00',
+	  //           phone: '4151234567',
+	  //           insurance: 'Blueshield',
+	  //           ssn: '345-67-8901',
+	  //           address: {city:'Oakland',state:'CA'}
+			// }
     	]
     };
   });
