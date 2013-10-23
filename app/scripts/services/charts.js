@@ -32,7 +32,9 @@ angular.module('ehrApp')
         // create medications
         patient.medications = [];
 
-        for(var i=0; i<_.random(1,model.drugs.length); i++) {
+        // limit to 1 medication to demo editor blue line
+        // for(var i=0; i<_.random(1,model.drugs.length); i++) {
+        for(var i=0; i<1; i++) {
           var med = {};
           med.name = _.sample(model.drugs,1)[0];
           med.method = _.sample(model.drugMethods,1)[0];

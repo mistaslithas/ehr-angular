@@ -40,7 +40,7 @@
 					<a href="#">Order</a>
 				</header>
 				<ul>
-					<li class="editor_source" ng-repeat="med in patient.medications | orderBy:'date'">
+					<li ng-class="{editor_source:editing}" ng-repeat="med in patient.medications | orderBy:'date'">
 						<span><a ng-click="showEditor($event,'Editor')">{{med.name}}</a></span>
 						<span>{{med.method}}</span>
 						<span>{{med.dosage}}</span>

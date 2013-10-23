@@ -10,8 +10,7 @@ angular.module('ehrApp')
   	$scope.editing = false;
 
   	$scope.showEditor = function(ev, title) {
-      $scope.edit_element = angular.element(ev.srcElement);
-      console.log($scope.edit_element);
+      // $scope.edit_element = angular.element(ev.srcElement);
 
   		$scope.editing = true;
   		$scope.editorTitle = title;
