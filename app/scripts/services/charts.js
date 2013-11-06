@@ -110,18 +110,18 @@ angular.module('ehrApp')
           patient.psychAssessments.push(psych);
         }
 
-        // create medications
+        // create orders
         patient.orders = [];
 
-        for(var i=0; i<_.random(1,model.drugs.length); i++) {
-          var order = {};
-          order.name = _.sample(model.drugs,1)[0];
-          order.method = _.sample(model.drugMethods,1)[0];
-          order.dosage = Math.round(Math.random() * 1000)/10 + ' mg';
-          order.doctor = _.sample(model.doctors,1)[0];
-          order.date = moment().subtract('days', _.random(1000)).format();
-          patient.orders.push(order);
-        }
+        // for(var i=0; i<_.random(1,model.drugs.length); i++) {
+        //   var order = {};
+        //   order.name = _.sample(model.drugs,1)[0];
+        //   order.method = _.sample(model.drugMethods,1)[0];
+        //   order.dosage = Math.round(Math.random() * 1000)/10 + ' mg';
+        //   order.doctor = _.sample(model.doctors,1)[0];
+        //   order.date = moment().subtract('days', _.random(1000)).format();
+        //   patient.orders.push(order);
+        // }
 
         return patient;
       },
