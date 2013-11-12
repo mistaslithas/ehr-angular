@@ -81,15 +81,12 @@ angular.module('ehrApp')
     window.onkeyup = function(e) {
       switch(e.keyCode) {
         case 9: //tab
-          // $scope.editing = 'add_lab';
-          console.log(document.activeElement.tabIndex)
           if(document.activeElement.tabIndex == 9 || document.activeElement.tabIndex == 7 || document.activeElement.tabIndex == 0)
-            document.getElementById('input1').focus();
-
+            document.getElementById('select1').focus();
           break;
         case 13: //return
-          $scope.editing = 'add_lab'
-          document.getElementById('input_test').focus();
+          $scope.selected_lab = false;
+          $scope.editing = 'select_lab';
           break;
         case 38: //up
           $scope.editing = 'selected_lab'

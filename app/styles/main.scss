@@ -76,7 +76,7 @@ select {
 }
 
 select:focus {
-	outline: none;
+	// outline: none;
 }
 
 .select_actions {
@@ -101,6 +101,22 @@ select:focus {
 
 .select_facesheet:active {
 	border: 1px solid $header_blue;
+}
+
+.select_editor_gray {
+	height: 26px !important;
+	text-indent: 0;
+	font-size: 13px;
+	border: 1px solid #AAA;
+	background: url("../images/icon_select_arrow.png") no-repeat right center;
+}
+
+.select_editor_blue {
+	height: 26px !important;
+	text-indent: 0;
+	font-size: 13px;
+	border: 1px solid $blue;
+	background: url("../images/icon_select_arrow_blue.png") no-repeat right center;
 }
 
 
@@ -514,10 +530,6 @@ button {
 
 					.form-group {
 						margin-bottom: 7px;
-
-						input {
-							height: 26px !important;
-						}
 					}
 				}
 
