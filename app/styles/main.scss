@@ -153,6 +153,7 @@ button {
 	}
 }
 
+
 // CONTAINER
 // the container is the baseline of bootstrap's grid
 // adjust these properties to turn the grid responsiveness on/off
@@ -506,6 +507,21 @@ button {
 					}
 				}
 
+				.editor_form {
+					padding: 10px 17px 0 17px !important;
+					font-size: 11px;
+					color: #666;
+
+					.form-group {
+						margin-bottom: 7px;
+
+						input {
+							height: 26px !important;
+						}
+					}
+				}
+
+
 				footer {
 					height: 50px;
 					padding: 10px 10px 0 0;
@@ -829,4 +845,10 @@ button {
 	#NAV_MAIN, #HEADER_MAIN, #AD_BOTTOM, #BODY {
 		display: none;
 	}
+}
+
+
+
+#test {
+	background: red;
 }

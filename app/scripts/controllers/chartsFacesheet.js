@@ -80,19 +80,22 @@ angular.module('ehrApp')
 
     window.onkeyup = function(e) {
       switch(e.keyCode) {
-        case 9:
-          $scope.editing = 'add_lab';
-          document.getElementById('input_test').focus();
+        case 9: //tab
+          // $scope.editing = 'add_lab';
+          console.log(document.activeElement.tabIndex)
+          if(document.activeElement.tabIndex == 9 || document.activeElement.tabIndex == 7 || document.activeElement.tabIndex == 0)
+            document.getElementById('input1').focus();
+
           break;
-        case 13:
+        case 13: //return
           $scope.editing = 'add_lab'
           document.getElementById('input_test').focus();
           break;
-        case 38:
+        case 38: //up
           $scope.editing = 'selected_lab'
           document.getElementById('input_test').blur();
           break;
-        case 40:
+        case 40: //down
           $scope.editing = 'add_lab'
           document.getElementById('input_test').focus();
           break;
