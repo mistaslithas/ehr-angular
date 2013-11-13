@@ -93,19 +93,19 @@ select:focus {
 	background: url("../images/icon_plus.png") no-repeat right center;
 }
 
-.select_facesheet {
-	width: 200px;
-	color: $header_blue;
-	border: none;
-}
+// .select_facesheet {
+// 	width: 200px;
+// 	color: $header_blue;
+// 	border: none;
+// }
 
-.select_facesheet:active {
-	border: 1px solid $header_blue;
-}
+// .select_facesheet:active {
+// 	border: 1px solid $header_blue;
+// }
 
 .select_editor_gray {
 	height: 26px !important;
-	text-indent: 0;
+	// text-indent: 0;
 	font-size: 13px;
 	border: 1px solid #AAA;
 	background: url("../images/icon_select_arrow.png") no-repeat right center;
@@ -113,7 +113,7 @@ select:focus {
 
 .select_editor_blue {
 	height: 26px !important;
-	text-indent: 0;
+	// text-indent: 0;
 	font-size: 13px;
 	border: 1px solid $blue;
 	background: url("../images/icon_select_arrow_blue.png") no-repeat right center;
@@ -463,11 +463,15 @@ button {
 				color: $table_blue;
 				padding: 0 30px;
 			}
+
+			.cds_more {
+				padding-top: 10px;
+			}
 		}
 
 		.cds_open {
 			padding: 8px 20px 8px 22px;
-			max-height: 120px;
+			max-height: 130px;
 		}
 
 		.body {
@@ -682,8 +686,6 @@ button {
 			.body {
 
 				.content {
-					padding-bottom: 100px;
-
 					section {
 						background: $body_bg;
 						margin-bottom: 20px;

@@ -57,7 +57,23 @@ angular.module('ehrApp')
 	            phone: '4151234567',
 	            insurance: 'Blueshield',
 	            ssn: '345-67-8901',
-	            address: {city:'Oakland',state:'CA'}
+	            address: {city:'Oakland',state:'CA'},
+	            orders: [
+	            	{
+	            		id:'order1',
+	            		lab: {
+	            			id:'Quest1',
+	            			name: 'Quest',
+	            			logo: 'images/quest.png'
+	            		},
+	            		tests: [
+	            			{
+	            				id:'test1',
+	            				name:'CBC'
+	            			}
+	            		]
+	            	}
+	            ]
 			}
     	]
     };

@@ -2,8 +2,9 @@
 
 	<div class="row controls border_b_blue">
 		<div class="col-xs-3">
-			<select class="select_show">
+			<select class="select_show" ng-model="showing">
 				<option>Show...</option>
+				<option>CDS</option>
 			</select>
 		</div>
 
@@ -24,12 +25,14 @@
 	<div class="cds" ng-class="{cds_open:showCDS}">
 		<div class="info">
 			<p>{{patient.cds.cds}}</p>
-			<p><span class="row_header">Intervention Developer: </span>{{patient.cds.interventor}}</p>
-			<p><span class="row_header">Citation: </span>{{patient.cds.citor}}</p>
-			<p><span class="row_header">Sponsored By: </span>{{patient.cds.sponsor}}</p>
+			<div class="cds_more" ng-show="cdsMore">
+				<p><span class="row_header">Intervention Developer: </span>{{patient.cds.interventor}}</p>
+				<p><span class="row_header">Citation: </span>{{patient.cds.citor}}</p>
+				<p><span class="row_header">Sponsored By: </span>{{patient.cds.sponsor}}</p>
+			</div>
 		</div>
 		<div class="learn_more">
-			<a>Learn More</a>
+			<a ng-click="cdsMore=true">Learn More</a>
 		</div>
 		<a class="button_close" ng-click="showCDS=!showCDS"><img src="images/icon_close.png"></a>
 	</div>
@@ -176,7 +179,7 @@
 			<section>
 				<header>
 					<div class="section_title">Orders</div>
-					<select class="select_facesheet" ng-model="order">
+					<select class="select_editor_blue" ng-model="order">
 						<option>Add Order</option>
 						<option>Image</option>
 						<option>Intervention</option>

@@ -3,8 +3,22 @@
 angular.module('ehrApp')
   .controller('ChartsFacesheetCtrl', function ($scope) {
 
-  	// show/hide cds
-  	$scope.showCDS = $scope.patient.cds;
+    $scope.cdsMore = false;
+
+    // watch for changes in the show menu
+    $scope.$watch('showing', function(){
+      if($scope.showing) {
+        switch($scope.showing.toLowerCase()) {
+          case 'cds':
+            $scope.showCDS = true;
+            $scope.cdsMore = false;
+            break;
+        }
+      }
+
+      // reset menu
+      $scope.showing = 'Show...';
+    })
 
   	// show/hide the editor
   	$scope.editing = false;
@@ -61,7 +75,6 @@ angular.module('ehrApp')
 
     $scope.addLab = function(lab) {
       $scope.patient.orders.push(lab);
-
       $scope.showLab(lab);
     }
 
@@ -78,30 +91,30 @@ angular.module('ehrApp')
       return $scope.selected_lab.id==order.id && $scope.editing=='selected_lab';
     }
 
-    window.onkeyup = function(e) {
-      switch(e.keyCode) {
-        case 9: //tab
-          if(document.activeElement.tabIndex == 9 || document.activeElement.tabIndex == 7 || document.activeElement.tabIndex == 0)
-            document.getElementById('select1').focus();
-          break;
-        case 13: //return
-          $scope.selected_lab = false;
-          $scope.editing = 'select_lab';
-          break;
-        case 38: //up
-          $scope.editing = 'selected_lab'
-          document.getElementById('input_test').blur();
-          break;
-        case 40: //down
-          $scope.editing = 'add_lab'
-          document.getElementById('input_test').focus();
-          break;
-        case 27: //esc
-          $scope.closeEditor();
-          break;
-      }
+    // window.onkeyup = function(e) {
+    //   switch(e.keyCode) {
+    //     case 9: //tab
+    //       if(document.activeElement.tabIndex == 9 || document.activeElement.tabIndex == 7 || document.activeElement.tabIndex == 0)
+    //         document.getElementById('select1').focus();
+    //       break;
+    //     case 13: //return
+    //       $scope.selected_lab = false;
+    //       $scope.editing = 'select_lab';
+    //       break;
+    //     case 38: //up
+    //       $scope.editing = 'selected_lab'
+    //       document.getElementById('input_test').blur();
+    //       break;
+    //     case 40: //down
+    //       $scope.editing = 'add_lab'
+    //       document.getElementById('input_test').focus();
+    //       break;
+    //     case 27: //esc
+    //       $scope.closeEditor();
+    //       break;
+    //   }
 
-      $scope.$apply();
-    }
+    //   $scope.$apply();
+    // }
 
   });
