@@ -96,6 +96,9 @@ angular.module('ehrApp')
           $scope.editing = 'add_lab'
           document.getElementById('input_test').focus();
           break;
+        case 27: //esc
+          $scope.closeEditor();
+          break;
       }
 
       $scope.$apply();
