@@ -1,4 +1,4 @@
-<div class="editor">
+<div class="editor" ng-class="{editor_slide: editor.type=='lab_selection'}">
 	<div class="editor_header">
 		<div class="title">
 			<a ng-click="scrollToSelection()">Orders: Select Lab</a>
@@ -8,7 +8,7 @@
 	<div class="editor_body">
 		<div class="table">
 			<div class="table_body">
-				<a class="row table_row_70" ng-repeat="lab in model.labs" ng-click="addLabOrder(lab)">
+				<a class="row table_row_70" ng-repeat="lab in model.labs track by $index" ng-click="addLabOrder(lab)">
 					<div class="col-xs-5"><img ng-src="{{lab.logo}}"></div>
 					<div class="col-xs-7">
 						<div>{{lab.name}}</div>

@@ -731,19 +731,21 @@ button {
 
 .editor_container {
 	display: flex;
-	width: 100%;
+	width: 380px;
+	position: relative;
+	overflow: hidden;
 }
 
 .editor {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-	position: relative;
+	position: absolute;
+	top: 4px;
+	bottom: 4px;
+	left: -376px;
+	width: 376px;
+	transition: left .5s;
 	border-left: 20px solid $editor_left_border_color;
 	box-shadow: 0 0 3px 3px rgba(0,0,0,.1);
 	background: white;
-	transition: .3s;
-	box-sizing: border-box;
 
 	.editor_header {
 		display: flex;
@@ -825,6 +827,10 @@ button {
 	}
 }
 
+.editor_slide {
+	left: 0;
+}
+
 .editor_source {
 	display: block;
 	width: 100%;
@@ -840,20 +846,6 @@ button {
 .editor_source:before {
 	content:'' !important;
 }
-
-// .show-editor {
-//   transition: all linear 0.5s;
-//   width: 380px;
-// }
- 
-// .show-editor.ng-hide-add,
-// .show-editor.ng-hide-remove {
-//   display:block!important;
-// }
- 
-// .show-editor.ng-hide {
-//   width: 0;
-// }
 
 
 
@@ -933,14 +925,4 @@ button {
 	#NAV_MAIN, #HEADER_MAIN, #AD_BOTTOM, #BODY {
 		display: none;
 	}
-}
-
-
-
-
-
-
-
-.temp {
-	display: none;
 }

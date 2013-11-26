@@ -1,7 +1,7 @@
-<div class="editor">
+<div class="editor" ng-class="{editor_slide: editor.type=='lab_test_detail'}">
 	<div class="editor_header">
 		<div class="title">
-			<a ng-click="scrollToSelection()">Orders: {{selected_lab.id}}: {{selected_test.type}}</a>
+			<a ng-click="scrollToSelection()">Orders: {{selected_order.lab.name}}: {{selected_test.name}}</a>
 		</div>
 		<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
 	</div>

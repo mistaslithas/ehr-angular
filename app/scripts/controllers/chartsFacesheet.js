@@ -133,6 +133,7 @@ angular.module('ehrApp')
     }
 
     $scope.showTest = function(test) {
+      console.log($scope.selected_order)
       $scope.selected_test = test;
       $scope.showEditor('lab_test_detail','orders');
     }
@@ -186,45 +187,6 @@ angular.module('ehrApp')
 
 
 
-
-
-
-
-
-    // $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-    // $scope.lab_tests = [
-    //   {id:'s1', name:'Alabama'},
-    //   {id:'s2', name:'California'}
-    // ];
-
-    $scope.lab_tests = [
-        {
-        id:'lab_test_1',
-        name:'Complete Bood Count (CBC)'
-      },
-        {
-        id:'lab_test_2',
-        name:'Estrogen'
-      },
-        {
-        id:'lab_test_3',
-        name:'Lipids Panel'
-      },
-        {
-        id:'lab_test_4',
-        name:'Liver Function'
-      },
-        {
-        id:'lab_test_5',
-        name:'Urinalysis'
-      }
-    ];
-
-    $scope.selected_tests = [];
-    $scope.addState = function(test){
-      $scope.selected_tests.push(test);
-      this.test = undefined;
-    }
 
     // window.onkeyup = function(e) {
     //   switch(e.keyCode) {
