@@ -1,9 +1,24 @@
 'use strict';
 
 angular.module('ehrApp')
-  .controller('ChartsFacesheetCtrl', function ($scope) {
+  .controller('ChartsFacesheetCtrl', function ($scope,$timeout) {
 
     $scope.cdsMore = false;
+    $scope.editorSectionID = false;
+
+    $scope.orderTypes = {
+      value: 'default',
+      options: [
+        {label:'Add Order', value:'default'},
+        {label:'Image', value:''},
+        {label:'Intervention', value:''},
+        {label:'Lab Test', value:'lab_selection'},
+        {label:'Medication', value:''},
+        {label:'Patient Education', value:''},
+        {label:'Procedure', value:''},
+        {label:'Referral', value:''}
+      ]
+    }
 
     // watch for changes in the show menu
     $scope.$watch('showing', function(){
@@ -20,75 +35,195 @@ angular.module('ehrApp')
       $scope.showing = 'Show...';
     })
 
+
   	// show/hide the editor
-  	$scope.editing = false;
+  	$scope.editor = false;
 
-  	$scope.showEditor = function(title) {
+  	$scope.showEditor = function(editorType,editorSectionID) {
+      // set a flag to the editor's section
+      $scope.editorSectionID = editorSectionID;
 
-  		$scope.editing = true;
-  		$scope.editorTitle = title;
+      // set the editor flag
+      // this will open the appropriate editor
+      $scope.editor = {
+        type: editorType
+      }
+
+      // ensure the content stays in the same position as it resizes
+      $scope.resetScrollPosition();
   	}
 
-  	$scope.closeEditor = function() {
-  		$scope.editing = false;
+  	$scope.closeEditor = function(scrollTarget) {
+
+      // close the editor
+  		$scope.editor = false;
+
+      // ensure the content stays in the same position as it resizes
+      $scope.resetScrollPosition(scrollTarget);
 
       // resets
-      $scope.selected_lab = false;
+      $scope.editorSectionID = false;
+      $scope.selected_order = false;
   	}
+
+    $scope.resetScrollPosition = function() {
+      // set a reference to the target we are scrolling to
+      var target = $('#' + $scope.editorSectionID);
+
+      // record the active section's scroll position
+      var targetScrollPos = target.offset().top - target.parent().offset().top;
+
+      // reposition the active section to the same location it was in before the editor resized the content area
+      $timeout(function(){
+
+        // get the y location of the active section
+        var targetVPos = 0;
+
+        target.prevAll().each(function() {
+          targetVPos += $(this).outerHeight(true);
+        });
+
+        // reset the content scroll location
+        $('.scroll').scrollTop(targetVPos - targetScrollPos);
+      },0)
+    }
+
+
+
+
+
+
+
 
 
 
     // hacky micro transaction for ordering
-    $scope.order = "Add Order";
-    $scope.labs = [
-      {
-        id: 'Quest-12307128742',
-        logo: 'images/quest.png',
-        name: 'Quest'
-      },
-      {
-        id: 'Quest-13298723843',
-        logo: 'images/quest.png',
-        name: 'Quest'
-      },
-      {
-        id: 'Quest-14049509334',
-        logo: 'images/quest.png',
-        name: 'Quest'
-      }
-    ];
-    $scope.selected_lab = false;
+    $scope.selected_order = false;
 
-    $scope.$watch('order', function(){
-      if($scope.order != "Add Order") {
+    $scope.$watch('orderTypes.value', function(val) {
+      if(val != "Add Order") {
 
-        switch($scope.order.toLowerCase()) {
-          case 'lab test':
-            $scope.editing = 'select_lab';
+        switch(val.toLowerCase()) {
+          case 'lab_selection':
+            $scope.showEditor(val,'orders');
+            $scope.selected_order = false;
             break;
         }
 
         //reset the select
-        $scope.order = "Add Order";
+        $scope.orderTypes.value = "default";
       }
     })
 
-    $scope.addLab = function(lab) {
-      $scope.patient.orders.push(lab);
-      $scope.showLab(lab);
+    $scope.addLabOrder = function(lab) {
+      var labOrder = {
+        id: $scope.patient.id + '-' + $scope.patient.orders.length+1, 
+        type:'lab_test',
+        lab: lab,
+        tests: []
+      }
+
+      $scope.patient.orders.push(labOrder);
+      $scope.showOrder(labOrder);
     }
 
-    $scope.showLab = function(lab) {
-      $scope.selected_lab = lab;
-      $scope.editing = "selected_lab";
+    $scope.showOrder = function(order) {
+      $scope.selected_order = order;
+      $scope.showEditor('lab_detail','orders');
+    }
+
+    $scope.showTest = function(test) {
+      $scope.selected_test = test;
+      $scope.showEditor('lab_test_detail','orders');
     }
 
     $scope.onFocus = function() {
-      $scope.editing = 'add_lab';
+      $scope.showEditor('lab_test_selection','orders');
     }
 
     $scope.checkLabCriteria = function(order) {
-      return $scope.selected_lab.id==order.id && $scope.editing=='selected_lab';
+      return $scope.selected_order.id==order.id && $scope.editor.type=='lab_detail';
+    }
+
+    $scope.checkTestCriteria = function(test) {
+      if($scope.selected_test)
+        return $scope.selected_test.id==test.id && $scope.editor.type=='lab_test_detail';
+    }
+
+    $scope.addTest = function(test) {
+      if (_.where($scope.selected_order.tests, test).length == 0)
+        $scope.selected_order.tests.push(test)
+
+      this.test = undefined;
+    }
+
+    $scope.addTemplate = function(template) {
+      _.each(template.tests, function(test){
+        $scope.addTest(test);
+      })
+    }
+
+    $scope.scrollToSelection = function() {
+      // set a reference to the target we are scrolling to
+      var target = $('#' + $scope.editorSectionID);
+
+      // reposition the active section to the same location it was in before the editor resized the content area
+      $timeout(function(){
+
+        // get the y location of the active section
+        var targetVPos = 0;
+
+        target.prevAll().each(function() {
+          targetVPos += $(this).outerHeight(true);
+        });
+
+        // reset the content scroll location
+        $(".scroll").animate({scrollTop: targetVPos}, "slow");
+
+      },0)
+    }
+
+
+
+
+
+
+
+
+
+    // $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+    // $scope.lab_tests = [
+    //   {id:'s1', name:'Alabama'},
+    //   {id:'s2', name:'California'}
+    // ];
+
+    $scope.lab_tests = [
+        {
+        id:'lab_test_1',
+        name:'Complete Bood Count (CBC)'
+      },
+        {
+        id:'lab_test_2',
+        name:'Estrogen'
+      },
+        {
+        id:'lab_test_3',
+        name:'Lipids Panel'
+      },
+        {
+        id:'lab_test_4',
+        name:'Liver Function'
+      },
+        {
+        id:'lab_test_5',
+        name:'Urinalysis'
+      }
+    ];
+
+    $scope.selected_tests = [];
+    $scope.addState = function(test){
+      $scope.selected_tests.push(test);
+      this.test = undefined;
     }
 
     // window.onkeyup = function(e) {
@@ -98,11 +233,11 @@ angular.module('ehrApp')
     //         document.getElementById('select1').focus();
     //       break;
     //     case 13: //return
-    //       $scope.selected_lab = false;
+    //       $scope.selected_order = false;
     //       $scope.editing = 'select_lab';
     //       break;
     //     case 38: //up
-    //       $scope.editing = 'selected_lab'
+    //       $scope.editing = 'selected_order'
     //       document.getElementById('input_test').blur();
     //       break;
     //     case 40: //down
@@ -118,3 +253,11 @@ angular.module('ehrApp')
     // }
 
   });
+
+
+
+
+
+
+
+

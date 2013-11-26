@@ -111,7 +111,7 @@ angular.module('ehrApp')
         }
 
         // create orders
-        patient.orders = [];
+        // patient.orders = [];
 
         // for(var i=0; i<_.random(1,model.drugs.length); i++) {
         //   var order = {};

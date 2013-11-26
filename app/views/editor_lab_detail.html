@@ -1,0 +1,83 @@
+<div class="editor">
+	<div class="editor_header">
+		<div class="title">
+			<a ng-click="scrollToSelection()">Orders: {{selected_order.lab.name}}</a>
+		</div>
+		<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
+	</div>
+	<div class="editor_body">
+		<div class="row centered_row">
+			<div class="col-xs-8">Order {{selected_order.id}}</div>
+			<div class="col-xs-4 text-right">Aug 23, 2013</div>
+		</div>
+
+		<form class="form-horizontal editor_form" role="form">
+			<div class="form-group">
+				<label class="col-sm-11">Dx for all tests</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<select id="select1" class="select_editor_gray col-sm-12" tabindex="1">
+						<option>Select a Dx</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Insurance</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-3">
+					<p>Primary <span>(Complete patient insurance)</span></p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3"></label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="2">
+						<option>Select primary insurance</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Secondary</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="3">
+						<option>Caremark Prescription+ 3322</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Payment</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="4">
+						<option>Select payer</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Physician</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="5">
+						<option>Dr. Epstein</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Ordering</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="6">
+						<option>Dr. Epstein</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>			
+	<footer class="row">
+		<div class="col-xs-3">
+			<button class="button_blue_border" ng-click="closeEditor()">Cancel</button>
+		</div>
+		<div class="col-xs-9 text-right">
+			<button class="button_blue" ng-click="closeEditor()">Done</button>
+		</div>
+	</footer>
+</div>

@@ -1,5 +1,4 @@
 <div id="CHARTS_PATIENT_FACESHEET" class="view">
-
 	<div class="row controls border_b_blue">
 		<div class="col-xs-3">
 			<select class="select_show" ng-model="showing">
@@ -7,14 +6,13 @@
 				<option>CDS</option>
 			</select>
 		</div>
-
 		<div class="col-xs-4">
-		    <div class="input-group">
-		      <input type="text" class="form-control" placeholder="Search">
-		      <span class="input-group-btn">
-		        <button class="btn btn-default" type="button"><img src="images/search_icon.png"></button>
-		      </span>
-		    </div>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button"><img src="images/search_icon.png"></button>
+				</span>
+			</div>
 		</div>
 
 		<div class="col-xs-5 text-right">
@@ -23,29 +21,35 @@
 	</div>
 
 	<div class="cds" ng-class="{cds_open:showCDS}">
-		<div class="info">
-			<p>{{patient.cds.cds}}</p>
-			<div class="cds_more" ng-show="cdsMore">
-				<p><span class="row_header">Intervention Developer: </span>{{patient.cds.interventor}}</p>
-				<p><span class="row_header">Citation: </span>{{patient.cds.citor}}</p>
-				<p><span class="row_header">Sponsored By: </span>{{patient.cds.sponsor}}</p>
+		<div class="row">
+			<div class="col-xs-9">{{patient.cds.cds}}</div>
+			<div class="col-xs-2">
+				<a ng-click="cdsMore=true">Learn More</a>
+			</div>
+			<div class="col-xs-1 text-right">
+				<a class="button_close" ng-click="showCDS=!showCDS"><img src="images/icon_close.png"></a>
 			</div>
 		</div>
-		<div class="learn_more">
-			<a ng-click="cdsMore=true">Learn More</a>
+		<div ng-show="cdsMore">
+			<div class="row">
+				<p class="col-xs-12">Intervention Developer: {{patient.cds.interventor}}</p>
+			</div>
+			<div class="row">
+				<p class="col-xs-12">Citation: {{patient.cds.citor}}</p>
+			</div>
+			<div class="row">
+				<p class="col-xs-12">Sponsored By: {{patient.cds.sponsor}}</p>
+			</div>
 		</div>
-		<a class="button_close" ng-click="showCDS=!showCDS"><img src="images/icon_close.png"></a>
 	</div>
 
 	<div class="body">
 		<div class="content scroll">
-			<section>
+			<section id="medicatons">
 				<header>
 					<div class="section_title">Medications</div>
-					<a href="#">Record</a>
-					<a href="#">Order</a>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="med in patient.medications | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
 						<span>{{med.method}}</span>
@@ -55,16 +59,22 @@
 						<span>{{med.refill}}</span>
 					</li>
 				</ul>
-				<footer>
-					<a href="">View Historical</a>
-				</footer>
+				
+<!-- 				<div class="row" ng-repeat="med in patient.medications | orderBy:'date'">
+					<div class="col-xs-2">{{med.name}}</div>
+					<div class="col-xs-2">{{med.method}}</div>
+					<div class="col-xs-2">{{med.dosage}}</div>
+					<div class="col-xs-2">{{med.doctor}}</div>
+					<div class="col-xs-2">{{med.date |date:'MM/dd/yyyy'}}</div>
+					<div class="col-xs-2">{{med.refill}}</div>
+				</div>
+ -->
 			</section>
-			<section>
+			<section id="problem_list">
 				<header>
 					<div class="section_title">Problem List</div>
-					<a href="#">Record</a>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="problem in patient.problems | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{problem.name}}</a></span>
 						<span class="light">{{problem.metric}}</span>
@@ -72,16 +82,12 @@
 						<span>{{problem.date | date:'MM/dd/yyyy'}}</span>
 					</li>
 				</ul>
-				<footer>
-					<a href="">View Historical</a>
-				</footer>
 			</section>
-			<section>
+			<section id="medical_history">
 				<header>
-					<div class="section_title">Past Medical History</div>
-					<a href="#">Record</a>
+					<div class="section_title">Medical History</div>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="med in patient.medicalHistory | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
 						<span class="light">{{med.metric}}</span>
@@ -89,16 +95,12 @@
 						<span>{{med.date | date:'MM/dd/yyyy'}}</span>
 					</li>
 				</ul>
-				<footer>
-					<a href="">All (5)</a>
-				</footer>
 			</section>
-			<section>
+			<section id="surgical_history">
 				<header>
-					<div class="section_title">Past Surgical History</div>
-					<a href="#">Record</a>
+					<div class="section_title">Surgical History</div>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="sur in patient.surgicalHistory | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{sur.name}}</a></span>
 						<span class="light">{{sur.metric}}</span>
@@ -107,12 +109,11 @@
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id="family_history">
 				<header>
 					<div class="section_title">Family History</div>
-					<a href="#">Record</a>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="fam in patient.familyHistory | orderBy:'name'">
 						<span><a ng-click="showEditor('Editor')">{{fam.name}}</a></span>
 						<span>{{fam.relation}}</span>
@@ -120,12 +121,11 @@
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id="social_history">
 				<header>
 					<div class="section_title">Social History</div>
-					<a href="#">Record</a>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="soc in patient.socialHistory | orderBy:'name'">
 						<span><a ng-click="showEditor('Editor')">{{soc.name}}</a></span>
 						<span>{{soc.info}}</span>
@@ -133,20 +133,19 @@
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id="daily_living">
 				<header>
-					<div class="section_title">Activities of Daily Living</div>
-					<a href="#">Record</a>
+					<div class="section_title">Daily Living</div>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li>None Recorded</li>
 				</ul>
 			</section>
-			<section>
+			<section id="advisories">
 				<header>
 					<div class="section_title">Advisories</div>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li>
 						<span>No smoking status recorded</span>
 						<span><a>Record</a></span>
@@ -163,12 +162,11 @@
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id="psych_assessment">
 				<header>
-					<div class="section_title">Assessments Psychological</div>
-					<a href="#">Record</a>
+					<div class="section_title">Psychological Assessment</div>
 				</header>
-				<ul>
+				<ul class="indented_list">
 					<li ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
 						<span>{{psych.doctor}}</span>
@@ -176,179 +174,65 @@
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id="orders">
 				<header>
 					<div class="section_title">Orders</div>
-					<select class="select_editor_blue" ng-model="order">
-						<option>Add Order</option>
-						<option>Image</option>
-						<option>Intervention</option>
-						<option>Lab Test</option>
-						<option>Medication</option>
-						<option>Patient Education</option>
-						<option>Procedure</option>
-						<option>Referral</option>
-					</select>
+					<select class="select_editor_blue" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
 				</header>
-				<ul>
-					<li class="no_hyphen" ng-repeat="order in patient.orders">
-						<a ng-class="{editor_source:checkLabCriteria(order)}" ng-click="showLab(order)">{{order.id}}</a>
-						<ul ng-show="order.id==selected_lab.id">
-							<li ng-repeat="test in order.tests">{{test.type}}</li>
-							<li ng-class="{editor_source:editing=='add_lab'}" class="no_hyphen">
+				<ul class="indented_list">
+					<!-- ORDER -->
+					<li ng-repeat="order in patient.orders">
+						<!-- LAB -->
+						<a ng-class="{editor_source:checkLabCriteria(order)}" ng-click="showOrder(order)">{{order.lab.name}}</a>
+						<!-- TESTS -->
+						<ul ng-show="order.id==selected_order.id"> 
+							<!-- TEST -->
+							<li class="hyphenated" ng-class="{editor_source:checkTestCriteria(test)}" ng-repeat="test in order.tests track by $index">
+								<a ng-click="showTest(test)">{{test.name}}</a>
+							</li>
+							<li ng-class="{editor_source:editor.type=='lab_test_selection'}">
 				 				<div class="select_lab_input">
-							     	<input  id='input_test' type="text"  class="form-control" focus="onFocus()" placeholder="Add another test name">
-							    </div>
+                  <div class="input-group">
+										<!-- INPUT: ADD TEST -->
+									  	<input type="text" class="form-control" ui-event="{focus:'onFocus()'}" placeholder="Add another test name" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
+										</span>
+									</div>
+							 	</div>
 							</li>
 						</ul>
 					</li>
-					<li class="no_hyphen editor_source" ng-show="editing=='select_lab'">
+					<!-- INPUT: ADD LAB -->
+					<li class="no_hyphen editor_source" ng-show="editor.type=='lab_selection'">
 		 				<div class="select_lab_input">
-					     	<input type="text" class="form-control" placeholder="Lab to perform test" focus-me="editing=='select_lab'">
-					    </div>
+		 					<div class="input-group">
+								<!-- INPUT: ADD LAB -->
+							  	<input type="text" class="form-control" placeholder="Lab to perform test" ng-model="selectedLab" typeahead="lab as lab.name for lab in model.labs | filter:$viewValue" typeahead-on-select="addLabOrder(selectedLab)">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
+								</span>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id="clinical_summary">
 				<header>
 					<div class="section_title">Clinical Summary</div>
-					<a href="#">Print</a>
 				</header>
+				<ul class="indented_list">
+					<li>None Recorded</li>
+				</ul>
 			</section>
-		</div>
-		
-
-		<!-- EDITOR: SELECT LAB -->
-		<div class="editor" ng-class="{editor_open:editing=='select_lab'}">
-			<div class="editor_header">
-				<div class="title">Select Lab</div>
-				<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
-			</div>
-			<div class="editor_body">
-				<div class="table">
-					<div class="table_body">
-						<a class="row table_row_70" ng-repeat="lab in labs" ng-click="addLab(lab)">
-							<div class="col-xs-5"><img ng-src="{{lab.logo}}"></div>
-							<div class="col-xs-7">
-								<div>{{lab.name}}</div>
-								<div>{{lab.id}}</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-			<footer class="row">
-				<div class="col-xs-3">
-					<button class="button_blue_border" ng-click="closeEditor()">Cancel</button>
-				</div>
-				<div class="col-xs-9 text-right">
-					<button class="button_blue" ng-click="closeEditor()">Done</button>
-				</div>
-			</footer>
+			<section class="extra_height_500"></section>
 		</div>
 
-		<!-- EDITOR: LAB -->
-		<div class="editor" ng-class="{editor_open:editing=='selected_lab'}">
-			<div class="editor_header">
-				<div class="title">{{selected_lab.id}}</div>
-				<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
-			</div>
-			<div class="editor_body">
-				<div class="row centered_row">
-					<div class="col-xs-8">Order 324320342</div>
-					<div class="col-xs-4 text-right">Aug 23, 2013</div>
-				</div>
-
-				<form class="form-horizontal editor_form" role="form">
-					<div class="form-group">
-						<label class="col-sm-11">Dx for all tests</label>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-12">
-							<select id="select1" class="select_editor_gray col-sm-12" tabindex="1">
-								<option>Select a Dx</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Insurance</label>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-8 col-sm-offset-3">
-							<p>Primary <span>(Complete patient insurance)</span></p>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3"></label>
-						<div class="col-sm-9">
-							<select class="select_editor_blue col-sm-12" tabindex="2">
-								<option>Select primary insurance</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label">Secondary</label>
-						<div class="col-sm-9">
-							<select class="select_editor_blue col-sm-12" tabindex="3">
-								<option>Caremark Prescription+ 3322</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label">Payment</label>
-						<div class="col-sm-9">
-							<select class="select_editor_blue col-sm-12" tabindex="4">
-								<option>Select payer</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label">Physician</label>
-						<div class="col-sm-9">
-							<select class="select_editor_blue col-sm-12" tabindex="5">
-								<option>Dr. Epstein</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label">Ordering</label>
-						<div class="col-sm-9">
-							<select class="select_editor_blue col-sm-12" tabindex="6">
-								<option>Dr. Epstein</option>
-							</select>
-						</div>
-					</div>
-				</form>
-			</div>			
-			<footer class="row">
-				<div class="col-xs-3">
-					<button class="button_blue_border" ng-click="closeEditor()">Cancel</button>
-				</div>
-				<div class="col-xs-9 text-right">
-					<button class="button_blue" ng-click="closeEditor()">Done</button>
-				</div>
-			</footer>
-		</div>
-
-		<!-- EDITOR: ADD LAB -->
-		<div class="editor" ng-class="{editor_open:editing=='add_lab'}">
-			<div class="editor_header">
-				<div class="title">Add Lab Tests</div>
-				<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
-			</div>
-			<div class="editor_body">
-				<img src="images/tmp_editor_lab_2.png">
-			</div>			
-			<footer class="row">
-				<div class="col-xs-3">
-					<button class="button_blue_border" ng-click="closeEditor()">Cancel</button>
-				</div>
-				<div class="col-xs-9 text-right">
-					<button class="button_blue" ng-click="closeEditor()">Done</button>
-				</div>
-			</footer>
-		</div>
-
+		<div class="editors" ng-show="editor">
+			<editor-lab-selection class="editor_container animate-show" ng-show="editor.type=='lab_selection'"></editor-lab-selection>
+			<editor-lab-detail class="editor_container" ng-show="editor.type=='lab_detail'"></editor-lab-detail>
+			<editor-lab-test-selection class="editor_container" ng-show="editor.type=='lab_test_selection'"></editor-lab-test-selection>
+			<editor-lab-test-detail class="editor_container" ng-show="editor.type=='lab_test_detail'"></editor-lab-test-detail>
+		</div>		
 	</div>
-	
 </div>

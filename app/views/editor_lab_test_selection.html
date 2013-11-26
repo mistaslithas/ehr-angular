@@ -1,0 +1,32 @@
+<div class="editor">
+	<div class="editor_header">
+		<div class="title">
+			<a ng-click="scrollToSelection()">Orders: Add Lab Tests</a>
+		</div>
+		<a class="button_close" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
+	</div>
+	<div class="editor_body">
+		<tabset>
+			<tab heading="Templates">
+				<ul class="editor_list">
+					<li ng-repeat="template in model.lab_test_templates track by $index">
+						<a ng-click="addTemplate(template)">
+							<p>{{template.name}}</p>
+							<p><span ng-repeat="test in template.tests track by $index">{{test.name}}; </span></p>
+						</a>
+					</li>
+				</ul>
+			</tab>
+			<tab heading="Frequent">
+			</tab>
+		</tabset>
+	</div>			
+	<footer class="row">
+		<div class="col-xs-3">
+			<button class="button_blue_border" ng-click="closeEditor()">Cancel</button>
+		</div>
+		<div class="col-xs-9 text-right">
+			<button class="button_blue" ng-click="closeEditor()">Done</button>
+		</div>
+	</footer>
+</div>
