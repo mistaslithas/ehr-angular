@@ -29,7 +29,7 @@ angular.module('ehrApp')
 	    lab_tests: [
 		    {
 				id:'lab_test_1',
-				name:'Complete Bood Count (CBC)'
+				name:'Complete Blood Count (CBC)'
 			},
 		    {
 				id:'lab_test_2',
@@ -69,7 +69,7 @@ angular.module('ehrApp')
 				tests: [
 				    {
 						id:'lab_test_1',
-						name:'Complete Bood Count (CBC)'
+						name:'Complete Blood Count (CBC)'
 					},
 				    {
 						id:'lab_test_2',
@@ -86,7 +86,7 @@ angular.module('ehrApp')
 				]
 			}
 		],
-		dx: ['Acute Upper Respiratory Infection','Migraines','Lumbago'],
+		dx: ['Acute Upper Respiratory Infection','Migraines','Lumbago','Laryngitis'],
     	ccs: ['Influenza','Panic Attack','Hypertension','Diabetes','Anemia'],
     	drugs: ['Naproxen','Neurontin (Gabapentin)','Mobic (Meloxicam)','Flexeril (Cyclobeuraprine)','Ibuprofen','Xanax (ALPRAZolam)','MS Contin (Morphine)'],
     	drugMethods: ['oral tablet'],

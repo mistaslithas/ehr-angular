@@ -25,6 +25,7 @@ $form_blue_border: rgba(19,164,236,.5);
 $disabled_gray: #BABABA;
 $editor_title_border_color: #2782B8;
 $editor_left_border_color: #4CD2FF;
+$task_green: #6BE2C3;
 
 
 html,body {
@@ -499,6 +500,23 @@ button {
 			max-height: 130px;
 		}
 
+		.tasks {
+			position: relative;
+			box-shadow: 0 2px 2px rgba(0,0,0,.1);
+			max-height: 0;
+			color: #444;
+			font-size: 15px;
+			font-weight: 300;
+			background: $task_green;
+			transition: max-height .2s;
+			overflow: hidden;
+		}
+
+		.tasks_open {
+			padding: 8px 0 8px 22px;
+			max-height: 130px;
+		}
+
 		.body {
 			flex: 1;
 			display: flex;
@@ -737,6 +755,8 @@ button {
 }
 
 .editor {
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	top: 4px;
 	bottom: 4px;
@@ -793,6 +813,12 @@ button {
 	.editor_section_name {
 		font-weight: normal;
 		color: #333;
+	}
+
+	.editor_section_header {
+		font-weight: 400;
+		font-size: 16px;
+		color: #ccc;
 	}
 
 	.editor_list {

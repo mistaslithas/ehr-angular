@@ -18,7 +18,19 @@ angular.module('ehrApp')
         {label:'Procedure', value:''},
         {label:'Referral', value:''}
       ]
-    }
+    };
+
+    $scope.insurance = {
+        value: 'default',
+        options: [
+          {label:'Select primary insurance', value:'default'},
+          {label:'Anthem', value:''},
+          {label:'Blueshield', value:''},
+          {label:'Kaiser', value:'lab_selection'},
+          {label:'MetLife', value:''},
+          {label:'VSP', value:''}
+        ]
+      };
 
     // watch for changes in the show menu
     $scope.$watch('showing', function(){
@@ -28,12 +40,54 @@ angular.module('ehrApp')
             $scope.showCDS = true;
             $scope.cdsMore = false;
             break;
+          case 'tasks':
+            $scope.showTasks = true;
+            break;
         }
       }
 
       // reset menu
       $scope.showing = 'Show...';
     })
+
+
+    // tasks
+    $scope.taskIndex = 0;
+    $scope.tasks = [];
+
+    $scope.nextTask = function() {
+      $scope.taskIndex = $scope.taskIndex == $scope.tasks.length-1 ? 0 : $scope.taskIndex + 1;
+    }
+
+    $scope.goToTask = function() {
+      var task = $scope.tasks[$scope.taskIndex];
+      $scope.showTest(task.track.test, task.track.order);
+      $scope.scrollToSelection();
+    }
+
+    $scope.createTask = function() {
+      var task = {
+        id:'t-'+$scope.selected_order.id+'-'+$scope.selected_test.id,
+        track: {order:$scope.selected_order, test:$scope.selected_test}, 
+        description: 'Incomplete Dx (Orders: ' + $scope.selected_order.lab.name + ': ' + $scope.selected_test.name + ')'
+      }
+      $scope.tasks.push(task);
+    }
+
+    $scope.checkDx = function(dx) {
+      if(dx) {
+        // we have a dx, remove its task
+        $scope.tasks = _.without($scope.tasks, _.findWhere($scope.tasks, {id: 't-'+$scope.selected_order.id+'-'+$scope.selected_test.id}));
+      } else {
+        // we don't have a dx, add its task
+        $scope.createTask();
+      }
+
+      $scope.showTasks = false;
+    }
+
+
+
 
 
   	// show/hide the editor
@@ -60,6 +114,10 @@ angular.module('ehrApp')
 
       // ensure the content stays in the same position as it resizes
       $scope.resetScrollPosition(scrollTarget);
+
+      // display tasks if necessary
+      if($scope.tasks.length > 0)
+        $scope.showTasks = true;
 
       // resets
       $scope.editorSectionID = false;
@@ -132,10 +190,10 @@ angular.module('ehrApp')
       $scope.showEditor('lab_detail','orders');
     }
 
-    $scope.showTest = function(test) {
-      console.log($scope.selected_order)
+    $scope.showTest = function(test, order) {
       $scope.selected_test = test;
       $scope.showEditor('lab_test_detail','orders');
+      $scope.selected_order = order;
     }
 
     $scope.onFocus = function() {
@@ -146,14 +204,20 @@ angular.module('ehrApp')
       return $scope.selected_order.id==order.id && $scope.editor.type=='lab_detail';
     }
 
-    $scope.checkTestCriteria = function(test) {
+    $scope.checkTestCriteria = function(test, order) {
       if($scope.selected_test)
-        return $scope.selected_test.id==test.id && $scope.editor.type=='lab_test_detail';
+        return $scope.selected_test.id==test.id && $scope.selected_order.id == order.id && $scope.editor.type=='lab_test_detail';
     }
 
     $scope.addTest = function(test) {
       if (_.where($scope.selected_order.tests, test).length == 0)
         $scope.selected_order.tests.push(test)
+
+      // show the test detail panel since a dx is required
+      $scope.showTest(test, $scope.selected_order);
+
+      // create a task for the required dx
+      $scope.createTask();
 
       this.test = undefined;
     }
@@ -214,12 +278,6 @@ angular.module('ehrApp')
     //   $scope.$apply();
     // }
 
+
+
   });
-
-
-
-
-
-
-
-
