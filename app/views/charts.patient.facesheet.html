@@ -4,7 +4,7 @@
 			<select class="select_show" ng-model="showing">
 				<option>Show...</option>
         <option>CDS</option>
-        <option>Tasks</option>
+        <option>Notifications</option>
 			</select>
 		</div>
 		<div class="col-xs-4">
@@ -44,14 +44,14 @@
     </div>
   </div>
 
-  <div class="tasks" ng-class="{tasks_open:showTasks}">
+  <div class="notifications" ng-class="{notifications_open:showNotifications}">
     <div class="row">
-      <a class="col-xs-9" ng-click="goToTask()">{{taskIndex+1 + '/' + tasks.length + ' ' + tasks[taskIndex].description}}</a>
+      <a class="col-xs-9" ng-click="goToNotification()">{{notificationIndex+1 + '/' + notifications.length + ' ' + notifications[notificationIndex].description}}</a>
       <div class="col-xs-2">
-        <a ng-show="tasks.length > 1" ng-click="nextTask()">Next Task</a>
+        <a ng-show="notifications.length > 1" ng-click="nextNotifications()">Next Notification</a>
       </div>
       <div class="col-xs-1 text-right">
-        <a class="button_close" ng-click="showTasks=!showTasks"><img src="images/icon_close.png"></a>
+        <a class="button_close" ng-click="showNotifications=!showNotifications"><img src="images/icon_close.png"></a>
       </div>
     </div>
   </div>

@@ -25,7 +25,7 @@ $form_blue_border: rgba(19,164,236,.5);
 $disabled_gray: #BABABA;
 $editor_title_border_color: #2782B8;
 $editor_left_border_color: #4CD2FF;
-$task_green: #6BE2C3;
+$notification_green: #6BE2C3;
 
 
 html,body {
@@ -500,19 +500,19 @@ button {
 			max-height: 130px;
 		}
 
-		.tasks {
+		.notifications {
 			position: relative;
 			box-shadow: 0 2px 2px rgba(0,0,0,.1);
 			max-height: 0;
 			color: #444;
 			font-size: 15px;
 			font-weight: 300;
-			background: $task_green;
+			background: $notification_green;
 			transition: max-height .2s;
 			overflow: hidden;
 		}
 
-		.tasks_open {
+		.notifications_open {
 			padding: 8px 0 8px 22px;
 			max-height: 130px;
 		}

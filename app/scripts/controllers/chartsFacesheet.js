@@ -40,8 +40,8 @@ angular.module('ehrApp')
             $scope.showCDS = true;
             $scope.cdsMore = false;
             break;
-          case 'tasks':
-            $scope.showTasks = true;
+          case 'notifications':
+            $scope.showNotifications = true;
             break;
         }
       }
@@ -51,39 +51,39 @@ angular.module('ehrApp')
     })
 
 
-    // tasks
-    $scope.taskIndex = 0;
-    $scope.tasks = [];
+    // notifications
+    $scope.notificationIndex = 0;
+    $scope.notifications = [];
 
-    $scope.nextTask = function() {
-      $scope.taskIndex = $scope.taskIndex == $scope.tasks.length-1 ? 0 : $scope.taskIndex + 1;
+    $scope.nextNotifications = function() {
+      $scope.notificationIndex = $scope.notificationIndex == $scope.notifications.length-1 ? 0 : $scope.notificationIndex + 1;
     }
 
-    $scope.goToTask = function() {
-      var task = $scope.tasks[$scope.taskIndex];
-      $scope.showTest(task.track.test, task.track.order);
+    $scope.goToNotification = function() {
+      var notification = $scope.notifications[$scope.notificationIndex];
+      $scope.showTest(notification.track.test, notification.track.order);
       $scope.scrollToSelection();
     }
 
-    $scope.createTask = function() {
-      var task = {
+    $scope.createNotification = function() {
+      var notification = {
         id:'t-'+$scope.selected_order.id+'-'+$scope.selected_test.id,
         track: {order:$scope.selected_order, test:$scope.selected_test}, 
         description: 'Incomplete Dx (Orders: ' + $scope.selected_order.lab.name + ': ' + $scope.selected_test.name + ')'
       }
-      $scope.tasks.push(task);
+      $scope.notifications.push(notification);
     }
 
-    $scope.checkDx = function(dx) {
+    $scope.checkDxNotification = function(dx) {
       if(dx) {
-        // we have a dx, remove its task
-        $scope.tasks = _.without($scope.tasks, _.findWhere($scope.tasks, {id: 't-'+$scope.selected_order.id+'-'+$scope.selected_test.id}));
+        // we have a dx, remove its notification
+        $scope.notifications = _.without($scope.notifications, _.findWhere($scope.notifications, {id: 't-'+$scope.selected_order.id+'-'+$scope.selected_test.id}));
       } else {
-        // we don't have a dx, add its task
-        $scope.createTask();
+        // we don't have a dx, add its notification
+        $scope.createNotification();
       }
 
-      $scope.showTasks = false;
+      $scope.showNotifications = false;
     }
 
 
@@ -115,9 +115,9 @@ angular.module('ehrApp')
       // ensure the content stays in the same position as it resizes
       $scope.resetScrollPosition(scrollTarget);
 
-      // display tasks if necessary
-      if($scope.tasks.length > 0)
-        $scope.showTasks = true;
+      // display notifications if necessary
+      if($scope.notifications.length > 0)
+        $scope.showNotifications = true;
 
       // resets
       $scope.editorSectionID = false;
@@ -194,6 +194,7 @@ angular.module('ehrApp')
       $scope.selected_test = test;
       $scope.showEditor('lab_test_detail','orders');
       $scope.selected_order = order;
+      // $scope.dx = test.dx;
     }
 
     $scope.onFocus = function() {
@@ -216,8 +217,8 @@ angular.module('ehrApp')
       // show the test detail panel since a dx is required
       $scope.showTest(test, $scope.selected_order);
 
-      // create a task for the required dx
-      $scope.createTask();
+      // create a notification for the required dx
+      $scope.createNotification();
 
       this.test = undefined;
     }
