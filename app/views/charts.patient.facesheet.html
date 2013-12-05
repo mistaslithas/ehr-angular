@@ -44,19 +44,19 @@
     </div>
   </div>
 
-  <div class="notifications" ng-class="{notifications_open:showNotifications}">
-    <div class="row">
-      <a class="col-xs-9" ng-click="goToNotification()">{{notificationIndex+1 + '/' + notifications.length + ' ' + notifications[notificationIndex].description}}</a>
-      <div class="col-xs-2">
-        <a ng-show="notifications.length > 1" ng-click="nextNotifications()">Next Notification</a>
+  <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
+    <div class="row" ng-class="{notifications_reduced: editor}">
+      <div class="col-xs-10">
+        <p class="header_track">Orders: {{notifications[notificationIndex].track.order.lab.name}}: {{notifications[notificationIndex].track.test.name}}</p>
+        <p>{{notifications[notificationIndex].description}}</p>
       </div>
-      <div class="col-xs-1 text-right">
-        <a class="button_close" ng-click="showNotifications=!showNotifications"><img src="images/icon_close.png"></a>
+      <div class="col-xs-2 text-right">
+        <a ng-click="nextNotification()">Next</a>
       </div>
     </div>
   </div>
 
-	<div class="body">
+	<div class="body" ng-class="{body_reduced: editor}">
 		<div class="content scroll">
 			<section id="medicatons">
 				<header>
@@ -72,16 +72,6 @@
 						<span>{{med.refill}}</span>
 					</li>
 				</ul>
-				
-<!-- 				<div class="row" ng-repeat="med in patient.medications | orderBy:'date'">
-					<div class="col-xs-2">{{med.name}}</div>
-					<div class="col-xs-2">{{med.method}}</div>
-					<div class="col-xs-2">{{med.dosage}}</div>
-					<div class="col-xs-2">{{med.doctor}}</div>
-					<div class="col-xs-2">{{med.date |date:'MM/dd/yyyy'}}</div>
-					<div class="col-xs-2">{{med.refill}}</div>
-				</div>
- -->
 			</section>
 			<section id="problem_list">
 				<header>
@@ -190,19 +180,26 @@
 			<section id="orders">
 				<header>
 					<div class="section_title">Orders</div>
-					<select class="select_editor_blue" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
+					<select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
 				</header>
-				<ul class="indented_list">
+				<!-- <ul class="indented_list"> -->
 					<!-- ORDER -->
-					<li ng-repeat="order in patient.orders">
+					<div ng-repeat="order in patient.orders">
 						<!-- LAB -->
-						<a ng-class="{editor_source:checkLabCriteria(order)}" ng-click="showOrder(order)">{{order.lab.name}}</a>
-						<!-- TESTS -->
-						<ul> 
+            <div class="section_row" ng-class="{order_source:checkOrderCriteria(order)}">
+              <a class="order_lab_name" ng-class="{order_source_2:checkOrderCriteria2(order)}" ng-click="showOrder(order)">{{order.lab.name}}</a>
+              <!-- <span><a class="button_text">Submit</a></span> -->
+              <span class="incomplete" ng-show="!order.insurance.primary">Incomplete</span>
+						</div>
+            <!-- TESTS -->
+						<ul class="indented_list margin_l_20"> 
 							<!-- TEST -->
-							<li class="hyphenated" ng-class="{editor_source:checkTestCriteria(test,order)}" ng-repeat="test in order.tests track by $index">
-								<a ng-click="showTest(test, order)">{{test.name}}</a>
-							</li>
+							<li ng-class="{editor_source:checkTestCriteria(test,order)}" ng-repeat="test in order.tests track by $index">
+                <div>
+                  <span><a ng-click="showTest(test, order)">{{test.name}}</a></span>
+                  <span class="incomplete" ng-show="checkTestComplete(order,test)">Incomplete</span>
+                </div>
+              </li>
 							<li ng-class="{editor_source:editor.type=='lab_test_selection'}">
 				 				<div class="select_lab_input">
                   <div class="input-group" ng-show="order.id == selected_order.id">
@@ -215,9 +212,9 @@
 							 	</div>
 							</li>
 						</ul>
-					</li>
+					</div>
 					<!-- INPUT: ADD LAB -->
-					<li class="no_hyphen editor_source" ng-show="editor.type=='lab_selection'">
+					<div class="no_hyphen editor_source margin_l_20" ng-show="editor.type=='lab_selection'">
 		 				<div class="select_lab_input">
 		 					<div class="input-group">
 								<!-- INPUT: ADD LAB -->
@@ -227,8 +224,8 @@
 								</span>
 							</div>
 						</div>
-					</li>
-				</ul>
+					</div>
+				<!-- </ul> -->
 			</section>
 			<section id="clinical_summary">
 				<header>

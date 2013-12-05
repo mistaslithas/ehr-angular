@@ -20,17 +20,6 @@ angular.module('ehrApp')
       ]
     };
 
-    $scope.insurance = {
-        value: 'default',
-        options: [
-          {label:'Select primary insurance', value:'default'},
-          {label:'Anthem', value:''},
-          {label:'Blueshield', value:''},
-          {label:'Kaiser', value:'lab_selection'},
-          {label:'MetLife', value:''},
-          {label:'VSP', value:''}
-        ]
-      };
 
     // watch for changes in the show menu
     $scope.$watch('showing', function(){
@@ -40,9 +29,6 @@ angular.module('ehrApp')
             $scope.showCDS = true;
             $scope.cdsMore = false;
             break;
-          case 'notifications':
-            $scope.showNotifications = true;
-            break;
         }
       }
 
@@ -51,12 +37,20 @@ angular.module('ehrApp')
     })
 
 
+
+    // watch for form_lab_detail changes
+    $scope.$watch('form_lab_detail.$valid', function(val) {
+      // add/remove order notification
+    })
+
+
     // notifications
     $scope.notificationIndex = 0;
     $scope.notifications = [];
 
-    $scope.nextNotifications = function() {
+    $scope.nextNotification = function() {
       $scope.notificationIndex = $scope.notificationIndex == $scope.notifications.length-1 ? 0 : $scope.notificationIndex + 1;
+      $scope.goToNotification();
     }
 
     $scope.goToNotification = function() {
@@ -65,30 +59,52 @@ angular.module('ehrApp')
       $scope.scrollToSelection();
     }
 
-    $scope.createNotification = function() {
+    $scope.scrollToSelection = function() {
+      // set a reference to the target we are scrolling to
+      var target = $('#' + $scope.editorSectionID);
+
+      // reposition the active section to the same location it was in before the editor resized the content area
+      $timeout(function(){
+
+        // get the y location of the active section
+        var targetVPos = 0;
+
+        target.prevAll().each(function() {
+          targetVPos += $(this).outerHeight(true);
+        });
+
+        // reset the content scroll location
+        $(".scroll").animate({scrollTop: targetVPos}, "slow");
+
+      },0)
+    }
+
+    $scope.createNotification = function(type) {
       var notification = {
         id:'t-'+$scope.selected_order.id+'-'+$scope.selected_test.id,
         track: {order:$scope.selected_order, test:$scope.selected_test}, 
-        description: 'Incomplete Dx (Orders: ' + $scope.selected_order.lab.name + ': ' + $scope.selected_test.name + ')'
+        description: 'Incomplete Dx'
       }
-      $scope.notifications.push(notification);
+
+      // if the notification does not already exist, add it
+      if(!_.findWhere($scope.notifications, {id: notification.id}))
+        $scope.notifications.push(notification);
+    }
+
+    $scope.checkTestComplete = function(order, test) {
+      return _.findWhere($scope.notifications, {id: 't-'+order.id+'-'+test.id});
     }
 
     $scope.checkDxNotification = function(dx) {
       if(dx) {
         // we have a dx, remove its notification
         $scope.notifications = _.without($scope.notifications, _.findWhere($scope.notifications, {id: 't-'+$scope.selected_order.id+'-'+$scope.selected_test.id}));
+        $scope.notificationIndex = 0;
       } else {
         // we don't have a dx, add its notification
         $scope.createNotification();
       }
-
-      $scope.showNotifications = false;
     }
-
-
-
-
 
   	// show/hide the editor
   	$scope.editor = false;
@@ -114,10 +130,6 @@ angular.module('ehrApp')
 
       // ensure the content stays in the same position as it resizes
       $scope.resetScrollPosition(scrollTarget);
-
-      // display notifications if necessary
-      if($scope.notifications.length > 0)
-        $scope.showNotifications = true;
 
       // resets
       $scope.editorSectionID = false;
@@ -175,11 +187,49 @@ angular.module('ehrApp')
 
     $scope.addLabOrder = function(lab) {
       var labOrder = {
-        id: $scope.patient.id + '-' + $scope.patient.orders.length+1, 
+        id: $scope.patient.id + '-' + $scope.patient.orders.length+1,
+        date: new Date(), 
         type:'lab_test',
         lab: lab,
-        tests: []
+        tests: [],
+        insurance: {
+          primary: '',
+          secondary: '',
+          payment: ''
+        },
+        physician: '',
+        ordering: '',
+        dx_all: ''
       }
+
+      // {
+      //       id: '00000001-0', //patient id - number of patient orders 
+      //       date: '2013-12-01T00:00:00.00',
+      //       type:'lab_test',
+      //       lab: {
+      //         id: 'lab-3',
+      //         name: 'Quest-3636363636',
+      //         logo: 'images/quest.png'
+      //       },
+      //       insurance: {
+      //         primary: '',
+      //         secondary: '',
+      //         payment: ''
+      //       },
+      //       physician: '',
+      //       ordering: '',
+      //       dx_all: '',
+      //   tests: [
+      //     {
+      //       id:'lab_test_1',
+      //       name:'Complete Blood Count (CBC)'
+      //     },
+      //       {
+      //       id:'lab_test_2',
+      //       name:'Estrogen'
+      //     },
+      //       ]
+      // }
 
       $scope.patient.orders.push(labOrder);
       $scope.showOrder(labOrder);
@@ -201,9 +251,17 @@ angular.module('ehrApp')
       $scope.showEditor('lab_test_selection','orders');
     }
 
-    $scope.checkLabCriteria = function(order) {
+    $scope.checkOrderCriteria = function(order) {
       return $scope.selected_order.id==order.id && $scope.editor.type=='lab_detail';
     }
+
+    $scope.checkOrderCriteria2 = function(order) {
+      return $scope.selected_order.id==order.id && $scope.editor.type!='lab_detail';
+    }
+
+    // $scope.checkLabCriteria = function(order) {
+    //   return $scope.selected_order.id==order.id && $scope.editor.type=='lab_detail';
+    // }
 
     $scope.checkTestCriteria = function(test, order) {
       if($scope.selected_test)
@@ -211,16 +269,17 @@ angular.module('ehrApp')
     }
 
     $scope.addTest = function(test) {
-      if (_.where($scope.selected_order.tests, test).length == 0)
+      if (_.where($scope.selected_order.tests, test).length == 0) {
         $scope.selected_order.tests.push(test)
-
-      // show the test detail panel since a dx is required
-      $scope.showTest(test, $scope.selected_order);
-
-      // create a notification for the required dx
-      $scope.createNotification();
-
-      this.test = undefined;
+  
+        // show the test detail panel since a dx is required
+        $scope.showTest(test, $scope.selected_order);
+    
+        // create a notification for the required dx
+        $scope.createNotification();
+  
+        this.test = undefined;
+      }
     }
 
     $scope.addTemplate = function(template) {
@@ -229,25 +288,6 @@ angular.module('ehrApp')
       })
     }
 
-    $scope.scrollToSelection = function() {
-      // set a reference to the target we are scrolling to
-      var target = $('#' + $scope.editorSectionID);
-
-      // reposition the active section to the same location it was in before the editor resized the content area
-      $timeout(function(){
-
-        // get the y location of the active section
-        var targetVPos = 0;
-
-        target.prevAll().each(function() {
-          targetVPos += $(this).outerHeight(true);
-        });
-
-        // reset the content scroll location
-        $(".scroll").animate({scrollTop: targetVPos}, "slow");
-
-      },0)
-    }
 
 
 

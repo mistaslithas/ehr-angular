@@ -17,15 +17,20 @@ $table_blue: #045EA5;
 $tab_bg: rgba(4,94,195,.3);
 $control_bg_gray: #eee;
 $section_title_bg: #1862A2;
+$section_title_light_bg: rgba(24,98,162,.5);
 $section_active: rgba(24,98,162,.4);
 $body_bg: white;
 $font_gray: #666;
 $border_gray: #EEE;
 $form_blue_border: rgba(19,164,236,.5);
 $disabled_gray: #BABABA;
+$editor_header_1_color: #185F9F;
+$editor_header_2_color: #1860A0;
 $editor_title_border_color: #2782B8;
 $editor_left_border_color: #4CD2FF;
 $notification_green: #6BE2C3;
+$light_text: rgba(255,255,255,.6);
+
 
 
 html,body {
@@ -39,6 +44,10 @@ hr {
 p {
 	padding: 0;
 	margin: 0;
+}
+
+a {
+	user-select: none;
 }
 
 a:hover {
@@ -122,10 +131,11 @@ select:focus {
 }
 
 .select_editor_blue {
-	min-width: 100px;
+	// min-width: 80px;
 	height: 26px !important;
 	font-size: 13px;
 	border: 1px solid $blue;
+	color: $blue;
 	background: url("../images/icon_select_arrow_blue.png") no-repeat right center;
 }
 
@@ -136,6 +146,18 @@ select:focus {
 	background: url("../images/icon_dx.png") no-repeat right center;
 }
 
+.select_no_border {
+	border: none !important;
+}
+
+.ng-invalid {
+	border-color: $notification_green !important;
+	outline-color: $notification_green !important;
+}
+
+.ng-invalid:focus {
+	// outline-: none;
+}
 
 // BUTTON DEFINITIONS
 // the collection of styles for button components
@@ -161,6 +183,12 @@ button {
 .button_blue_border {
 	color: #1862A2;
 	border: 1px solid #12A4EC;
+}
+
+.button_text {
+	font-size: 13px;
+	font-weight: 200 !important;
+	color: $blue !important;
 }
 
 
@@ -501,20 +529,33 @@ button {
 		}
 
 		.notifications {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 			position: relative;
 			box-shadow: 0 2px 2px rgba(0,0,0,.1);
-			max-height: 0;
+			height: 0;
 			color: #444;
 			font-size: 15px;
 			font-weight: 300;
 			background: $notification_green;
-			transition: max-height .2s;
+			transition: .5s;
 			overflow: hidden;
+			padding: 0 0 0 22px;
+
+			.header_track {
+				font-size: 14px;
+				color: $light_text !important;
+			}
+		}
+
+		.notifications_reduced {
+			width: 486px;
 		}
 
 		.notifications_open {
-			padding: 8px 0 8px 22px;
-			max-height: 130px;
+			// padding: 8px 0 8px 22px;
+			height: 50px;
 		}
 
 		.body {
@@ -525,6 +566,12 @@ button {
 				flex: 1;
 			}
 		}
+
+		.incomplete {
+			color: $notification_green;
+			font-weight: 200;
+		}
+
 
 		// VIEWS
 		// views are specific screens, defined by html templates
@@ -647,14 +694,7 @@ button {
 
 				.content {
 
-					// section {
-					// 	min-height: 10px;
-					// 	margin-bottom: 30px;
-					// 	background: #eee;
-					// }
-					
 					section {
-						// min-height: 50px;	//needed for the scroll position to be updated properly after editor resizing events
 						background: $body_bg;
 						margin-bottom: 30px;
 
@@ -679,16 +719,25 @@ button {
 							}
 						}
 
-						.row {
+						.section_row {
 							font-size: 15px;
 							font-weight: 300;
 							color: #888;
+							line-height: 30px;
+							margin-bottom: 8px;
 						}
 
 						.select_lab_input {
 							margin: 0 50px 0 0;
 						}
 
+						.margin_l_20 {
+							margin-left: 20px;
+						}
+
+						.order_lab_name {
+							padding: 5px 20px 5px 20px;
+						}
 
 						.indented_list {
 							width: 100%;
@@ -700,7 +749,9 @@ button {
 								font-weight: 300;
 								color: #888;
 								margin-bottom: 6px;
-								padding-left: 20px;
+								// margin-left: 20px;
+								line-height: 20px;
+								// padding-left: 20px;
 
 								.light {
 									color: #ccc;
@@ -709,6 +760,10 @@ button {
 
 							li:before {
 								color: $header_blue;
+							}
+
+							span {
+								margin-right: 20px;
 							}
 
 							.hyphenated:before {
@@ -734,9 +789,12 @@ button {
 					}
 				}
 			}
+
+			.body_reduced {
+				width: 510px !important;
+			}
 		}
 	}
-
 }
 
 
@@ -744,6 +802,10 @@ button {
 .editors {
 	display: flex;
 	width: 380px;
+	position: absolute;
+	top: 170px;
+	right: 0;
+	bottom: 10px;
 	margin: 10px 10px 10px 0;
 }
 
@@ -768,20 +830,26 @@ button {
 	background: white;
 
 	.editor_header {
-		display: flex;
-		align-items: center !important;
-		height: 50px;
+		height: 60px;
 		padding-right: 10px;
 		box-sizing: border-box;
 		background: white;
 		border-bottom: 2px solid $header_blue;
+		line-height: 30px;
 
-		.title {
-			flex: 1;
-			font-size: 16px;
-			color: $section_title_bg;
-			padding-left: 10px;
+		.editor_header_1 {
+			font-size: 13px !important;
+			font-weight: 300;
+			color: $editor_header_1_color !important;
 		}
+
+		.editor_header_2 {
+			line-height: 20px;
+			font-size: 18px !important;
+			// font-weight: 300;
+			color: $editor_header_2_color !important;
+		}
+
 	}
 
 	.editor_body {
@@ -858,10 +926,7 @@ button {
 }
 
 .editor_source {
-	display: block;
-	width: 100%;
-	margin: 0 0 4px 0;
-	color: white;
+	padding: 2px;
 	background: $editor_left_border_color;
 
 	a, .light {
@@ -869,10 +934,25 @@ button {
 	}
 }
 
-.editor_source:before {
-	content:'' !important;
+.order_source {
+	background: $editor_left_border_color;
+	border-left: 14px solid white;
+
+	.order_lab_name {
+		padding-left: 6px !important;
+		color: white;
+	}
 }
 
+.order_source_2 {
+	background: $section_title_light_bg;
+	color: white;
+}
+
+.editor_source .incomplete,
+.order_source .incomplete {
+	color: $light_text !important;
+}
 
 
 // BANNERS

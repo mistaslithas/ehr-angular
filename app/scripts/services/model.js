@@ -9,43 +9,80 @@ angular.module('ehrApp')
 	   	labs: [
 	      {
 	        id: 'lab-1',
-	        name: 'Quest 1',
-	        logo: 'images/quest.png',
-	        tests: []
+	        name: 'Quest-1212121212',
+	        logo: 'images/quest.png'
 	      },
 	      {
 	        id: 'lab-2',
-	        name: 'Quest 2',
-	        logo: 'images/quest.png',
-	        tests: []
+	        name: 'Quest-2424242424',
+	        logo: 'images/quest.png'
 	      },
 	      {
 	        id: 'lab-3',
-	        name: 'Quest 3',
-	        logo: 'images/quest.png',
-	        tests: []
+	        name: 'Quest-3636363636',
+	        logo: 'images/quest.png'
 	      }
 	    ],
 	    lab_tests: [
 		    {
 				id:'lab_test_1',
-				name:'Complete Blood Count (CBC)'
+				name:'Complete Blood Count (CBC)',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
 			},
 		    {
 				id:'lab_test_2',
-				name:'Estrogen'
+				name:'Estrogen',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
 			},
 		    {
 				id:'lab_test_3',
-				name:'Lipids Panel'
+				name:'Lipids Panel',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
 			},
 		    {
 				id:'lab_test_4',
-				name:'Liver Function'
+				name:'Liver Function',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
 			},
 		    {
 				id:'lab_test_5',
-				name:'Urinalysis'
+				name:'Urinalysis',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
 			}
 		],
 		lab_test_templates: [
@@ -90,10 +127,10 @@ angular.module('ehrApp')
     	ccs: ['Influenza','Panic Attack','Hypertension','Diabetes','Anemia'],
     	drugs: ['Naproxen','Neurontin (Gabapentin)','Mobic (Meloxicam)','Flexeril (Cyclobeuraprine)','Ibuprofen','Xanax (ALPRAZolam)','MS Contin (Morphine)'],
     	drugMethods: ['oral tablet'],
-    	doctors: ['Dr. Marie Sheffield','Dr. Jekyll','Dr. Kavorkian'],
+    	doctors: ['Dr. Marie Sheffield','Dr. Smith','Dr. Rogers'],
     	refills: ['No refills','1x refill','refill due'],
     	problems: ['Sciatica', 'Obesity, unspecified', 'Lumbosacral Spondylosis Without Myelopathy', 'Lumbago', 'Unspecified Essential Hypertension'],
-    	surgeries: ['Appendectomy','Tonsilectomy','Quadruple Bypass','Liver Transplant','Root Canal'],
+    	surgeries: ['Appendectomy','Tonsilectomy','Quadruple Bypass','Liver Transplant'],
     	diseases: ['Heart Disease','Kidney Disease','Diabetes'],
     	relations: ['Mother','Father','Sister','Brother','Uncle','Aunt','Grandmother','Grandfather','Son','Daughter'],
     	socials: [
@@ -103,6 +140,7 @@ angular.module('ehrApp')
     		{name: 'Sexually Active', info:'Male & female partners', detail:'Condom contraception'}
     	],
     	psychs: ['Depression','Schizophrenia'],
+	  	insurance: ['Anthem','Blueshield','Kaiser','MetLife','VSP'],
     	patients: [
 			{
 	            id:'00000001',
@@ -115,7 +153,52 @@ angular.module('ehrApp')
 	            insurance: 'Blueshield',
 	            ssn: '123-45-6789',
 	            address: {city:'Berkeley',state:'CA'},
-	            orders: []
+	            orders: [
+					// {
+				 //        id: '00000001-0',	//patient id - number of patient orders 
+				 //        date: '2013-12-01T00:00:00.00',
+				 //        type:'lab_test',
+				 //        lab: {
+				 //        	id: 'lab-3',
+					//         name: 'Quest-3636363636',
+					//         logo: 'images/quest.png'
+				 //        },
+				 //        insurance: {
+				 //        	primary: '',
+				 //        	secondary: '',
+				 //        	payment: ''
+				 //        },
+				 //        physician: '',
+				 //        ordering: '',
+				 //        dx_all: '',
+					// 	tests: [
+					// 		{
+					// 			id:'lab_test_1',
+					// 			name:'Complete Blood Count (CBC)',
+					// 			dx: '',
+					// 			fasting: false,
+					// 			cholesterol: false,
+					// 			test_date: {
+					// 				value: false,
+					// 				date: ''
+					// 			},
+					// 			note: ''
+					// 		},
+					// 	    {
+					// 			id:'lab_test_2',
+					// 			name:'Estrogen',
+					// 			dx: '',
+					// 			fasting: false,
+					// 			cholesterol: false,
+					// 			test_date: {
+					// 				value: false,
+					// 				date: ''
+					// 			},
+					// 			note: ''
+					// 		},
+				 //        ]
+					// }
+				]
 			},
 			{
 	            id:'00000002',

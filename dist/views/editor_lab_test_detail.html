@@ -1,0 +1,75 @@
+<div class="editor" ng-class="{editor_slide: editor.type=='lab_test_detail'}">
+	<div class="editor_header">
+		<div class="row editor_header_1">
+			<a class="col-xs-11" ng-click="scrollToSelection()">Orders: {{selected_order.lab.name}}</a>
+			<a class="col-xs-1 text-right" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
+		</div>
+		<div class="row editor_header_2">
+			<a class="col-xs-1 text-right" ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
+			<a class="col-xs-11" ng-click="scrollToSelection()">{{selected_test.name}}</a>
+		</div>
+	</div>
+	<div class="editor_body">
+		<form class="form-horizontal editor_form" role="form">
+			<div class="form-group">
+				<label class="col-sm-12 editor_section_header">Required</label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-12 editor_section_name">Related diagnoses</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<div class="input-group">
+					  	<input type="text" class="form-control" placeholder="Type to add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue" typeahead-on-select="checkDxNotification(selected_test.dx)" ng-change="checkDxNotification(selected_test.dx)">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><img src="images/icon_dx.png"></button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<form class="form-horizontal editor_form" role="form">
+			<div class="form-group">
+				<label class="col-sm-12 editor_section_header">Optional</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					<div class="checkbox">
+						<input type="checkbox" id="c1">
+						<label for="c1"><span></span>Fasting for 24 hours</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					<div class="checkbox">
+						<input type="checkbox" id="c2">
+						<label for="c2"><span></span>Patient has history of high cholesterol</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					<div class="checkbox">
+						<input type="checkbox" id="c3">
+						<label for="c3"><span></span>Perform test on specific date/time</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+				  	<input type="text" class="form-control" placeholder="Add note">
+				</div>
+			</div>
+		</form>
+	</div>			
+	<footer class="row">
+		<div class="col-xs-3">
+			<button class="button_blue_border" ng-click="closeEditor()">Delete</button>
+		</div>
+		<div class="col-xs-9 text-right">
+			<button class="button_blue" ng-click="closeEditor()">Done</button>
+		</div>
+	</footer>
+</div>
