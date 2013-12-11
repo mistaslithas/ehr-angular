@@ -37,6 +37,11 @@ html,body {
   	font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  	margin: 0;
+}
+
 hr {
 	margin: 0px;
 }
@@ -188,7 +193,8 @@ button {
 .button_text {
 	font-size: 13px;
 	font-weight: 200 !important;
-	color: $blue !important;
+	// color: $blue !important;
+	color: #666;
 }
 
 
@@ -545,7 +551,9 @@ button {
 
 			.header_track {
 				font-size: 14px;
-				color: $light_text !important;
+				color: #666 !important;
+				// color: $light_text !important;
+
 			}
 		}
 
@@ -570,6 +578,7 @@ button {
 		.incomplete {
 			color: $notification_green;
 			font-weight: 200;
+			padding-left: 20px;
 		}
 
 
@@ -586,10 +595,6 @@ button {
 			flex: 1; 
 			overflow-y: auto;
 			overflow-x: hidden; 
-		}
-
-		.extra_height_500 {
-			height: 500px;
 		}
 
 		#CHARTS_SCHEDULED {
@@ -698,6 +703,54 @@ button {
 						background: $body_bg;
 						margin-bottom: 30px;
 
+						.section_row {
+							display: flex;
+							flex-direction: row;
+						}
+
+						.section_row {
+							margin-bottom: 10px;
+						}
+
+						.lab_order {
+							margin: 10px 0 10px 20px;
+						}
+
+						h1,h2,h3,h4 {
+							line-height: 28px;
+							font-size: 18px;
+							font-weight: 200;
+							color: white;
+							padding: 0 20px;
+						}
+
+						h1 {
+							background: $section_title_bg;
+						}
+
+						h2 {
+							background: $section_title_light_bg;
+						}
+
+						h3 {
+							font-size: 16px;
+							color: black;
+						}
+
+						h4 {
+							line-height: 24px;
+							font-size: 13px;
+							color: $table_blue;
+						}
+
+						h4:before {
+							content: " - ";
+						}
+
+						.section_row_menu {
+							flex: 1;
+						}
+
 						header {
 							font-weight: 200;
 							font-size: 18px;
@@ -719,73 +772,65 @@ button {
 							}
 						}
 
-						.section_row {
-							font-size: 15px;
-							font-weight: 300;
-							color: #888;
-							line-height: 30px;
-							margin-bottom: 8px;
-						}
-
 						.select_lab_input {
 							margin: 0 50px 0 0;
 						}
 
-						.margin_l_20 {
-							margin-left: 20px;
-						}
+						// .margin_l_20 {
+						// 	margin-left: 20px;
+						// }
 
-						.order_lab_name {
-							padding: 5px 20px 5px 20px;
-						}
+						// .order_lab_name {
+						// 	padding: 5px 20px 5px 20px;
+						// }
 
-						.indented_list {
-							width: 100%;
-							height: 100%;
-							background: $body_bg;
+						// .indented_list {
+						// 	width: 100%;
+						// 	height: 100%;
+						// 	background: $body_bg;
 
-							li {
-								font-size: 15px;
-								font-weight: 300;
-								color: #888;
-								margin-bottom: 6px;
-								// margin-left: 20px;
-								line-height: 20px;
-								// padding-left: 20px;
+						// 	li {
+						// 		font-size: 15px;
+						// 		font-weight: 300;
+						// 		color: #888;
+						// 		margin-bottom: 6px;
+						// 		// margin-left: 20px;
+						// 		line-height: 20px;
+						// 		// padding-left: 20px;
 
-								.light {
-									color: #ccc;
-								}
-							}
+						// 		.light {
+						// 			color: #ccc;
+						// 		}
+						// 	}
 
-							li:before {
-								color: $header_blue;
-							}
+						// 	li:before {
+						// 		color: $header_blue;
+						// 	}
 
-							span {
-								margin-right: 20px;
-							}
+						// 	span {
+						// 		margin-right: 20px;
+						// 	}
 
-							.hyphenated:before {
-								content:' - ';
-								color: inherit;
-							}
-						}
+						// 	.hyphenated:before {
+						// 		content:' - ';
+						// 		color: inherit;
+						// 	}
+						// }
 
-						footer {
-							padding-left: 20px;
-							background: $body_bg;
+						// footer {
+						// 	padding-left: 20px;
+						// 	background: $body_bg;
 
-							a {
-								font-size: 16px !important;
-								font-weight: 200;
-								color: $header_blue;
-							}
+						// 	a {
+						// 		font-size: 16px !important;
+						// 		font-weight: 200;
+						// 		color: $header_blue;
+						// 	}
 
-							a:hover {
-								color: black;
-							}
-						}
+						// 	a:hover {
+						// 		color: black;
+						// 	}
+						// }
 					}
 				}
 			}
@@ -886,7 +931,11 @@ button {
 	.editor_section_header {
 		font-weight: 400;
 		font-size: 16px;
-		color: #ccc;
+		color: #333;
+	}
+
+	.temp_margin {
+		margin-top: 20px;
 	}
 
 	.editor_list {
@@ -926,8 +975,9 @@ button {
 }
 
 .editor_source {
-	padding: 2px;
+	padding-left: 10px !important;
 	background: $editor_left_border_color;
+	border-left: 10px solid $body_bg;
 
 	a, .light {
 		color: white;

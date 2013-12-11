@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div class="editor_body">
-		<form name="form_lab_test_detail" class="form-horizontal editor_form" role="form">
+		<form name="form_lab_test_detail" class="form-horizontal editor_form" role="form" novalidate>
 			<div class="form-group">
 				<label class="col-sm-12 editor_section_header">Required</label>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<div class="col-sm-12">
 					<div class="input-group">
-					  	<input type="text" class="form-control" tabindex="1" placeholder="Type to add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue" typeahead-on-select="checkDxNotification(selected_test.dx)" ng-change="checkDxNotification(selected_test.dx)" required>
+					  	<input type="text" class="form-control" tabindex="2" placeholder="Type to add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue" required>
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="button"><img src="images/icon_dx.png"></button>
 						</span>
@@ -29,20 +29,20 @@
 			</div>
 			<hr>
 			<div class="form-group">
-				<label class="col-sm-12 editor_section_header">Optional</label>
+				<label class="col-sm-12 editor_section_header temp_margin">Optional</label>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-10">
 					<div class="checkbox">
 						<input id="c1" type="checkbox" tabindex="2" ng-model="selected_test.fasting"/>
-						<label for="c1"><span></span>Fasting for 24 hours</label>
+						<label for="c1"><span></span>Fasting for 8-12 hours</label>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-10">
 					<div class="checkbox">
-						<input id="c2" type="checkbox" tabindex="3" ng-model="selected_test.cholesterol"/>
+						<input id="c2" type="checkbox" tabindex="2" ng-model="selected_test.cholesterol"/>
 						<label for="c2"><span></span>Patient has history of high cholesterol</label>
 					</div>
 				</div>
@@ -50,24 +50,24 @@
 			<div class="form-group">
 				<div class="col-sm-10">
 					<div class="checkbox">
-						<input id="c3" type="checkbox" tabindex="4" ng-model="selected_test.test_date.value"/>
+						<input id="c3" type="checkbox" tabindex="2" ng-model="selected_test.test_date.value"/>
 						<label for="c3"><span></span>Perform test on specific date/time</label>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-				  	<input type="text" class="form-control" tabindex="5" placeholder="Add note" ng-model="selected_test.note">
+				  	<input type="text" class="form-control" tabindex="2" placeholder="Add note" ng-model="selected_test.note">
 				</div>
 			</div>
 		</form>
 	</div>			
 	<footer class="row">
 		<div class="col-xs-3">
-			<button class="button_blue_border" tabindex="6" ng-click="closeEditor()">Delete</button>
+			<button class="button_blue_border" tabindex="2" ng-click="deleteTest()">Delete</button>
 		</div>
 		<div class="col-xs-9 text-right">
-			<button class="button_blue" tabindex="7" ng-click="closeEditor()">Done</button>
+			<button class="button_blue" tabindex="2" ng-click="closeEditor()">Done</button>
 		</div>
 	</footer>
 </div>

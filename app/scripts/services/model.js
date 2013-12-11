@@ -9,17 +9,17 @@ angular.module('ehrApp')
 	   	labs: [
 	      {
 	        id: 'lab-1',
-	        name: 'Quest-1212121212',
+	        name: 'Quest-1',
 	        logo: 'images/quest.png'
 	      },
 	      {
 	        id: 'lab-2',
-	        name: 'Quest-2424242424',
+	        name: 'Quest-2',
 	        logo: 'images/quest.png'
 	      },
 	      {
 	        id: 'lab-3',
-	        name: 'Quest-3636363636',
+	        name: 'Quest-3',
 	        logo: 'images/quest.png'
 	      }
 	    ],
@@ -123,7 +123,7 @@ angular.module('ehrApp')
 				]
 			}
 		],
-		dx: ['Acute Upper Respiratory Infection','Migraines','Lumbago','Laryngitis'],
+		dx: ['Acute Upper Respiratory Infection','Hypertension','Laryngitis','Lumbago','Migraines'],
     	ccs: ['Influenza','Panic Attack','Hypertension','Diabetes','Anemia'],
     	drugs: ['Naproxen','Neurontin (Gabapentin)','Mobic (Meloxicam)','Flexeril (Cyclobeuraprine)','Ibuprofen','Xanax (ALPRAZolam)','MS Contin (Morphine)'],
     	drugMethods: ['oral tablet'],
@@ -156,11 +156,57 @@ angular.module('ehrApp')
 	            orders: [
 					// {
 				 //        id: '00000001-0',	//patient id - number of patient orders 
+				 //        sent: false,
 				 //        date: '2013-12-01T00:00:00.00',
 				 //        type:'lab_test',
 				 //        lab: {
 				 //        	id: 'lab-3',
-					//         name: 'Quest-3636363636',
+					//         name: 'Quest-3',
+					//         logo: 'images/quest.png'
+				 //        },
+				 //        insurance: {
+				 //        	primary: '',
+				 //        	secondary: '',
+				 //        	payment: ''
+				 //        },
+				 //        physician: '',
+				 //        ordering: '',
+				 //        dx_all: '',
+					// 	tests: [
+					// 		{
+					// 			id:'lab_test_1',
+					// 			name:'Complete Blood Count (CBC)',
+					// 			dx: '',
+					// 			fasting: false,
+					// 			cholesterol: false,
+					// 			test_date: {
+					// 				value: false,
+					// 				date: ''
+					// 			},
+					// 			note: ''
+					// 		},
+					// 	    {
+					// 			id:'lab_test_2',
+					// 			name:'Estrogen',
+					// 			dx: '',
+					// 			fasting: false,
+					// 			cholesterol: false,
+					// 			test_date: {
+					// 				value: false,
+					// 				date: ''
+					// 			},
+					// 			note: ''
+					// 		},
+				 //        ]
+					// },
+					// {
+				 //        id: '00000001-1',	//patient id - number of patient orders 
+				 //        sent: true,
+				 //        date: '2013-12-01T00:00:00.00',
+				 //        type:'lab_test',
+				 //        lab: {
+				 //        	id: 'lab-2',
+					//         name: 'Quest-2',
 					//         logo: 'images/quest.png'
 				 //        },
 				 //        insurance: {

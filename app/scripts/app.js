@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehrApp', ['ngAnimate','ui.router','ui.event','ui.bootstrap'])
+angular.module('ehrApp', ['ngAnimate','ui.router','ui.event','ui.keypress','ui.bootstrap'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

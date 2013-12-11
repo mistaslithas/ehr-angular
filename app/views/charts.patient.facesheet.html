@@ -46,12 +46,12 @@
 
   <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
     <div class="row" ng-class="{notifications_reduced: editor}">
-      <div class="col-xs-10">
-        <p class="header_track">Orders: {{notifications[notificationIndex].track.order.lab.name}}: {{notifications[notificationIndex].track.test.name}}</p>
+      <div class="col-xs-9">
+        <p class="header_track">{{notifications[notificationIndex].path}}</p>
         <p>{{notifications[notificationIndex].description}}</p>
       </div>
-      <div class="col-xs-2 text-right">
-        <a ng-click="nextNotification()">Next</a>
+      <div class="col-xs-3 text-right">
+        <a ng-click="nextNotification()">{{notifications.length}} remaining</a>
       </div>
     </div>
   </div>
@@ -178,54 +178,83 @@
 				</ul>
 			</section>
 			<section id="orders">
-				<header>
-					<div class="section_title">Orders</div>
-					<select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
-				</header>
-				<!-- <ul class="indented_list"> -->
-					<!-- ORDER -->
-					<div ng-repeat="order in patient.orders">
-						<!-- LAB -->
-            <div class="section_row" ng-class="{order_source:checkOrderCriteria(order)}">
-              <a class="order_lab_name" ng-class="{order_source_2:checkOrderCriteria2(order)}" ng-click="showOrder(order)">{{order.lab.name}}</a>
-              <!-- <span><a class="button_text">Submit</a></span> -->
-              <span class="incomplete" ng-show="!order.insurance.primary">Incomplete</span>
-						</div>
-            <!-- TESTS -->
-						<ul class="indented_list margin_l_20"> 
-							<!-- TEST -->
-							<li ng-class="{editor_source:checkTestCriteria(test,order)}" ng-repeat="test in order.tests track by $index">
-                <div>
-                  <span><a ng-click="showTest(test, order)">{{test.name}}</a></span>
-                  <span class="incomplete" ng-show="checkTestComplete(order,test)">Incomplete</span>
-                </div>
+        <div class="section_row">
+            <h1>Orders</h1>
+            <div class="section_row_menu"> 
+              <select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in   orderTypes.options"></select>
+            </div>
+        </div>
+        <!-- INPUT: ADD LAB -->
+        <div class="section_row editor_source" ng-show="editor.type=='lab_selection'">
+          <div class="select_lab_input">
+            <div class="input-group">
+              <!-- INPUT: ADD LAB -->
+                <input type="text" class="form-control" placeholder="Add a lab" ng-model="selectedLab" typeahead="lab as lab.name for lab in model.labs | filter:$viewValue" typeahead-on-select="addLabOrder(selectedLab)">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- DRAFTS -->
+        <div class="section_row">
+          <h2>Drafts</h2>
+        </div>
+        <ul>
+          <li class="lab_order" ng-repeat="order in patient.orders | filter:{sent: false}">
+            <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
+              <a ng-click="showOrder(order)" ui-keydown="{9:'test($event)'}">{{order.lab.name}}</a>
+              <span><button class="button_text" type="button" ng-disabled="hasNotification(order.id)" ng-click="submitOrder(order)">Send</button></span>
+              <span class="incomplete" ng-show="hasNotification(order.id)">Incomplete</span>
+            </h3>
+            <ul>
+              <li ng-repeat="test in order.tests">
+                <h4 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
+                  <a ng-click="showTest(test, order)">{{test.name}}</a>
+                  <span class="incomplete" ng-show="hasNotification(test.id)">Incomplete</span>
+                </h4>
               </li>
-							<li ng-class="{editor_source:editor.type=='lab_test_selection'}">
-				 				<div class="select_lab_input">
+              <li class="lab_order" ng-class="{editor_source:editor.type=='lab_test_selection'}">
+                <div class="select_lab_input">
                   <div class="input-group" ng-show="order.id == selected_order.id">
-										<!-- INPUT: ADD TEST -->
-									  	<input type="text" class="form-control" ui-event="{focus:'onFocus()'}" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
-										</span>
-									</div>
-							 	</div>
-							</li>
-						</ul>
-					</div>
-					<!-- INPUT: ADD LAB -->
-					<div class="no_hyphen editor_source margin_l_20" ng-show="editor.type=='lab_selection'">
-		 				<div class="select_lab_input">
-		 					<div class="input-group">
-								<!-- INPUT: ADD LAB -->
-							  	<input type="text" class="form-control" placeholder="Add a lab" ng-model="selectedLab" typeahead="lab as lab.name for lab in model.labs | filter:$viewValue" typeahead-on-select="addLabOrder(selectedLab)">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
-								</span>
-							</div>
-						</div>
-					</div>
-				<!-- </ul> -->
+                      <input type="text" class="form-control" ui-event="{focus:'onFocus()'}" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
+                    </span>
+                  </div>
+                </div>
+              </li>            
+            </ul>
+          </li>
+        </ul>
+        <!-- PENDING -->
+        <div class="section_row">
+          <h2>Pending</h2>
+        </div>
+        <ul>
+          <li class="lab_order" ng-repeat="order in patient.orders | filter:{sent: true}">
+            <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
+              <a ng-click="showOrder(order)">{{order.lab.name}}</a>
+            </h3>
+            <ul>
+              <li ng-repeat="test in order.tests">
+                <h4 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
+                  <a ng-click="showTest(test, order)">{{test.name}}</a>
+                </h4>
+              </li>
+              <li class="lab_order" ng-class="{editor_source:editor.type=='lab_test_selection'}">
+                <div class="select_lab_input">
+                  <div class="input-group" ng-show="order.id == selected_order.id">
+                      <input type="text" class="form-control" ui-event="{focus:'onFocus()'}" ui-keypress="{13:'test($event)'}" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
+                    </span>
+                  </div>
+                </div>
+              </li>                        
+            </ul>
+          </li>
+        </ul>
 			</section>
 			<section id="clinical_summary">
 				<header>
@@ -235,7 +264,6 @@
 					<li>None Recorded</li>
 				</ul>
 			</section>
-			<section class="extra_height_500"></section>
 		</div>
 
 		<div class="editors" ng-show="editor">
