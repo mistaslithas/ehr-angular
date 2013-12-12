@@ -50,27 +50,24 @@ angular.module('ehrApp')
 
       _.each($scope.patient.orders, function(order) {
 
-        // if(!order.sent) {
+        // check if any tests are incomplete
+        var testsComplete = true;
 
-          // check if any tests are incomplete
-          var testsComplete = true;
-
-          _.each(order.tests, function(test) {
-            if(test.dx && test.dx.length > 0) {
-              $scope.removeNotification(test.id);
-            } else {
-              $scope.createNotification('test',test);
-              testsComplete = false;
-            }
-          })
-
-          // check if the order is complete
-          if(testsComplete && order.insurance.primary) {
-            $scope.removeNotification(order.id);
+        _.each(order.tests, function(test) {
+          if(test.dx && test.dx.length > 0) {
+            $scope.removeNotification(test.id);
           } else {
-            $scope.createNotification('order',order);
+            $scope.createNotification('test',test);
+            testsComplete = false;
           }
-        // }
+        })
+
+        // check if the order is complete
+        if(testsComplete && order.insurance.primary) {
+          $scope.removeNotification(order.id);
+        } else {
+          $scope.createNotification('order',order);
+        }
 
       })
 
@@ -249,7 +246,6 @@ angular.module('ehrApp')
 
     $scope.addLabOrder = function(lab) {
       var labOrder = {
-        // id: $scope.patient.id + '-' + $scope.patient.orders.length+1,
         id: $scope.patient.id + '-' + $scope.patient.orders.length+1 + '-' + parseInt(Math.random(10) * 1000),
         sent: false,
         date: new Date(), 
@@ -268,7 +264,6 @@ angular.module('ehrApp')
 
       $scope.patient.orders.push(labOrder);
       $scope.showOrder(labOrder);
-      // $scope.createNotification('order');
     }
 
     $scope.deleteOrder = function() {
@@ -320,9 +315,6 @@ angular.module('ehrApp')
         // show the test detail panel since a dx is required
         $scope.showTest(test, $scope.selected_order);
     
-        // create a notification for the required dx
-        // $scope.createNotification('test');
-  
         this.test = undefined;
       }
     }

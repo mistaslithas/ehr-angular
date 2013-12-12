@@ -47,7 +47,7 @@
   <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
     <div class="row" ng-class="{notifications_reduced: editor}">
       <div class="col-xs-9">
-        <p class="header_track">{{notifications[notificationIndex].path}}</p>
+        <p class="div class="section_row"_track">{{notifications[notificationIndex].path}}</p>
         <p>{{notifications[notificationIndex].description}}</p>
       </div>
       <div class="col-xs-3 text-right">
@@ -59,11 +59,11 @@
 	<div class="body" ng-class="{body_reduced: editor}">
 		<div class="content scroll">
 			<section id="medicatons">
-				<header>
-					<div class="section_title">Medications</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="med in patient.medications | orderBy:'date'">
+				<div class="section_row">
+					<h1>Medications</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent" ng-repeat="med in patient.medications | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
 						<span>{{med.method}}</span>
 						<span>{{med.dosage}}</span>
@@ -74,11 +74,11 @@
 				</ul>
 			</section>
 			<section id="problem_list">
-				<header>
-					<div class="section_title">Problem List</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="problem in patient.problems | orderBy:'date'">
+				<div class="section_row">
+					<h1>Problem List</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent" ng-repeat="problem in patient.problems | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{problem.name}}</a></span>
 						<span class="light">{{problem.metric}}</span>
 						<span>{{problem.doctor}}</span>
@@ -87,11 +87,11 @@
 				</ul>
 			</section>
 			<section id="medical_history">
-				<header>
-					<div class="section_title">Medical History</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="med in patient.medicalHistory | orderBy:'date'">
+				<div class="section_row">
+					<h1>Medical History</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent" ng-repeat="med in patient.medicalHistory | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
 						<span class="light">{{med.metric}}</span>
 						<span>{{med.doctor}}</span>
@@ -100,11 +100,11 @@
 				</ul>
 			</section>
 			<section id="surgical_history">
-				<header>
-					<div class="section_title">Surgical History</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="sur in patient.surgicalHistory | orderBy:'date'">
+				<div class="section_row">
+					<h1>Surgical History</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent" ng-repeat="sur in patient.surgicalHistory | orderBy:'date'">
 						<span><a ng-click="showEditor('Editor')">{{sur.name}}</a></span>
 						<span class="light">{{sur.metric}}</span>
 						<span>{{sur.doctor}}</span>
@@ -113,11 +113,11 @@
 				</ul>
 			</section>
 			<section id="family_history">
-				<header>
-					<div class="section_title">Family History</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="fam in patient.familyHistory | orderBy:'name'">
+				<div class="section_row">
+					<h1>Family History</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent" ng-repeat="fam in patient.familyHistory | orderBy:'name'">
 						<span><a ng-click="showEditor('Editor')">{{fam.name}}</a></span>
 						<span>{{fam.relation}}</span>
 						<span class="light">Age {{fam.date | age}}</span>
@@ -125,11 +125,11 @@
 				</ul>
 			</section>
 			<section id="social_history">
-				<header>
-					<div class="section_title">Social History</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="soc in patient.socialHistory | orderBy:'name'">
+				<div class="section_row">
+					<h1>Social History</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent" ng-repeat="soc in patient.socialHistory | orderBy:'name'">
 						<span><a ng-click="showEditor('Editor')">{{soc.name}}</a></span>
 						<span>{{soc.info}}</span>
 						<span class="light">{{soc.detail}}</span>
@@ -137,28 +137,28 @@
 				</ul>
 			</section>
 			<section id="daily_living">
-				<header>
-					<div class="section_title">Daily Living</div>
-				</header>
-				<ul class="indented_list">
-					<li>None Recorded</li>
+				<div class="section_row">
+					<h1>Daily Living</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent">None Recorded</li>
 				</ul>
 			</section>
 			<section id="advisories">
-				<header>
-					<div class="section_title">Advisories</div>
-				</header>
-				<ul class="indented_list">
-					<li>
+				<div class="section_row">
+					<h1>Advisories</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent">
 						<span>No smoking status recorded</span>
 						<span><a>Record</a></span>
 					</li>
-					<li>
+					<li class="section_row_indent">
 						<span>BP may not be adequately controlled</span>
 						<span class="orange">Last recorded BP 142/94 (today)</span>
 						<span><a>Document Plan</a></span>
 					</li>
-					<li>
+					<li class="section_row_indent">
 						<span>High risk medication for patients over 65 years old</span>
 						<span class="orange">Ativan</span>
 						<span><a>Document Reason</a></span>
@@ -166,16 +166,16 @@
 				</ul>
 			</section>
 			<section id="psych_assessment">
-				<header>
-					<div class="section_title">Psychological Assessment</div>
-				</header>
-				<ul class="indented_list">
-					<li ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
-						<span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
-						<span>{{psych.doctor}}</span>
-						<span class="light">{{psych.date | date:'yyyy'}}</span>
-					</li>
-				</ul>
+				<div class="section_row">
+          <h1>Psychological Assessment</h1>
+        </div>
+        <ul>
+          <li class="section_row_indent" ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
+            <span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
+            <span>{{psych.doctor}}</span>
+            <span class="light">{{psych.date | date:'yyyy'}}</span>
+          </li>
+        </ul>
 			</section>
 			<section id="orders">
         <div class="section_row">
@@ -201,7 +201,7 @@
           <h2>Drafts</h2>
         </div>
         <ul>
-          <li class="lab_order" ng-repeat="order in patient.orders | filter:{sent: false}">
+          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: false}">
             <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
               <a ng-click="showOrder(order)" ui-keydown="{9:'test($event)'}">{{order.lab.name}}</a>
               <span><button class="button_text" type="button" ng-disabled="hasNotification(order.id)" ng-click="submitOrder(order)">Send</button></span>
@@ -214,7 +214,7 @@
                   <span class="incomplete" ng-show="hasNotification(test.id)">Incomplete</span>
                 </h4>
               </li>
-              <li class="lab_order" ng-class="{editor_source:editor.type=='lab_test_selection'}">
+              <li class="section_row_indent" ng-class="{editor_source:editor.type=='lab_test_selection'}">
                 <div class="select_lab_input">
                   <div class="input-group" ng-show="order.id == selected_order.id">
                       <input type="text" class="form-control" ui-event="{focus:'onFocus()'}" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
@@ -232,7 +232,7 @@
           <h2>Pending</h2>
         </div>
         <ul>
-          <li class="lab_order" ng-repeat="order in patient.orders | filter:{sent: true}">
+          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: true}">
             <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
               <a ng-click="showOrder(order)">{{order.lab.name}}</a>
             </h3>
@@ -242,7 +242,7 @@
                   <a ng-click="showTest(test, order)">{{test.name}}</a>
                 </h4>
               </li>
-              <li class="lab_order" ng-class="{editor_source:editor.type=='lab_test_selection'}">
+              <li class="section_row_indent" ng-class="{editor_source:editor.type=='lab_test_selection'}">
                 <div class="select_lab_input">
                   <div class="input-group" ng-show="order.id == selected_order.id">
                       <input type="text" class="form-control" ui-event="{focus:'onFocus()'}" ui-keypress="{13:'test($event)'}" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
@@ -257,11 +257,11 @@
         </ul>
 			</section>
 			<section id="clinical_summary">
-				<header>
-					<div class="section_title">Clinical Summary</div>
-				</header>
-				<ul class="indented_list">
-					<li>None Recorded</li>
+				<div class="section_row">
+					<h1>Clinical Summary</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent">None Recorded</li>
 				</ul>
 			</section>
 		</div>
