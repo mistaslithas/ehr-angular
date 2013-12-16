@@ -1,9 +1,11 @@
 <div class="editor" ng-class="{editor_slide: editor.type=='lab_detail'}">
 	<div class="editor_header">
+<!-- 
 		<div class="row editor_header_1">
-			<a class="col-xs-11" ng-click="scrollToSelection()">Orders</a>
+			<a class="col-xs-11" ng-click="scrollToSelection()">Orders: Order {{selected_order.id}}</a>
 			<a class="col-xs-1 text-right" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
 		</div>
+ -->
 		<div class="row editor_header_2">
 			<a class="col-xs-1 text-right" ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
 			<a class="col-xs-11" ng-click="scrollToSelection()">{{selected_order.lab.name}}</a>

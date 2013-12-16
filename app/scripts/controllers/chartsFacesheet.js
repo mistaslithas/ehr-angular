@@ -12,7 +12,7 @@ angular.module('ehrApp')
         {label:'Add Order', value:'default'},
         {label:'Image', value:''},
         {label:'Intervention', value:''},
-        {label:'Lab Test', value:'lab_selection'},
+        {label:'Lab Test', value:'lab_test'},
         {label:'Medication', value:''},
         {label:'Patient Education', value:''},
         {label:'Procedure', value:''},
@@ -233,9 +233,10 @@ angular.module('ehrApp')
       if(val != "Add Order") {
 
         switch(val.toLowerCase()) {
-          case 'lab_selection':
-            $scope.showEditor(val,'orders');
-            $scope.selected_order = false;
+          case 'lab_test':
+            $scope.addLabOrder();
+            // $scope.showEditor(val,'orders');
+            // $scope.selected_order = false;
             break;
         }
 
@@ -244,13 +245,14 @@ angular.module('ehrApp')
       }
     })
 
-    $scope.addLabOrder = function(lab) {
+    $scope.addLabOrder = function() {
       var labOrder = {
         id: $scope.patient.id + '-' + $scope.patient.orders.length+1 + '-' + parseInt(Math.random(10) * 1000),
+        name: "Lab Test " + $scope.patient.orders.length+1,
         sent: false,
         date: new Date(), 
         type:'lab_test',
-        lab: lab,
+        lab: false,
         tests: [],
         insurance: {
           primary: '',
@@ -286,6 +288,11 @@ angular.module('ehrApp')
 
     $scope.showOrder = function(order) {
       $scope.selected_order = order;
+      $scope.showEditor('lab_test','orders');
+    }
+    
+    $scope.showLab = function(lab) {
+      $scope.selected_lab = lab;
       $scope.showEditor('lab_detail','orders');
     }
 
@@ -300,7 +307,12 @@ angular.module('ehrApp')
     }
 
     $scope.checkEditorSelectionForOrder = function(order) {
-      return $scope.selected_order.id==order.id && $scope.editor.type=='lab_detail';
+      return $scope.selected_order.id==order.id && $scope.editor.type=='lab_test';
+    }
+
+    $scope.checkEditorSelectionForLab = function(lab, order) {
+      if($scope.selected_lab)
+        return $scope.selected_lab.id==lab.id && $scope.selected_order.id == order.id && $scope.editor.type=='lab_detail';
     }
 
     $scope.checkEditorSelectionForTest = function(test, order) {
@@ -311,10 +323,6 @@ angular.module('ehrApp')
     $scope.addTest = function(test) {
       if (_.where($scope.selected_order.tests, {id:test.id}).length == 0) {
         $scope.selected_order.tests.push(test)
-  
-        // show the test detail panel since a dx is required
-        $scope.showTest(test, $scope.selected_order);
-    
         this.test = undefined;
       }
     }

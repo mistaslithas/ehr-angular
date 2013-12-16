@@ -170,6 +170,10 @@ button {
 	padding: 0 20px;
 }
 
+button[disabled] {
+	opacity: .2;
+}
+
 .button_orange {
 	color: white;
 	background: $orange;
@@ -716,7 +720,7 @@ button {
 							margin: 10px 0 10px 20px;
 						}
 
-						h1,h2,h3,h4 {
+						h1,h2,h3,h4,h5 {
 							line-height: 28px;
 							font-size: 18px;
 							font-weight: 200;
@@ -739,11 +743,19 @@ button {
 
 						h4 {
 							line-height: 24px;
+							margin-left: 20px;
+							font-size: 16px;
+							color: $table_blue;
+						}
+
+						h5 {
+							line-height: 24px;
+							margin-left: 40px;
 							font-size: 13px;
 							color: $table_blue;
 						}
 
-						h4:before {
+						h5:before {
 							content: " - ";
 						}
 
@@ -875,7 +887,7 @@ button {
 	background: white;
 
 	.editor_header {
-		height: 60px;
+		// height: 60px;
 		padding-right: 10px;
 		box-sizing: border-box;
 		background: white;
@@ -889,10 +901,18 @@ button {
 		}
 
 		.editor_header_2 {
-			line-height: 20px;
+			display: flex;
+			align-items: center;
+			padding: 4px 0 4px 10px;
+			// line-height: 20px;
 			font-size: 18px !important;
-			// font-weight: 300;
+			font-weight: 300;
 			color: $editor_header_2_color !important;
+
+			.title {
+				flex: 1;
+				padding-left: 10px;
+			}
 		}
 
 	}
