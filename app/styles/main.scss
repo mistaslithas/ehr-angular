@@ -167,7 +167,7 @@ select:focus {
 // BUTTON DEFINITIONS
 // the collection of styles for button components
 button {
-	padding: 0 20px;
+	padding: 0 18px;
 }
 
 button[disabled] {
@@ -199,6 +199,7 @@ button[disabled] {
 	font-weight: 200 !important;
 	// color: $blue !important;
 	color: #666;
+	margin-left: 20px;
 }
 
 
@@ -255,6 +256,40 @@ button[disabled] {
 		bottom: -6px;
 		left: 45%;
 		content: url(../images/tab_arrow.png);
+	}
+}
+
+// SLIDES
+
+.slides {
+	position: relative;
+	width: 1071px;
+
+	.slide {
+		width: 357px;
+		height: 100px;
+		float: left;
+	}
+}
+
+
+// CHOOSER
+.chooser {
+	display: flex;
+	margin: 10px;
+
+	.name {
+		flex: 1;
+		text-indent: 30px;
+		font-size: 16px;
+	}
+}
+
+.chooser_select {
+	margin: 10px;
+
+	select {
+		text-indent: 30px;
 	}
 }
 
@@ -668,14 +703,26 @@ button[disabled] {
 						padding-top: 12px;
 
 						.tab {
+							display: flex;
+							align-items: center;
 							padding: 5px 20px;
 							margin-right: 10px;
 							font-size: 15px;
 							color: #eee;
 							background: $tab_bg;
 
+
+							.icon {
+								width: 15px;
+								height: 15px;
+							}
+						}
+
+						.tab_closable {
+							padding: 0 10px;
+
 							p {
-								margin: 0 auto;
+								margin: 0 10px;
 							}
 						}
 
@@ -684,9 +731,13 @@ button[disabled] {
 						}
 
 						.active {
-							color: #18304C;
 							background: white;
 							pointer-events: none;
+
+							p {
+								color: #045EA5;
+								font-weight: 500;
+							}
 						}
 
 						.active:hover {
@@ -718,6 +769,11 @@ button[disabled] {
 
 						.section_row_indent {
 							margin: 10px 0 10px 20px;
+						}
+
+						.section_row_date {
+							font-size: 13px;
+							color: #777;
 						}
 
 						h1,h2,h3,h4,h5 {
@@ -892,25 +948,26 @@ button[disabled] {
 		box-sizing: border-box;
 		background: white;
 		border-bottom: 2px solid $header_blue;
-		line-height: 30px;
+		// line-height: 30px;
 
 		.editor_header_1 {
+			padding-top: 7px;
 			font-size: 13px !important;
 			font-weight: 300;
 			color: $editor_header_1_color !important;
 		}
 
 		.editor_header_2 {
-			display: flex;
-			align-items: center;
-			padding: 4px 0 4px 10px;
+			// display: flex;
+			// align-items: center;
+			// padding: 4px 0 4px 10px;
 			// line-height: 20px;
+			padding-bottom: 7px;
 			font-size: 18px !important;
 			font-weight: 300;
 			color: $editor_header_2_color !important;
 
 			.title {
-				flex: 1;
 				padding-left: 10px;
 			}
 		}
@@ -934,7 +991,7 @@ button[disabled] {
 	}
 
 	.editor_form {
-		padding: 10px 17px 0 17px !important;
+		padding: 10px 17px 10px 17px !important;
 		font-size: 11px;
 		color: #666;
 
@@ -961,7 +1018,6 @@ button[disabled] {
 	.editor_list {
 
 		li {
-			min-height: 70px;
 			padding: 12px 20px 10px 10px;
 			border-bottom: 1px solid $border_gray;
 		}
@@ -980,6 +1036,11 @@ button[disabled] {
 				font-weight: 500;
 			}
 		}
+	}
+
+	.editor_section_disabled {
+		opacity: .3;
+		pointer-events: none;
 	}
 
 

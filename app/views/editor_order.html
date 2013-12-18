@@ -1,63 +1,125 @@
 <div class="editor" ng-class="{editor_slide: editor.type=='lab_test'}">
 	<div class="editor_header">
-<!-- 
 		<div class="row editor_header_1">
 			<a class="col-xs-11" ng-click="scrollToSelection()">Orders</a>
 			<a class="col-xs-1 text-right" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
 		</div>
- -->
-		<div class="editor_header_2">
-			<a ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
-			<a class="title" ng-click="scrollToSelection()">{{selected_order.name}}</a>
-			<div>
-				<button class="button_blue" tabindex="2" ng-disabled="hasNotification(selected_order.id)" ng-click="submitOrder(selected_order)">Send</button>
-			</div>
+		<div class="row editor_header_2">
+			<a class="col-xs-1 text-right" ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
+			<a class="col-xs-11" ng-click="scrollToSelection()">{{selected_order.name}}</a>
 		</div>
 	</div>
+
 	<div class="editor_body">
-		<form name="form_lab_test_detail" class="form-horizontal editor_form" role="form" novalidate>
-			<div class="form-group">
-				<label class="col-sm-12 editor_section_name">Lab to perform tests</label>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<select class="select_editor_gray col-sm-12" tabindex="1" ng-model="selected_order.lab" ng-options="i.name for i in model.labs" required>
-						<option value="">Select a lab</option>
-					</select>
+		<div class="slides">
+	    	<div class="slide">
+				<form name="form_lab_test_detail" class="editor_form" role="form" novalidate>
+					<div class="form-group">
+						<select class="select_editor_blue col-sm-12" ng-model="selected_order.lab" ng-options="i.name for i in model.labs" required>
+							<option value="">Select a lab</option>
+						</select>
+					</div>
+					<div class="input-group" ng-class="{editor_section_disabled: !selected_order.lab}">
+		              <input type="text" class="form-control" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue | orderBy:'name'" typeahead-on-select="addTest(test)">
+		            <span class="input-group-btn">
+		              <img src="images/icon_list.png">
+		            </span>
+		          </div>
+				</form>
+				<div ng-class="{editor_section_disabled: !selected_order.lab}">
+					<tabset>
+						<tab heading="Recommended">
+							<ul class="editor_list">
+								<li ng-repeat="template in model.lab_test_templates track by $index">
+									<a ng-click="addTemplate(template)">
+										<p>{{template.name}}</p>
+										<p><span ng-repeat="test in template.tests track by $index">{{test.name}}; </span></p>
+									</a>
+								</li>
+							</ul>
+						</tab>
+						<tab heading="Recent">
+							<ul class="editor_list">
+								<li ng-repeat="recent in model.lab_test_recents track by $index | orderBy:'name'">
+									<a ng-click="addTest(recent)">
+										<p>{{recent.name}}</p>
+									</a>
+								</li>
+							</ul>
+						</tab>
+					</tabset>
+				</div>	    		
+	    	</div>
+	    	<div class="slide">
+
+	    		<div class="chooser_select">
+		    		<select class="select_editor_blue col-sm-12" ng-model="selected_test" ng-options="i.name for i in selected_order.tests" required></select>
 				</div>
-			</div>
-		</form>
-		<tabset>
-			<tab heading="Selection">
-				<form name="form_test_input" class="form-horizontal editor_form" role="form" novalidate>
-					<div class="input-group">
-	                  <input type="text" class="form-control" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
-	                <span class="input-group-btn">
-	                  <button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
-	                </span>
-	              </div>
-              </form>
-			</tab>
-			<tab heading="Recommended">
-				<ul class="editor_list">
-					<li ng-repeat="template in model.lab_test_templates track by $index">
-						<a ng-click="addTemplate(template)">
-							<p>{{template.name}}</p>
-							<p><span ng-repeat="test in template.tests track by $index">{{test.name}}; </span></p>
-						</a>
-					</li>
-				</ul>
-			</tab>
-			<tab heading="Recent">
-			</tab>
-		</tabset>
+				
+<!-- 	    		
+	    		<div class="chooser">
+	    			<a ng-click="prevTest()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	    			<div class="name">{{selected_test.name}}</div>
+	    			<a ng-click="nextTest()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	    		</div>
+ -->
+
+	    		<form name="form_lab_test_detail" class="form-horizontal editor_form" role="form" novalidate>
+					<div class="form-group">
+						<label class="col-sm-12 editor_section_header">Required</label>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-7">
+							<div class="input-group">
+							  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
+								<span class="input-group-btn">
+									<img src="images/icon_list.png">
+								</span>
+							</div>
+						</div>
+						<div class="col-sm-5">
+							<button class="button_blue_border" type="button" ng-disabled="!selected_test.dx" ng-click="applyAll()">Apply to all</button>
+						</div>
+					</div>
+					<hr>
+					<div class="form-group">
+						<label class="col-sm-12 editor_section_header temp_margin">Optional</label>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<div class="checkbox">
+								<input id="c1" type="checkbox" ng-model="selected_test.fasting"/>
+								<label for="c1"><span></span>Fasting for 8-12 hours</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<div class="checkbox">
+								<input id="c3" type="checkbox" ng-model="selected_test.test_date.value"/>
+								<label for="c3"><span></span>Perform test on specific date/time</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+						  	<input type="text" class="form-control" placeholder="Add note" ng-model="selected_test.note">
+						</div>
+					</div>
+				</form>
+	    	</div>
+		</div>
 	</div>			
 	<footer class="row">
-		<div class="col-xs-3">
-			<button class="button_blue_border" tabindex="2" ng-click="deleteTest()">Delete</button>
+		<div class="col-xs-5">
+			<button class="button_blue_border" ng-show="!selected_test" ng-click="deleteOrder()">Delete</button>
+			<button class="button_blue_border" ng-show="selected_test" ng-click="deleteTest()">Delete</button>
 		</div>
-		<div class="col-xs-9 text-right">
-			<button class="button_blue" tabindex="2" ng-click="closeEditor()">Done</button>
+		<div class="col-xs-2">
+				<button class="button_blue_border" ng-disabled="hasNotification(selected_order.id)" ng-click="submitOrder(selected_order)">Send</button>
+		</div>
+		<div class="col-xs-5 text-right">
+			<button class="button_blue" ng-click="done()">Save <span ng-show="!selected_test">Order</span><span ng-show="selected_test">Test</span></button>
 		</div>
 	</footer>
 </div>

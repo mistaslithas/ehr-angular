@@ -61,6 +61,11 @@ angular.module('ehrApp', ['ngAnimate','ui.router','ui.event','ui.keypress','ui.b
       url: '/timeline',
       templateUrl: 'views/charts.patient.timeline.html',
     })
+    .state('ehr.charts.patient.encounter', {
+      url: '/encounter',
+      templateUrl: 'views/charts.patient.encounter.html',
+      controller: 'ChartsEncounterCtrl'
+    })
     .state('ehr.messages', {
       url: '/messages',
       templateUrl: 'views/messages.html'

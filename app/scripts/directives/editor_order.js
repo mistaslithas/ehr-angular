@@ -6,6 +6,7 @@ angular.module('ehrApp')
       templateUrl: 'views/editor_order.html',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
+
       }
     };
   });

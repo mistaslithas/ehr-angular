@@ -10,8 +10,13 @@
 				<p class="general margin-r-40">{{patient.insurance}}</p>
 			</div>
 			<div class="tabs">
-				<a class="tab" ng-class="{active: state.current.name=='ehr.charts.patient.facesheet'}" ui-sref="ehr.charts.patient.facesheet">Facesheet</a>
-				<a class="tab" ng-class="{active: state.current.name=='ehr.charts.patient.timeline'}" ui-sref="ehr.charts.patient.timeline">Timeline</a>
+				<a class="tab" ng-class="{active: state.current.name=='ehr.charts.patient.facesheet'}" ui-sref="ehr.charts.patient.facesheet"><p>Facesheet</p></a>
+				<a class="tab" ng-class="{active: state.current.name=='ehr.charts.patient.timeline'}" ui-sref="ehr.charts.patient.timeline"><p>Timeline</p></a>
+				<a class="tab tab_closable" ng-class="{active: state.current.name=='ehr.charts.patient.encounter'}" ui-sref="ehr.charts.patient.encounter">
+					<img class="icon" src="images/icon_encounter_selected.png" ng-show="state.current.name=='ehr.charts.patient.encounter'">
+					<img class="icon" src="images/icon_encounter.png" ng-show="state.current.name!='ehr.charts.patient.encounter'">
+					<p>{{model.now}}</p>
+				</a>
 				<div class="flex-right text-right">
 					<select class="select_actions">
 						<option>Actions</option>

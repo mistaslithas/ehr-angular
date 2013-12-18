@@ -6,6 +6,7 @@
 angular.module('ehrApp')
   .factory('model', function () {
     return {
+    	now: moment().format("MM/DD/YYYY"),
 	   	labs: [
 	      {
 	        id: 'lab-1',
@@ -83,44 +84,84 @@ angular.module('ehrApp')
 					date: ''
 				},
 				note: ''
+			},
+		    {
+				id:'lab_test_6',
+				name:'Basic Metabolic Profile (BMP)',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
+			},
+		    {
+				id:'lab_test_7',
+				name:'Serum Calcium',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
+			},
+		    {
+				id:'lab_test_8',
+				name:'Fasting Blood Glucose',
+				dx: '',
+				fasting: false,
+				cholesterol: false,
+				test_date: {
+					value: false,
+					date: ''
+				},
+				note: ''
 			}
 		],
 		lab_test_templates: [
 			{
 				id:'lab_test_template_1',
-				name:'Annual Physical - Females Over 65',
+				name:'Hypertension - Females Over 25',
 				tests: [
+				    {
+						id:'lab_test_6',
+						name:'Basic Metabolic Profile (BMP)'
+					},
+				    {
+						id:'lab_test_8',
+						name:'Fasting Blood Glucose'
+					},
 				    {
 						id:'lab_test_3',
 						name:'Lipids Panel'
 					},
 				    {
+						id:'lab_test_7',
+						name:'Serum Calcium'
+					},
+				    {
 						id:'lab_test_5',
 						name:'Urinalysis'
 					}
 				]
+			}
+		],
+		lab_test_recents: [
+		    {
+				id:'lab_test_8',
+				name:'Fasting Blood Glucose'
 			},
-			{
-				id:'lab_test_template_2',
-				name:'Annual Physical - Females Over 50',
-				tests: [
-				    {
-						id:'lab_test_1',
-						name:'Complete Blood Count (CBC)'
-					},
-				    {
-						id:'lab_test_2',
-						name:'Estrogen'
-					},
-				    {
-						id:'lab_test_4',
-						name:'Liver Function'
-					},
-				    {
-						id:'lab_test_5',
-						name:'Urinalysis'
-					}
-				]
+		    {
+				id:'lab_test_3',
+				name:'Lipids Panel'
+			},
+		    {
+				id:'lab_test_5',
+				name:'Urinalysis'
 			}
 		],
 		dx: ['Acute Upper Respiratory Infection','Hypertension','Laryngitis','Lumbago','Migraines'],
