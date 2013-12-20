@@ -58,6 +58,7 @@
 
 	<div class="body" ng-class="{body_reduced: editor}">
 		<div class="content scroll">
+<!-- 
 			<section id="medicatons">
 				<div class="section_row">
 					<h1>Medications</h1>
@@ -167,109 +168,138 @@
 			</section>
 			<section id="psych_assessment">
 				<div class="section_row">
-          <h1>Psychological Assessment</h1>
-        </div>
-        <ul>
-          <li class="section_row_indent" ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
-            <span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
-            <span>{{psych.doctor}}</span>
-            <span class="light">{{psych.date | date:'yyyy'}}</span>
-          </li>
-        </ul>
+		          <h1>Psychological Assessment</h1>
+		        </div>
+		        <ul>
+		          <li class="section_row_indent" ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
+		            <span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
+		            <span>{{psych.doctor}}</span>
+		            <span class="light">{{psych.date | date:'yyyy'}}</span>
+		          </li>
+		        </ul>
 			</section>
-			<section id="orders">
-        <div class="section_row">
-            <h1>Orders</h1>
-            <div class="section_row_menu"> 
-              <select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
-            </div>
-        </div>
-        <!-- DRAFTS -->
-        <div class="section_row">
-          <h2>Drafts</h2>
-        </div>
-        <ul>
-          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: false}">
-            <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
-              <a ng-click="showOrder(order)">{{order.name}}</a>
-              <span class="section_row_date">
-              	({{order.date | date:'MM/dd/yyyy'}})
-              </span>
-              <span ng-show="!hasNotification(order.id)">
-                  <a class="button_text" ng-click="submitOrder(order)">Send</a>
-              </span>
-              <!-- <span class="incomplete" ng-show="hasNotification(order.id)" ng-bind="hasNotification(order.id).description"></span> -->
-            </h3>
-            <a ng-show="order.lab" ng-click="showLab(order.lab)"><h4 ng-class="{editor_source:checkEditorSelectionForLab(order.lab,order)}">{{order.lab.name}}</h4></a>
-            <ul>
-              <li ng-repeat="test in order.tests">
-                <h5 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
-                  <a ng-click="showTest(test, order)">{{test.name}}</a>
-                  <span class="incomplete" ng-show="hasNotification(test.id)" ng-bind="hasNotification(test.id).description"></span>
-                </h5>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <!-- PENDING -->
-        <div class="section_row">
-          <h2>Pending</h2>
-        </div>
-        <ul>
-          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: true}">
-            <h3>
-              <span>{{order.name}}</span>
-              <span class="section_row_date">({{order.date | date:'MM/dd/yyyy'}})</span>
-            </h3>
-            <h4>{{order.lab.name}}</h4>
-            <ul>
-              <li ng-repeat="test in order.tests">
-                <h5>
-                  <span>{{test.name}}</span>
-                </h5>
-              </li>
-            </ul>
-          </li>
-        </ul>
-<!--         <ul>
-          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: true}">
-            <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
-              <a ng-click="showOrder(order)">{{order.lab.name}}</a>
-              <span class="section_row_date">
-              	{{selected_order.date | date:'MM/dd/yyyy'}}
-              </span>
-            </h3>
-            <ul>
-              <li ng-repeat="test in order.tests">
-                <h4 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
-                  <a ng-click="showTest(test, order)">{{test.name}}</a>
-                </h4>
-              </li>
-              <li class="section_row_indent" ng-class="{editor_source:editor.type=='lab_test_selection'}">
-                <div class="select_lab_input">
-                  <div class="input-group" ng-show="order.id == selected_order.id">
-                      <input type="text" class="form-control" ui-event="{focus:'onFocus()'}" ui-keypress="{13:'test($event)'}" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue" typeahead-on-select="addTest(test)">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><img src="images/icon_list.png"></button>
-                    </span>
-                  </div>
-                </div>
-              </li>                        
-            </ul>
-          </li>
-        </ul>
-			</section>
-			<section id="clinical_summary">
+ -->			
+ 			<section id="cc">
 				<div class="section_row">
-					<h1>Clinical Summary</h1>
+					<h1>Chief complaint</h1>
 				</div>
 				<ul>
-					<li class="section_row_indent">None Recorded</li>
+					<li class="section_row_indent">
+						<span>Check on cholesterol</span>
+					</li>
 				</ul>
 			</section>
- -->	
- 		</section></div>
 
+ 			<section id="progress_note">
+				<div class="section_row">
+					<h1>Progress note</h1>
+				</div>
+				<div class="section_row">
+		          <h2>Subjective</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Here to check on cholesterol. Mother and brother have high cholesterol. Patient reports having trouble taking hypertension meds regularly, mentions recent chest pain, dizziness, and breathing problems.</span>
+					</li>
+				</ul>
+				<div class="section_row">
+		          <h2>Objective</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">
+						<span>BP 140/90 HT 63 WT 140 Temp 98.6 Pulse 72</span>
+					</li>
+				</ul>
+				<div class="section_row">
+		          <h2>Assessment</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Hypertension, benign may be uncontrolled</span>
+					</li>
+				</ul>
+				<div class="section_row">
+		          <h2>Plan</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">Cholesterol check</li>
+					<li class="section_row_indent">Fasting lipid panel</li>
+					<li class="section_row_indent">Basic metabolic profile</li>
+					<li class="section_row_indent">Liver function</li>
+					<li class="section_row_indent">Urinalysis</li>
+					<li class="section_row_indent">Serum calcium</li>
+					<li class="section_row_indent">Follow-up in 3 months</li>
+ 				</ul>
+			</section>
+
+			<section id="orders">
+		        <div class="section_row">
+		            <h1>Orders</h1>
+		            <div class="section_row_menu"> 
+		              <select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
+		            </div>
+		        </div>
+		        <!-- DRAFTS -->
+		        <div class="section_row">
+		          <h2>Drafts</h2>
+		        </div>
+		        <h3 ng-show="!hasDrafts()">None</h3>
+		        <ul>
+		          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: false}">
+		            <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
+		              <a ng-click="showOrder(order)">{{order.name}}</a>
+		              <span class="section_row_date">
+		              	added on {{order.date | date:'MM/dd/yyyy'}}
+		              </span>
+		              <span ng-show="!hasNotification(order.id)">
+		                  <a class="button_text" ng-click="submitOrder(order)">Send</a>
+		              </span>
+		              <!-- <span class="incomplete" ng-show="hasNotification(order.id)" ng-bind="hasNotification(order.id).description"></span> -->
+		            </h3>
+		            <a ng-show="order.lab" ng-click="showLab(order.lab)"><h4 ng-class="{editor_source:checkEditorSelectionForLab(order.lab,order)}">{{order.lab.name}}</h4></a>
+		            <ul>
+		              <li ng-repeat="test in order.tests">
+		                <h5 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
+		                  <a ng-click="showTest(test, order)">{{test.name}}</a>
+		                  <span class="incomplete" ng-show="hasNotification(test.id)" ng-bind="hasNotification(test.id).description"></span>
+		                </h5>
+		              </li>
+		            </ul>
+		          </li>
+		        </ul>
+		        <!-- PENDING -->
+		        <div class="section_row">
+		          <h2>Pending</h2>
+		        </div>
+		        <h3 ng-show="!hasPending()">None</h3>
+		        <ul>
+		          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: true}">
+		            <h3>
+		              <span>{{order.name}}</span>
+		              <span class="section_row_date">sent on {{order.date | date:'MM/dd/yyyy'}}</span>
+		            </h3>
+		            <h4>{{order.lab.name}}</h4>
+		            <ul>
+		              <li ng-repeat="test in order.tests">
+		                <h5>
+		                  <span>{{test.name}}</span>
+		                </h5>
+		              </li>
+		            </ul>
+		          </li>
+		        </ul>
+	 		</section>
+
+	 		<section id="social_history">
+				<div class="section_row">
+					<h1>Social history</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Former smoker</span>
+					</li>
+				</ul>
+			</section>
 
 		<div class="editors" ng-show="editor">
 			<!-- <editor-lab-selection class="editor_container" ng-show="editor.type=='lab_selection'"></editor-lab-selection> -->
@@ -279,4 +309,7 @@
       <editor-order class="editor_container" ng-show="editor.type=='lab_test'"></editor-order>
 		</div>		
 	</div>
-</div>
+
+
+
+</div></div>

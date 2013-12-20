@@ -164,7 +164,7 @@ angular.module('ehrApp')
 				name:'Urinalysis'
 			}
 		],
-		dx: ['Acute Upper Respiratory Infection','Hypertension','Laryngitis','Lumbago','Migraines'],
+		dx: ['Acute Upper Respiratory Infection','Hypercholesterolemia','Hypertension','Laryngitis','Lumbago','Migraines'],
     	ccs: ['Influenza','Panic Attack','Hypertension','Diabetes','Anemia'],
     	drugs: ['Naproxen','Neurontin (Gabapentin)','Mobic (Meloxicam)','Flexeril (Cyclobeuraprine)','Ibuprofen','Xanax (ALPRAZolam)','MS Contin (Morphine)'],
     	drugMethods: ['oral tablet'],

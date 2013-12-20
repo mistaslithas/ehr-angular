@@ -67,13 +67,13 @@ angular.module('ehrApp')
           // check if the order is complete
           // if(testsComplete && order.insurance.primary) {
           if(testsComplete) {
-            $scope.removeNotification(order.id);
+    	    $scope.removeNotification(order.id);
           } else {
-            $scope.createNotification('order',order,'dx required for all tests');
-          }
+          	$scope.createNotification('order',order,'dx required for all tests');
+		  }
         } else {
-            $scope.createNotification('order',order,'missing tests');
-          }
+	        $scope.createNotification('order',order,'missing tests');
+    	}
 
       })
 
@@ -205,6 +205,8 @@ angular.module('ehrApp')
     $scope.reset = function() {
       $scope.selected_test = false;
       $scope.selected_order = false;
+      $scope.all_dx = null;
+      $scope.showTestInputs = false;
     }
 
     $scope.done = function() {
@@ -216,12 +218,25 @@ angular.module('ehrApp')
     }
 
     $scope.applyAll = function() {
-      $scope.all_dx = $scope.selected_test.dx;
-
       _.each($scope.selected_order.tests,function(test){
         test.dx = $scope.all_dx;
       })
+
+      $scope.showTestInputs = $scope.all_dx ? true : false;
+
+      $scope.updateNotifications();
+
+      $timeout(function(){
+	      $('#input_add_test').focus();
+      })
     }
+
+    // $scope.$watch('all_dx', function(val){
+    // 	if(val)
+    // 		$scope.showTestInputs = true;
+    // 	else
+    // 		$scope.showTestInputs = false;
+    // })
 
     // scroll control
 
@@ -279,6 +294,10 @@ angular.module('ehrApp')
         $scope.orderTypes.value = "default";
       }
     })
+
+    $scope.getAddTestPlaceholder = function() {
+    	return $scope.selected_order.tests.length > 0 ? 'Add another test' : 'Add a test';
+    }
 
     $scope.addLabOrder = function() {
     	var idx = $scope.patient.orders.length+1;
@@ -369,8 +388,6 @@ angular.module('ehrApp')
         $scope.selected_order.tests.push(test)
         this.test = undefined;
       }
-
-      $scope.showTest(test, $scope.selected_order);      
     }
 
     $scope.addTemplate = function(template) {
@@ -389,7 +406,19 @@ angular.module('ehrApp')
       $scope.showOrder($scope.selected_order);
     }
 
+    $scope.labSelected = function() {
+      $timeout(function(){
+	      $('#input_all_dx').focus();
+      })
+    }
 
+    $scope.hasDrafts = function() {
+    	return _.findWhere($scope.patient.orders, {sent: false});
+    }
+
+    $scope.hasPending = function() {
+    	return _.findWhere($scope.patient.orders, {sent: true});
+    }
 
     // SLIDES
     $scope.goToSlide = function(idx) {

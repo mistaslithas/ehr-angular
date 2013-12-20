@@ -15,34 +15,48 @@
 	    	<div class="slide">
 				<form name="form_lab_test_detail" class="editor_form" role="form" novalidate>
 					<div class="form-group">
-						<select class="select_editor_blue col-sm-12" ng-model="selected_order.lab" ng-options="i.name for i in model.labs" required>
+						<select class="select_editor_blue col-sm-12" ng-model="selected_order.lab" ng-options="i.name for i in model.labs" tabindex="1" ng-change="labSelected()" required>
 							<option value="">Select a lab</option>
 						</select>
 					</div>
-					<div class="input-group" ng-class="{editor_section_disabled: !selected_order.lab}">
-		              <input type="text" class="form-control" placeholder="Add a test" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue | orderBy:'name'" typeahead-on-select="addTest(test)">
-		            <span class="input-group-btn">
-		              <img src="images/icon_list.png">
-		            </span>
-		          </div>
-				</form>
-				<div ng-class="{editor_section_disabled: !selected_order.lab}">
+					<div class="form-group" ng-show="selected_order.lab">
+						<div class="input-group">
+						  	<input id="input_all_dx" type="text" class="form-control" placeholder="Add a diagnoses for all tests" ng-model="all_dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" typeahead-on-select="applyAll()" ui-event="{ blur : 'applyAll()' }"  tabindex="2" required>
+							<span class="input-group-btn">
+								<img src="images/icon_list.png">
+							</span>
+						</div>
+					</div>
+					<div class="form-group" ng-show="showTestInputs">
+						<div class="input-group">
+			              <input id="input_add_test" type="text" class="form-control" placeholder="{{getAddTestPlaceholder()}}" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue | orderBy:'name'" typeahead-on-select="addTest(test)"  tabindex="3">
+			            <span class="input-group-btn">
+			              <img src="images/icon_list.png">
+			            </span>
+			          </div>
+			        </div>
+<!-- 					<ul class="editor_test_list" ng-show="showTestInputs">
+		              <li ng-repeat="test in selected_order.tests">{{test.name}}</li>
+		            </ul>
+ -->				</form>
+				<div ng-show="showTestInputs">
 					<tabset>
+						<tab heading="Favorites">
+							<ul class="editor_list">
+								<li ng-repeat="recent in model.lab_test_recents track by $index | orderBy:'name'" tabindex="4" ui-keypress="{13:'addTest(recent)'}">
+									<a ng-click="addTest(recent)">
+										<p>{{recent.name}}</p>
+									</a>
+								</li>
+							</ul>
+						</tab>
 						<tab heading="Recommended">
+							<div class="recommended_header">Recommended by the <a href="http://www.nih.gov" target="_blank">NIH</a>:</div>
 							<ul class="editor_list">
 								<li ng-repeat="template in model.lab_test_templates track by $index">
 									<a ng-click="addTemplate(template)">
 										<p>{{template.name}}</p>
 										<p><span ng-repeat="test in template.tests track by $index">{{test.name}}; </span></p>
-									</a>
-								</li>
-							</ul>
-						</tab>
-						<tab heading="Recent">
-							<ul class="editor_list">
-								<li ng-repeat="recent in model.lab_test_recents track by $index | orderBy:'name'">
-									<a ng-click="addTest(recent)">
-										<p>{{recent.name}}</p>
 									</a>
 								</li>
 							</ul>
@@ -69,6 +83,9 @@
 						<label class="col-sm-12 editor_section_header">Required</label>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-12 field_label">Dx</label>
+					</div>
+					<div class="form-group">
 						<div class="col-sm-7">
 							<div class="input-group">
 							  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
@@ -77,10 +94,10 @@
 								</span>
 							</div>
 						</div>
-						<div class="col-sm-5">
+<!-- 						<div class="col-sm-5">
 							<button class="button_blue_border" type="button" ng-disabled="!selected_test.dx" ng-click="applyAll()">Apply to all</button>
 						</div>
-					</div>
+ -->					</div>
 					<hr>
 					<div class="form-group">
 						<label class="col-sm-12 editor_section_header temp_margin">Optional</label>
