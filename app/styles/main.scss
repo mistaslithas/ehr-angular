@@ -923,12 +923,15 @@ button[disabled] {
 // EDITOR
 .editors {
 	display: flex;
-	width: 380px;
+	// width: 380px;
 	position: absolute;
-	top: 170px;
+	// top: 170px;
+	top: 167px;
 	right: 0;
-	bottom: 10px;
-	margin: 10px 10px 10px 0;
+	bottom: 0;
+	// bottom: 10px;
+	// margin: 10px 10px 10px 0;
+	box-shadow: 10px 0px 5px -2px black;
 }
 
 .editor_container {
@@ -943,12 +946,14 @@ button[disabled] {
 	flex-direction: column;
 	position: absolute;
 	top: 4px;
-	bottom: 4px;
+	bottom: 0;
+	// bottom: 4px;
 	left: -376px;
-	width: 376px;
+	// width: 376px;
+	width: 380px;
 	transition: left .5s;
 	border-left: 20px solid $editor_left_border_color;
-	box-shadow: 0 0 3px 3px rgba(0,0,0,.1);
+	// box-shadow: 0 0 3px 3px rgba(0,0,0,.1);
 	background: white;
 
 	.editor_header {
