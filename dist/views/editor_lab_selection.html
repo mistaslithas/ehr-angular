@@ -1,0 +1,30 @@
+<div class="editor" ng-class="{editor_slide: editor.type=='lab_selection'}">
+	<div class="editor_header">
+		<div class="row editor_header_1">
+			<a class="col-xs-11" ng-click="scrollToSelection()">Orders</a>
+			<a class="col-xs-1 text-right" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
+		</div>
+		<div class="row editor_header_2">
+			<a class="col-xs-1 text-right" ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
+			<a class="col-xs-11" ng-click="scrollToSelection()">Select Lab</a>
+		</div>
+	</div>
+	<div class="editor_body">
+		<div class="table">
+			<div class="table_body">
+				<a class="row table_row_70" ng-repeat="lab in model.labs track by $index" ng-click="addLabOrder(lab)">
+					<div class="col-xs-5"><img ng-src="{{lab.logo}}"></div>
+					<div class="col-xs-7">
+						<div>{{lab.name}}</div>
+						<div>{{lab.id}}</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<footer class="row">
+		<div class="col-xs-12 text-right">
+			<button class="button_blue" ng-click="closeEditor()">Done</button>
+		</div>
+	</footer>
+</div>
