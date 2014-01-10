@@ -58,127 +58,6 @@
 
 	<div class="body" ng-class="{body_reduced: editor}">
 		<div class="content scroll">
-<!-- 
-			<section id="medicatons">
-				<div class="section_row">
-					<h1>Medications</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent" ng-repeat="med in patient.medications | orderBy:'date'">
-						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
-						<span>{{med.method}}</span>
-						<span>{{med.dosage}}</span>
-						<span class="light">{{med.doctor}}</span>
-						<span>{{med.date | date:'MM/dd/yyyy'}}</span>
-						<span>{{med.refill}}</span>
-					</li>
-				</ul>
-			</section>
-			<section id="problem_list">
-				<div class="section_row">
-					<h1>Problem List</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent" ng-repeat="problem in patient.problems | orderBy:'date'">
-						<span><a ng-click="showEditor('Editor')">{{problem.name}}</a></span>
-						<span class="light">{{problem.metric}}</span>
-						<span>{{problem.doctor}}</span>
-						<span>{{problem.date | date:'MM/dd/yyyy'}}</span>
-					</li>
-				</ul>
-			</section>
-			<section id="medical_history">
-				<div class="section_row">
-					<h1>Medical History</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent" ng-repeat="med in patient.medicalHistory | orderBy:'date'">
-						<span><a ng-click="showEditor('Editor')">{{med.name}}</a></span>
-						<span class="light">{{med.metric}}</span>
-						<span>{{med.doctor}}</span>
-						<span>{{med.date | date:'MM/dd/yyyy'}}</span>
-					</li>
-				</ul>
-			</section>
-			<section id="surgical_history">
-				<div class="section_row">
-					<h1>Surgical History</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent" ng-repeat="sur in patient.surgicalHistory | orderBy:'date'">
-						<span><a ng-click="showEditor('Editor')">{{sur.name}}</a></span>
-						<span class="light">{{sur.metric}}</span>
-						<span>{{sur.doctor}}</span>
-						<span>{{sur.date | date:'yyyy'}}</span>
-					</li>
-				</ul>
-			</section>
-			<section id="family_history">
-				<div class="section_row">
-					<h1>Family History</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent" ng-repeat="fam in patient.familyHistory | orderBy:'name'">
-						<span><a ng-click="showEditor('Editor')">{{fam.name}}</a></span>
-						<span>{{fam.relation}}</span>
-						<span class="light">Age {{fam.date | age}}</span>
-					</li>
-				</ul>
-			</section>
-			<section id="social_history">
-				<div class="section_row">
-					<h1>Social History</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent" ng-repeat="soc in patient.socialHistory | orderBy:'name'">
-						<span><a ng-click="showEditor('Editor')">{{soc.name}}</a></span>
-						<span>{{soc.info}}</span>
-						<span class="light">{{soc.detail}}</span>
-					</li>
-				</ul>
-			</section>
-			<section id="daily_living">
-				<div class="section_row">
-					<h1>Daily Living</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent">None Recorded</li>
-				</ul>
-			</section>
-			<section id="advisories">
-				<div class="section_row">
-					<h1>Advisories</h1>
-				</div>
-				<ul>
-					<li class="section_row_indent">
-						<span>No smoking status recorded</span>
-						<span><a>Record</a></span>
-					</li>
-					<li class="section_row_indent">
-						<span>BP may not be adequately controlled</span>
-						<span class="orange">Last recorded BP 142/94 (today)</span>
-						<span><a>Document Plan</a></span>
-					</li>
-					<li class="section_row_indent">
-						<span>High risk medication for patients over 65 years old</span>
-						<span class="orange">Ativan</span>
-						<span><a>Document Reason</a></span>
-					</li>
-				</ul>
-			</section>
-			<section id="psych_assessment">
-				<div class="section_row">
-		          <h1>Psychological Assessment</h1>
-		        </div>
-		        <ul>
-		          <li class="section_row_indent" ng-repeat="psych in patient.psychAssessments | orderBy:'date'">
-		            <span><a ng-click="showEditor('Editor')">{{psych.name}}</a></span>
-		            <span>{{psych.doctor}}</span>
-		            <span class="light">{{psych.date | date:'yyyy'}}</span>
-		          </li>
-		        </ul>
-			</section>
- -->			
  			<section id="cc">
 				<div class="section_row">
 					<h1>Chief complaint</h1>
@@ -260,7 +139,7 @@
 		            <ul>
 		              <li ng-repeat="test in order.tests">
 		                <h5 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
-		                  <a ng-click="showTest(test, order)">{{test.name}}</a>
+		                  <a ng-click="showTest(test, order, $index)">{{test.name}}</a>
 		                  <span class="incomplete" ng-show="hasNotification(test.id)" ng-bind="hasNotification(test.id).description"></span>
 		                </h5>
 		              </li>
@@ -302,11 +181,10 @@
 			</section>
 
 		<div class="editors" ng-show="editor">
-			<!-- <editor-lab-selection class="editor_container" ng-show="editor.type=='lab_selection'"></editor-lab-selection> -->
 			<editor-lab-detail class="editor_container" ng-show="editor.type=='lab_detail'"></editor-lab-detail>
 			<editor-lab-test-selection class="editor_container" ng-show="editor.type=='lab_test_selection'"></editor-lab-test-selection>
-      <editor-lab-test-detail class="editor_container" ng-show="editor.type=='lab_test_detail'"></editor-lab-test-detail>
-      <editor-order class="editor_container" ng-show="editor.type=='lab_test'"></editor-order>
+		    <editor-lab-test-detail class="editor_container" ng-show="editor.type=='lab_test_detail'"></editor-lab-test-detail>
+		    <editor-order class="editor_container" ng-show="editor.type=='lab_test'"></editor-order>
 		</div>		
 	</div>
 

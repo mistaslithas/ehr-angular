@@ -1,4 +1,5 @@
 @import "../components/bootstrap/dist/css/bootstrap.css";
+@import "../components/bootstrap/dist/css/bootstrap-theme.css";
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css);
@@ -197,7 +198,6 @@ button[disabled] {
 .button_text {
 	font-size: 13px;
 	font-weight: 200 !important;
-	// color: $blue !important;
 	color: #666;
 	margin-left: 20px;
 }
@@ -266,20 +266,39 @@ button[disabled] {
 	color: #878787;
 }
 
+.carousel {
+	display: flex;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 
+	.carousel-inner {
+		display: flex;
+		flex: 1;
+	}
+
+	.item {
+		flex: 1;
+		overflow: scroll;
+		transition: .2s ease-in-out left;
+	}
+}
 
 // SLIDES
 
-.slides {
-	position: relative;
-	width: 1071px;
+// .slides {
+// 	position: relative;
+// 	width: 1071px;
 
-	.slide {
-		width: 357px;
-		height: 100px;
-		float: left;
-	}
-}
+// 	.slide {
+// 		display: flex;
+// 		flex-direction: column;
+// 		width: 357px;
+// 		float: left;
+// 	}
+// }
 
 
 // CHOOSER
@@ -853,67 +872,12 @@ button[disabled] {
 							margin: 0 50px 0 0;
 						}
 
-						// .margin_l_20 {
-						// 	margin-left: 20px;
-						// }
-
-						// .order_lab_name {
-						// 	padding: 5px 20px 5px 20px;
-						// }
-
-						// .indented_list {
-						// 	width: 100%;
-						// 	height: 100%;
-						// 	background: $body_bg;
-
-						// 	li {
-						// 		font-size: 15px;
-						// 		font-weight: 300;
-						// 		color: #888;
-						// 		margin-bottom: 6px;
-						// 		// margin-left: 20px;
-						// 		line-height: 20px;
-						// 		// padding-left: 20px;
-
-						// 		.light {
-						// 			color: #ccc;
-						// 		}
-						// 	}
-
-						// 	li:before {
-						// 		color: $header_blue;
-						// 	}
-
-						// 	span {
-						// 		margin-right: 20px;
-						// 	}
-
-						// 	.hyphenated:before {
-						// 		content:' - ';
-						// 		color: inherit;
-						// 	}
-						// }
-
-						// footer {
-						// 	padding-left: 20px;
-						// 	background: $body_bg;
-
-						// 	a {
-						// 		font-size: 16px !important;
-						// 		font-weight: 200;
-						// 		color: $header_blue;
-						// 	}
-
-						// 	a:hover {
-						// 		color: black;
-						// 	}
-						// }
 					}
 				}
 			}
 
 			.body_reduced {
-				width: 510px !important;
+				width: 520px !important;
 			}
 		}
 	}
@@ -994,6 +958,7 @@ button[disabled] {
 		overflow-y: scroll;
 		font-size: 13px;
 		color: #666;
+		position: relative;
 
 		.centered_row {
 			display: flex;
@@ -1053,11 +1018,21 @@ button[disabled] {
 	}
 
 	.editor_test_list {
+		flex: 1;
 		font-size: 13px;
 		font-weight: 200;
 		color: #333;
-		text-indent: 14px;
+		text-indent: 20px;
 		line-height: 24px;
+	}
+
+	.test_label {
+		font-size: 22px;
+		font-weight: normal;
+	}
+
+	.editor_order_test_advanced {
+
 	}
 
 	.editor_section_disabled {

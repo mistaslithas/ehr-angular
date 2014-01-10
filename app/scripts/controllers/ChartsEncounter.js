@@ -186,6 +186,10 @@ angular.module('ehrApp')
 
       // ensure the content stays in the same position as it resizes
       $scope.resetScrollPosition();
+
+      // init the editor's slider
+      $('#carousel-editor-order').carousel({pause:true,interval:false});
+      $scope.slideIdx = 0;
   	}
 
   	$scope.closeEditor = function(scrollTarget) {
@@ -205,8 +209,8 @@ angular.module('ehrApp')
     $scope.reset = function() {
       $scope.selected_test = false;
       $scope.selected_order = false;
-      $scope.all_dx = null;
       $scope.showTestInputs = false;
+      $scope.slideIdx = 0;
     }
 
     $scope.done = function() {
@@ -219,10 +223,11 @@ angular.module('ehrApp')
 
     $scope.applyAll = function() {
       _.each($scope.selected_order.tests,function(test){
-        test.dx = $scope.all_dx;
+        test.dx = $scope.selected_order.dx_all;
       })
 
-      $scope.showTestInputs = $scope.all_dx ? true : false;
+      // $scope.showTestInputs = $scope.selected_order.dx_all ? true : false;
+      // console.log($scope.showTestInputs)
 
       $scope.updateNotifications();
 
@@ -230,13 +235,6 @@ angular.module('ehrApp')
 	      $('#input_add_test').focus();
       })
     }
-
-    // $scope.$watch('all_dx', function(val){
-    // 	if(val)
-    // 		$scope.showTestInputs = true;
-    // 	else
-    // 		$scope.showTestInputs = false;
-    // })
 
     // scroll control
 
@@ -296,7 +294,8 @@ angular.module('ehrApp')
     })
 
     $scope.getAddTestPlaceholder = function() {
-    	return $scope.selected_order.tests.length > 0 ? 'Add another test' : 'Add a test';
+      if($scope.selected_order)
+    	 return $scope.selected_order.tests.length > 0 ? 'Add another test' : 'Add a test';
     }
 
     $scope.addLabOrder = function() {
@@ -346,7 +345,9 @@ angular.module('ehrApp')
       $scope.selected_order = order;
       $scope.showEditor('lab_test','orders');
       $scope.selected_test = false;
-      $scope.goToSlide(0);
+
+      // $('#carousel-editor-order').carousel({pause:true,interval:false});
+      // $scope.goToSlide(0);
     }
     
     $scope.showLab = function(lab) {
@@ -354,12 +355,16 @@ angular.module('ehrApp')
       // $scope.showEditor('lab_detail','orders');
     }
 
-    $scope.showTest = function(test, order) {
-      $scope.selected_test = test;
+    $scope.showTest = function(test, order, idx) {
       $scope.selected_order = order;
+      $scope.selected_test = test;
       $scope.showEditor('lab_test','orders');
 
-      $scope.goToSlide(1);
+      // $timeout(function(){
+        $scope.slideIdx = idx+1;
+      // })
+
+      // $scope.goToSlide(idx+1);
     }
 
     $scope.onFocus = function() {
@@ -382,8 +387,8 @@ angular.module('ehrApp')
 
     $scope.addTest = function(test) {
       if (_.where($scope.selected_order.tests, {id:test.id}).length == 0) {
-        if($scope.all_dx)
-          test.dx = $scope.all_dx;
+        if($scope.selected_order.dx_all)
+          test.dx = $scope.selected_order.dx_all;
 
         $scope.selected_order.tests.push(test)
         this.test = undefined;
@@ -395,12 +400,12 @@ angular.module('ehrApp')
         $scope.addTest(test);
       })
 
-      $scope.showTest($scope.selected_order.tests[0], $scope.selected_order)
+      // $scope.showTest($scope.selected_order.tests[0], $scope.selected_order)
     }
 
-    $scope.deleteTest = function() {
+    $scope.deleteTest = function(test) {
       // delete the test
-      $scope.selected_order.tests = _.without($scope.selected_order.tests, _.findWhere($scope.selected_order.tests, {id: $scope.selected_test.id}));
+      $scope.selected_order.tests = _.without($scope.selected_order.tests, _.findWhere($scope.selected_order.tests, {id: test.id}));
 
       // show order
       $scope.showOrder($scope.selected_order);
@@ -420,27 +425,98 @@ angular.module('ehrApp')
     	return _.findWhere($scope.patient.orders, {sent: true});
     }
 
+
+
+
     // SLIDES
+
+    $scope.slideIdx = 0;
+
+    $scope.$watch('slideIdx',function(val){
+      console.log(val)
+      $timeout(function(){
+        $('#carousel-editor-order').carousel(val);
+      })
+
+    })
+
     $scope.goToSlide = function(idx) {
-      $('.slides').animate({left:idx*-357}, 200);
+      // $('#carousel-editor-order').carousel(idx);
+      $scope.slideIdx = idx;
+      $scope.manageSelectedTest();
     }
 
-    $scope.prevTest = function() {
-      var idx = _.indexOf($scope.selected_order.tests, $scope.selected_test);
+    $scope.goNextSlide = function() {
+      // $('#carousel-editor-order').carousel('next');
+      $scope.slideIdx = $scope.slideIdx+1;
+      $scope.manageSelectedTest();
+    }
 
-      if(idx > 0) {
-        $scope.selected_test = $scope.selected_order.tests[idx-1];
+    $scope.goPrevSlide = function() {
+      // $('#carousel-editor-order').carousel('prev');
+      $scope.slideIdx = $scope.slideIdx-1;
+      $scope.manageSelectedTest();
+    }
+
+    $scope.manageSelectedTest = function() {
+      if($scope.slideIdx>0)
+        $scope.selected_test = $scope.selected_order.tests[$scope.slideIdx-1];
+      else
+        $scope.selected_test = false;
+    }
+
+    $scope.getNextDisabled = function() {
+      var val = true;
+
+      if($scope.selected_order.tests && $scope.selected_order.tests.length>0) {
+        val = false;
       }
+
+      return val;
     }
 
-    $scope.nextTest = function() {
-      var idx = _.indexOf($scope.selected_order.tests, $scope.selected_test);
 
-      if(idx < $scope.selected_order.tests.length-1) {
-        $scope.selected_test = $scope.selected_order.tests[idx+1];
-      }
+
+    // $scope.prevTest = function() {
+    //   var idx = _.indexOf($scope.selected_order.tests, $scope.selected_test);
+
+    //   if(idx > 0) {
+    //     $scope.selected_test = $scope.selected_order.tests[idx-1];
+    //   }
+    // }
+
+    // $scope.nextTest = function() {
+    //   var idx = _.indexOf($scope.selected_order.tests, $scope.selected_test);
+
+    //   if(idx < $scope.selected_order.tests.length-1) {
+    //     $scope.selected_test = $scope.selected_order.tests[idx+1];
+    //   }
+    // }
+
+    // $scope.test = function(idx) {
+    //   $('.carousel').carousel(idx);
+    // }
+
+
+ $scope.oneAtATime = true;
+
+  $scope.groups = [
+    {
+      title: "Dynamic Group Header - 1",
+      content: "Dynamic Group Body - 1"
+    },
+    {
+      title: "Dynamic Group Header - 2",
+      content: "Dynamic Group Body - 2"
     }
+  ];
 
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
 
 
   });
