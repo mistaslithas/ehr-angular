@@ -174,7 +174,7 @@ angular.module('ehrApp')
   	// show/hide the editor
   	$scope.editor = false;
 
-  	$scope.showEditor = function(editorType,editorSectionID) {
+  	$scope.showEditor = function(editorType,editorSectionID,idx) {
       // set a flag to the editor's section
       $scope.editorSectionID = editorSectionID;
 
@@ -189,7 +189,15 @@ angular.module('ehrApp')
 
       // init the editor's slider
       $('#carousel-editor-order').carousel({pause:true,interval:false});
-      $scope.slideIdx = 0;
+
+      // allow the slide repeater to finish before setting the slide idx and going to that slide
+      $timeout(function(){
+        $scope.slideIdx = idx;
+        // the carousel is not setting the active class on the slide if we close the editor on slide 0
+        // force the active class on the slide in this case
+        if($scope.closingSlideIdx > 0)
+          $('#carousel-editor-order .item').eq(idx).addClass('active');
+      });
   	}
 
   	$scope.closeEditor = function(scrollTarget) {
@@ -199,6 +207,10 @@ angular.module('ehrApp')
 
       // ensure the content stays in the same position as it resizes
       $scope.resetScrollPosition(scrollTarget);
+
+      // remember what slide we were on before we closed
+      // needed to fix a strange bug in the bootstrap carousel
+      $scope.closingSlideIdx = $scope.slideIdx;
 
       // resets
       $timeout(function() {   // BAD FORM: use a timer to allow notification updates to complete before resetting the selected order
@@ -343,11 +355,13 @@ angular.module('ehrApp')
 
     $scope.showOrder = function(order) {
       $scope.selected_order = order;
-      $scope.showEditor('lab_test','orders');
       $scope.selected_test = false;
 
-      // $('#carousel-editor-order').carousel({pause:true,interval:false});
-      // $scope.goToSlide(0);
+      if(!$scope.editor) {
+        $scope.showEditor('lab_test','orders',0);
+      }
+
+      $scope.slideIdx = 0;
     }
     
     $scope.showLab = function(lab) {
@@ -356,15 +370,16 @@ angular.module('ehrApp')
     }
 
     $scope.showTest = function(test, order, idx) {
-      $scope.selected_order = order;
-      $scope.selected_test = test;
-      $scope.showEditor('lab_test','orders');
-
-      // $timeout(function(){
+      if($scope.editor) {
+        // editor is already open; user clicked on a test link in the editor
+        $scope.selected_test = test;
         $scope.slideIdx = idx+1;
-      // })
-
-      // $scope.goToSlide(idx+1);
+      } else {
+        // editor is not open; user clicked on a test link on the left
+        $scope.selected_order = order;
+        $scope.selected_test = test;
+        $scope.showEditor('lab_test','orders',idx+1);
+      }
     }
 
     $scope.onFocus = function() {
@@ -433,27 +448,22 @@ angular.module('ehrApp')
     $scope.slideIdx = 0;
 
     $scope.$watch('slideIdx',function(val){
-      console.log(val)
       $timeout(function(){
         $('#carousel-editor-order').carousel(val);
       })
-
     })
 
     $scope.goToSlide = function(idx) {
-      // $('#carousel-editor-order').carousel(idx);
       $scope.slideIdx = idx;
       $scope.manageSelectedTest();
     }
 
     $scope.goNextSlide = function() {
-      // $('#carousel-editor-order').carousel('next');
       $scope.slideIdx = $scope.slideIdx+1;
       $scope.manageSelectedTest();
     }
 
     $scope.goPrevSlide = function() {
-      // $('#carousel-editor-order').carousel('prev');
       $scope.slideIdx = $scope.slideIdx-1;
       $scope.manageSelectedTest();
     }
