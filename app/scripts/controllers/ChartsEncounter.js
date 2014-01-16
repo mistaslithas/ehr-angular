@@ -130,7 +130,15 @@ angular.module('ehrApp')
           $scope.showOrder(notification.track.order);        
           break;
         case 'test':
-          $scope.showTest(notification.track.test, notification.track.order);
+          var testIdx;
+          _.each($scope.selected_order.tests, function(el, idx) {
+            if(el.id == notification.track.test.id) {
+              testIdx = idx;
+              console.log(idx);
+              return;
+            }
+          })
+          $scope.showTest(notification.track.test, notification.track.order, testIdx);
           break;
       }
 
