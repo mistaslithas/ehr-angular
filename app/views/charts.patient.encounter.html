@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
+<!--   <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
     <div class="row" ng-class="{notifications_reduced: editor}">
       <div class="col-xs-9">
         <p class="section_row">{{notifications[notificationIndex].path}}</p>
@@ -54,10 +54,24 @@
         <a ng-click="nextNotification()">{{notifications.length}} remaining</a>
       </div>
     </div>
-  </div>
+  </div> -->
 
 	<div class="body" ng-class="{body_reduced: editor}">
+		
 		<div class="content scroll">
+
+		  <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
+		    <div class="row" ng-class="{notifications_reduced: editor}">
+		      <div class="col-xs-9">
+		        <p class="section_row">{{notifications[notificationIndex].path}}</p>
+		        <p>{{notifications[notificationIndex].description}}</p>
+		      </div>
+		      <div class="col-xs-3 text-right">
+		        <a ng-click="nextNotification()">{{notifications.length}} remaining</a>
+		      </div>
+		    </div>
+		  </div>
+
  			<section id="cc">
 				<div class="section_row">
 					<h1>Chief complaint</h1>
@@ -118,7 +132,6 @@
 		              <select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
 		            </div>
 		        </div>
-		        <!-- DRAFTS -->
 		        <div class="section_row">
 		          <h2>Drafts</h2>
 		        </div>
@@ -133,7 +146,6 @@
 		              <span ng-show="!hasNotification(order.id)">
 		                  <a class="button_text" ng-click="submitOrder(order)">Send</a>
 		              </span>
-		              <!-- <span class="incomplete" ng-show="hasNotification(order.id)" ng-bind="hasNotification(order.id).description"></span> -->
 		            </h3>
 		            <a ng-show="order.lab" ng-click="showLab(order.lab)"><h4 ng-class="{editor_source:checkEditorSelectionForLab(order.lab,order)}">{{order.lab.name}}</h4></a>
 		            <ul>
@@ -146,7 +158,6 @@
 		            </ul>
 		          </li>
 		        </ul>
-		        <!-- PENDING -->
 		        <div class="section_row">
 		          <h2>Pending</h2>
 		        </div>
@@ -179,13 +190,16 @@
 					</li>
 				</ul>
 			</section>
+		</div>
 
-		<div class="editors" ng-show="editor">
-			<editor-lab-detail class="editor_container" ng-show="editor.type=='lab_detail'"></editor-lab-detail>
-			<editor-lab-test-selection class="editor_container" ng-show="editor.type=='lab_test_selection'"></editor-lab-test-selection>
-		    <editor-lab-test-detail class="editor_container" ng-show="editor.type=='lab_test_detail'"></editor-lab-test-detail>
+		<div class="editors" ng-class="{editors_open:editor}">
+			<div class="editors_shadow"></div>
+			<!-- <editor-lab-detail class="editor_container" ng-show="editor.type=='lab_detail'"></editor-lab-detail> -->
+			<!-- <editor-lab-test-selection class="editor_container" ng-show="editor.type=='lab_test_selection'"></editor-lab-test-selection> -->
+		    <!-- <editor-lab-test-detail class="editor_container" ng-show="editor.type=='lab_test_detail'"></editor-lab-test-detail> -->
 		    <editor-order class="editor_container" ng-show="editor.type=='lab_test'"></editor-order>
-		</div>		
+		</div>	
+
 	</div>
 
 

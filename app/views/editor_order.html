@@ -1,12 +1,12 @@
 <div class="editor" ng-class="{editor_slide: editor.type=='lab_test'}">
 	<div class="editor_header">
-		<div class="row editor_header_1">
-			<a class="col-xs-11" ng-click="scrollToSelection()">Orders</a>
-			<a class="col-xs-1 text-right" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
+		<div class="editor_header_1">
+			<a ng-click="scrollToSelection()">Orders</a>
+			<a ng-click="closeEditor()"><img src="images/icon_close.png"></a>
 		</div>
-		<div class="row editor_header_2">
-			<a class="col-xs-1 text-right" ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
-			<a class="col-xs-11" ng-click="scrollToSelection()">{{selected_order.name}}</a>
+		<div class="editor_header_2">
+			<a ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
+			<a class="title" ng-click="scrollToSelection()">{{selected_order.name}}</a>
 		</div>
 	</div>
 
@@ -38,9 +38,9 @@
 			        </div>
 				</form>
 				<ul class="editor_test_list">
-					<li class="row" ng-repeat="test in selected_order.tests">
-						<a class="col-xs-10" ng-click="showTest(test, selected_order, $index)">{{test.name}}</a>
-						<a class="col-xs-1" ng-click="deleteTest(test)">x</a>
+					<li ng-repeat="test in selected_order.tests">
+						<a ng-click="showTest(test, selected_order, $index)">{{test.name}}</a>
+						<a ng-click="deleteTest(test)">x</a>
 					</li>
 				</ul>
 				<div class="editor_order_test_advanced" ng-show="selected_order.dx_all">
@@ -71,16 +71,16 @@
 	        <div class="item" ng-repeat="test in selected_order.tests">
 	        	<form name="form_lab_test_detail" class="form-horizontal editor_form" role="form" novalidate>
 					<div class="form-group">
-						<label class="col-sm-12 test_label">{{selected_test.name}}</label>
+						<label class="test_label">{{selected_test.name}}</label>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-12 editor_section_header">Required</label>
+						<label class="editor_section_header">Required</label>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-12 field_label">Dx</label>
+						<label class="field_label">Dx</label>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-7">
+						<div>
 							<div class="input-group">
 							  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
 								<span class="input-group-btn">
@@ -91,10 +91,10 @@
 					</div>
 					<hr>
 					<div class="form-group">
-						<label class="col-sm-12 editor_section_header temp_margin">Optional</label>
+						<label class="editor_section_header temp_margin">Optional</label>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-10">
+						<div>
 							<div class="checkbox">
 								<input id="c1" type="checkbox" ng-model="selected_test.fasting"/>
 								<label for="c1"><span></span>Fasting for 8-12 hours</label>
@@ -102,7 +102,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-10">
+						<div>
 							<div class="checkbox">
 								<input id="c3" type="checkbox" ng-model="selected_test.test_date.value"/>
 								<label for="c3"><span></span>Perform test on specific date/time</label>
@@ -110,7 +110,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-12">
+						<div>
 						  	<input type="text" class="form-control" placeholder="Add note" ng-model="selected_test.note">
 						</div>
 					</div>
@@ -119,17 +119,17 @@
 	      </div>
 	    </div>
 	</div>			
-	<footer class="row">
-		<div class="col-xs-3">
+	<footer>
+		<div>
 			<button class="button_blue_border" ng-click="deleteOrder()">Delete</button>
 		</div>
-		<div class="col-xs-3">
+		<div>
 			<button class="button_blue_border" ng-click="closeEditor()">Save</button>
 		</div>
-		<div class="col-xs-3">
+		<div>
 			<button class="button_blue_border" ng-disabled="slideIdx==0" ng-click="goPrevSlide()">Back</button>
 		</div>
-		<div class="col-xs-3">
+		<div>
 			<button class="button_blue_border" ng-disabled="getNextDisabled()" ng-hide="slideIdx==selected_order.tests.length" ng-click="goNextSlide()">Next</button>
 			<button class="button_blue_border" ng-show="slideIdx==selected_order.tests.length" ng-disabled="hasNotification(selected_order.id)" ng-click="submitOrder(selected_order)">Send</button>
 		</div>

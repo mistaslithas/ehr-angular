@@ -286,19 +286,9 @@ button[disabled] {
 	}
 }
 
-// SLIDES
-
-// .slides {
-// 	position: relative;
-// 	width: 1071px;
-
-// 	.slide {
-// 		display: flex;
-// 		flex-direction: column;
-// 		width: 357px;
-// 		float: left;
-// 	}
-// }
+.form-horizontal .form-group {
+	margin: auto;
+}
 
 
 // CHOOSER
@@ -328,7 +318,7 @@ button[disabled] {
 // adjust these properties to turn the grid responsiveness on/off
 .container {
 	max-width: none !important;
-	width: 900px;
+	// width: 900px;
 	margin: 0;
 	padding: 0;
 	position: relative;
@@ -605,7 +595,8 @@ button[disabled] {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			position: relative;
+			position: top;
+			top: 0;
 			box-shadow: 0 2px 2px rgba(0,0,0,.1);
 			height: 0;
 			color: #444;
@@ -625,7 +616,8 @@ button[disabled] {
 		}
 
 		.notifications_reduced {
-			width: 486px;
+			padding-right: 20px;
+			// width: 486px;
 		}
 
 		.notifications_open {
@@ -639,6 +631,7 @@ button[disabled] {
 
 			.content {
 				flex: 1;
+				position: relative;
 			}
 		}
 
@@ -780,7 +773,11 @@ button[disabled] {
 
 			.body {
 
+				display: flex;
+
 				.content {
+
+					flex: 1;
 
 					section {
 						background: $body_bg;
@@ -877,7 +874,7 @@ button[disabled] {
 			}
 
 			.body_reduced {
-				width: 520px !important;
+				// width: 520px !important;
 			}
 		}
 	}
@@ -887,66 +884,70 @@ button[disabled] {
 // EDITOR
 .editors {
 	display: flex;
-	// width: 380px;
+	position: relative;
+	width: 0;
+	transition: .4s;
+	// box-shadow: inset 6px 0px 5px -2px rgba(0,0,0,.3);
+}
+
+.editors_shadow {
 	position: absolute;
-	// top: 170px;
-	top: 167px;
+	top: 0;
 	right: 0;
+	left: 0;
 	bottom: 0;
-	// bottom: 10px;
-	// margin: 10px 10px 10px 0;
-	box-shadow: 10px 0px 5px -2px black;
+	z-index: 2;
+	box-shadow: inset 6px 0px 5px -2px rgba(0,0,0,.3);
+	pointer-events: none;
+}
+
+.editors_open {
+	width: 40%;
 }
 
 .editor_container {
 	display: flex;
-	width: 380px;
-	position: relative;
+	flex: 1;
+	margin: 10px;
 	overflow: hidden;
+	box-shadow: 0 0 1em rgba(0,0,0,.3);
 }
 
 .editor {
+	box-shadow: inset 4px 0px 5px -2px rgba(0,0,0,.3);
+	box-shadow: 0 0 rgba(0,0,0,.3);
 	display: flex;
+	flex: 1;
 	flex-direction: column;
-	position: absolute;
-	top: 4px;
-	bottom: 0;
-	// bottom: 4px;
-	left: -376px;
-	// width: 376px;
-	width: 380px;
-	transition: left .5s;
-	border-left: 20px solid $editor_left_border_color;
-	// box-shadow: 0 0 3px 3px rgba(0,0,0,.1);
+	// border-left: 20px solid $editor_left_border_color;
 	background: white;
 
 	.editor_header {
-		// height: 60px;
-		padding-right: 10px;
-		box-sizing: border-box;
-		background: white;
 		border-bottom: 2px solid $header_blue;
-		// line-height: 30px;
+		padding: 7px 10px;
 
 		.editor_header_1 {
-			padding-top: 7px;
+			display: flex;
 			font-size: 13px !important;
 			font-weight: 300;
 			color: $editor_header_1_color !important;
+
+			a:first-of-type {
+				flex: 1;
+			}
 		}
 
 		.editor_header_2 {
-			// display: flex;
-			// align-items: center;
+			display: flex;
+			align-items: center;
 			// padding: 4px 0 4px 10px;
 			// line-height: 20px;
-			padding-bottom: 7px;
 			font-size: 18px !important;
 			font-weight: 300;
 			color: $editor_header_2_color !important;
 
 			.title {
-				padding-left: 10px;
+				padding: 4px 0 0 10px;
 			}
 		}
 
@@ -959,18 +960,10 @@ button[disabled] {
 		font-size: 13px;
 		color: #666;
 		position: relative;
-
-		.centered_row {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			height: 45px;
-			border-bottom: 1px solid $border_gray;
-		}
 	}
 
 	.editor_form {
-		padding: 10px 17px 10px 17px !important;
+		padding: 10px 10px 10px 10px !important;
 		font-size: 11px;
 		color: #666;
 
@@ -985,9 +978,9 @@ button[disabled] {
 	}
 
 	.editor_section_header {
-		font-weight: 400;
-		font-size: 16px;
-		color: #333;
+		font-weight: 200;
+		font-size: 12px;
+		color: #aaa;
 	}
 
 	.temp_margin {
@@ -1019,11 +1012,20 @@ button[disabled] {
 
 	.editor_test_list {
 		flex: 1;
-		font-size: 13px;
-		font-weight: 200;
-		color: #333;
-		text-indent: 20px;
-		line-height: 24px;
+
+		li {
+			display: flex;
+			padding: 0 10px;
+			line-height: 24px;
+			font-size: 13px;
+			font-weight: 200;
+			color: #333;
+
+			a:first-of-type {
+				flex: 1;
+			}
+
+		}
 	}
 
 	.test_label {
@@ -1050,8 +1052,10 @@ button[disabled] {
 
 
 	footer {
+		display: flex;
+		justify-content: space-between;
 		height: 50px;
-		padding: 10px 10px 0 0;
+		padding: 10px;
 		border-top: 1px solid $border_gray;
 	}
 }
