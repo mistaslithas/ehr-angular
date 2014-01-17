@@ -119,8 +119,17 @@
 	      </div>
 	    </div>
 	</div>			
-	<footer>
-		<div>
+
+	<div class="timeline">
+		<div class="line"></div>
+		<div class="markers">
+			<div class="marker" ng-class="{marker_active:slideIdx==0}" ng-click="slideIdx=0"></div>
+			<div class="marker" ng-class="{marker_active:slideIdx==$index+1}" ng-repeat="test in selected_order.tests" ng-click="goToSlide($index+1)"></div>
+		</div>
+	</div>
+
+	<footer class="row">
+		<div class="col-xs-3">
 			<button class="button_blue_border" ng-click="deleteOrder()">Delete</button>
 		</div>
 		<div>

@@ -1039,6 +1039,44 @@ button[disabled] {
 
 	}
 
+	.timeline {
+		height: 20px;
+		position: relative;
+		background: #eee;
+
+		.line {
+			height: 1px;
+			position: absolute;
+			top: 10px;
+			right: 5px;
+			left: 5px;
+			border-bottom: 1px solid #ccc;
+		}
+
+		.markers {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 20px;
+			position: absolute;
+			top: 0;
+			right: 5px;
+			bottom: 0;
+			left: 5px;
+
+			.marker {
+				width: 8px;
+				height: 8px;
+				border-radius: 4px;
+				background: #ccc;
+				cursor: pointer;
+			}
+
+			.marker_active {
+				background: black;
+			}
+		}
+	}
 
 	footer {
 		display: flex;
@@ -1047,6 +1085,7 @@ button[disabled] {
 		padding: 10px;
 		border-top: 1px solid $border_gray;
 	}
+
 }
 
 .editor_slide {
