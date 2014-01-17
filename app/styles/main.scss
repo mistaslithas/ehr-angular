@@ -1042,20 +1042,20 @@ button[disabled] {
 	.timeline {
 		height: 20px;
 		position: relative;
-		background: #eee;
+		// background: #eee;
 
-		.line {
-			height: 1px;
-			position: absolute;
-			top: 10px;
-			right: 5px;
-			left: 5px;
-			border-bottom: 1px solid #ccc;
-		}
+		// .line {
+		// 	height: 1px;
+		// 	position: absolute;
+		// 	top: 10px;
+		// 	right: 5px;
+		// 	left: 5px;
+		// 	border-bottom: 1px solid #ccc;
+		// }
 
 		.markers {
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 			align-items: center;
 			height: 20px;
 			position: absolute;
@@ -1067,6 +1067,7 @@ button[disabled] {
 			.marker {
 				width: 8px;
 				height: 8px;
+				margin: 0 4px;
 				border-radius: 4px;
 				background: #ccc;
 				cursor: pointer;
