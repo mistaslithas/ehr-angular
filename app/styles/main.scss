@@ -1,5 +1,7 @@
 @import "../components/bootstrap/dist/css/bootstrap.css";
 @import "../components/bootstrap/dist/css/bootstrap-theme.css";
+@import url(../components/ngQuickDate/dist/ng-quick-date.css);
+@import url(../components/ngQuickDate/dist/ng-quick-date-default-theme.css);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css);
@@ -31,8 +33,11 @@ $editor_title_border_color: #2782B8;
 $editor_left_border_color: #4CD2FF;
 $notification_green: #6BE2C3;
 $light_text: rgba(255,255,255,.6);
+$form_field_invalid: red;
 
-
+.test {
+	display: flex;
+}
 
 html,body {
   	font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -77,11 +82,17 @@ select {
 	color: #444;
 	vertical-align: middle;
 	appearance: none;
-	border: none;
+	border: 1px solid $form_blue_border !important;
 	border-radius: 0 !important;
 	background: none;
 	padding: 0;
 	margin: 0;
+}
+
+input[type="date"],
+input[type="time"] {
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 input[type="checkbox"] {
@@ -156,14 +167,6 @@ select:focus {
 	border: none !important;
 }
 
-.ng-invalid {
-	border-color: $notification_green !important;
-	outline-color: $notification_green !important;
-}
-
-.ng-invalid:focus {
-	// outline-: none;
-}
 
 // BUTTON DEFINITIONS
 // the collection of styles for button components
@@ -203,26 +206,21 @@ button[disabled] {
 }
 
 
+// FORM VALIDATION
+
+.ng-invalid {
+	border-color: $form_field_invalid !important;
+	outline-color: $form_field_invalid !important;
+}
+
+
 
 // BOOTSTRAP OVERRIDES
-.input-group {
+
+.input-group-addon {
+	background: none;
+	border-radius: 0;
 	border: 1px solid $form_blue_border;
-
-	.form-control {
-		box-shadow: none;
-		border: none;
-	}
-
-	.input-group-btn {
-		button {
-			padding: 0;
-			border: none;
-
-			img {
-				height: 30px;
-			}
-		}
-	}
 }
 
 .dropdown-menu {
@@ -259,6 +257,9 @@ button[disabled] {
 	}
 }
 
+.required_text {
+	color: $notification_green;
+}
 
 .field_label {
 	font-size: 11px;
@@ -1042,16 +1043,6 @@ button[disabled] {
 	.timeline {
 		height: 20px;
 		position: relative;
-		// background: #eee;
-
-		// .line {
-		// 	height: 1px;
-		// 	position: absolute;
-		// 	top: 10px;
-		// 	right: 5px;
-		// 	left: 5px;
-		// 	border-bottom: 1px solid #ccc;
-		// }
 
 		.markers {
 			display: flex;

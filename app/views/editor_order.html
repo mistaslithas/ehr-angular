@@ -23,17 +23,13 @@
 					<div class="form-group" ng-show="selected_order.lab">
 						<div class="input-group">
 						  	<input id="input_all_dx" type="text" class="form-control" placeholder="Add a diagnoses for all tests" ng-model="selected_order.dx_all" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" typeahead-on-select="applyAll()" ui-event="{ blur : 'applyAll()' }"  tabindex="2" required>
-							<span class="input-group-btn">
-								<img src="images/icon_list.png">
-							</span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
 						</div>
 					</div>
 					<div class="form-group" ng-show="selected_order.dx_all">
 						<div class="input-group">
 			              <input id="input_add_test" type="text" class="form-control" placeholder="{{getAddTestPlaceholder()}}" ng-model="test" typeahead="test as test.name for test in model.lab_tests | filter:$viewValue | orderBy:'name'" typeahead-on-select="addTest(test)" tabindex="3">
-			            <span class="input-group-btn">
-			              <img src="images/icon_list.png">
-			            </span>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
 			          </div>
 			        </div>
 				</form>
@@ -73,27 +69,34 @@
 					<div class="form-group">
 						<label class="test_label">{{selected_test.name}}</label>
 					</div>
-					<div class="form-group">
-						<label class="editor_section_header">Required</label>
+ 					<div class="form-group">
+						<label class="field_label">Related DX <span class="required_text">(required)</span></label>
 					</div>
 					<div class="form-group">
-						<label class="field_label">Dx</label>
-					</div>
-					<div class="form-group">
-						<div>
-							<div class="input-group">
-							  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
-								<span class="input-group-btn">
-									<img src="images/icon_list.png">
-								</span>
-							</div>
+						<div class="input-group">
+						  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
 						</div>
 					</div>
-					<hr>
 					<div class="form-group">
-						<label class="editor_section_header temp_margin">Optional</label>
+						<div class="input-group">
+						  	<input type="text" class="form-control" placeholder="Collected from" ng-model="selected_test.collected" typeahead="col for col in model.collected | filter:$viewValue | orderBy:'name'">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
+						</div>
 					</div>
 					<div class="form-group">
+						<div class="input-group">
+							<input class="form-control" type="date" ng-model="test.collection_date">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<input class="form-control" type="time" ng-model="test.collection_time">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+						</div>
+					</div>
+					 <div class="form-group">
 						<div>
 							<div class="checkbox">
 								<input id="c1" type="checkbox" ng-model="selected_test.fasting"/>
@@ -101,15 +104,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div>
-							<div class="checkbox">
-								<input id="c3" type="checkbox" ng-model="selected_test.test_date.value"/>
-								<label for="c3"><span></span>Perform test on specific date/time</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
+ 					<div class="form-group">
 						<div>
 						  	<input type="text" class="form-control" placeholder="Add note" ng-model="selected_test.note">
 						</div>

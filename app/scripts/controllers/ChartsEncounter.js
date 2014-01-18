@@ -36,46 +36,59 @@ angular.module('ehrApp')
     })
 
 
+    // --------------------------------------------------------------
+    // NOTIFICATIONS ------------------------------------------------
+    // --------------------------------------------------------------
 
-    // notifications
     $scope.$watch('patient.orders', function(a,b) {
       if($scope.patient.orders.length > 0)
         $scope.updateNotifications();
     }, true)
 
     $scope.updateNotifications = function() {
-      $scope.notificationIndex = 0;
-      $scope.notifications = [];
+      // TBD: RETHINK NOTIFICATIONS SYSTEM
 
-      _.each($scope.patient.orders, function(order) {
+    //   $scope.notificationIndex = 0;
+    //   $scope.notifications = [];
+
+    //   _.each($scope.patient.orders, function(order) {
 
 
-        if(order.tests.length > 0) {
-          // check if any tests are incomplete
-          var testsComplete = false;
+    //     if(order.tests.length > 0) {
+    //       // check if any tests are incomplete
+    //       var testsComplete = false;
 
-          _.each(order.tests, function(test) {
-            if(test.dx && test.dx.length > 0) {
-              $scope.removeNotification(test.id);
-              testsComplete = true;
-            } else {
-              $scope.createNotification('test',test,'missing dx');
-              testsComplete = false;
-            }
-          })
+    //       _.each(order.tests, function(test) {
+    //         // check for dx requirement
+    //         if(test.dx && test.dx.length > 0) {
+    //           $scope.removeNotification(test.id);
+    //           testsComplete = true;
+    //         } else {
+    //           $scope.createNotification('test',test,'missing dx');
+    //           testsComplete = false;
+    //         }
 
-          // check if the order is complete
-          // if(testsComplete && order.insurance.primary) {
-          if(testsComplete) {
-    	    $scope.removeNotification(order.id);
-          } else {
-          	$scope.createNotification('order',order,'dx required for all tests');
-		  }
-        } else {
-	        $scope.createNotification('order',order,'missing tests');
-    	}
+    //         // check for fasting requirement
+    //         if(test.fasting) {
+    //           $scope.removeNotification(test.id);
+    //           testsComplete = true;
+    //         } else {
+    //           $scope.createNotification('test',test,'missing fasting');
+    //           testsComplete = false;
+    //         }
+    //       })
 
-      })
+    //       // check if the order is complete
+    //       if(testsComplete) {
+    //   	    $scope.removeNotification(order.id);
+    //       } else {
+    //       	$scope.createNotification('order',order,'dx required for all tests');
+    // 		  }
+    //     } else {
+  	 //        $scope.createNotification('order',order,'missing tests');
+    //   	}
+
+    //   })
 
     }
 
@@ -116,7 +129,6 @@ angular.module('ehrApp')
       $scope.notificationIndex = 0;
     }
 
-
     $scope.nextNotification = function() {
       $scope.notificationIndex = $scope.notificationIndex == $scope.notifications.length-1 ? 0 : $scope.notificationIndex + 1;
       $scope.goToNotification();
@@ -140,8 +152,9 @@ angular.module('ehrApp')
 
 
 
-
-    // scroll control
+    // --------------------------------------------------------------
+    // SCROLL CONTROL
+    // --------------------------------------------------------------
 
     $scope.scrollToSelection = function() {
       // set a reference to the target we are scrolling to
@@ -404,6 +417,8 @@ angular.module('ehrApp')
       if (_.where($scope.selected_order.tests, {id:test.id}).length == 0) {
         if($scope.selected_order.dx_all)
           test.dx = $scope.selected_order.dx_all;
+
+        test.collection_date = new Date();
 
         $scope.selected_order.tests.push(test)
         this.test = undefined;
