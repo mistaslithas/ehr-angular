@@ -1,7 +1,5 @@
 @import "../components/bootstrap/dist/css/bootstrap.css";
 @import "../components/bootstrap/dist/css/bootstrap-theme.css";
-@import url(../components/ngQuickDate/dist/ng-quick-date.css);
-@import url(../components/ngQuickDate/dist/ng-quick-date-default-theme.css);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css);
@@ -34,10 +32,6 @@ $editor_left_border_color: #4CD2FF;
 $notification_green: #6BE2C3;
 $light_text: rgba(255,255,255,.6);
 $form_field_invalid: red;
-
-.test {
-	display: flex;
-}
 
 html,body {
   	font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -592,40 +586,44 @@ button[disabled] {
 			max-height: 130px;
 		}
 
-		.notifications {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			position: top;
-			top: 0;
-			box-shadow: 0 2px 2px rgba(0,0,0,.1);
-			height: 0;
-			color: #444;
-			font-size: 15px;
-			font-weight: 300;
-			background: $notification_green;
-			transition: .5s;
-			overflow: hidden;
-			padding: 0 0 0 22px;
-
-			.header_track {
-				font-size: 14px;
-				color: #666 !important;
-
-			}
-		}
-
-		.notifications_open {
-			height: 50px;
-		}
 
 		.body {
 			flex: 1;
 			display: flex;
 
 			.content {
+				display: flex;
 				flex: 1;
+				transition: .5s;
 				position: relative;
+
+				.notifications {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					box-shadow: 0 2px 2px rgba(0,0,0,.1);
+					height: 0;
+					color: #444;
+					font-size: 15px;
+					font-weight: 300;
+					background: $notification_green;
+					transition: .5s;
+					overflow: hidden;
+					padding: 0 0 0 22px;
+
+					.header_track {
+						font-size: 14px;
+						color: #666 !important;
+					}
+				}
+
+				.notifications_open {
+					height: 50px;
+				}
 			}
 		}
 
@@ -649,6 +647,11 @@ button[disabled] {
 			flex: 1; 
 			overflow-y: auto;
 			overflow-x: hidden; 
+			transition: .5s;
+		}
+
+		.scroll_with_notifications {
+			margin-top: 50px;
 		}
 
 		#CHARTS_SCHEDULED {
@@ -666,12 +669,6 @@ button[disabled] {
 					color: rgba(255,255,255,.6);
 				}
 			}
-
-			// .controls {
-			// 	input[type='search'] {
-			// 		width: 380px;
-			// 	}
-			// }
 		}
 
 		#CHARTS_PATIENT {
@@ -876,7 +873,7 @@ button[disabled] {
 	display: flex;
 	position: relative;
 	width: 0;
-	transition: .4s;
+	transition: .5s;
 	box-shadow: inset 4px 0px 5px -2px rgba(0,0,0,.3);
 }
 

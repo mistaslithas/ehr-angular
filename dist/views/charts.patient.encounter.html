@@ -1,0 +1,195 @@
+<div id="CHARTS_PATIENT_FACESHEET" class="view">
+	<div class="row controls border_b_blue">
+		<div class="col-xs-3">
+			<select class="select_show" ng-model="showing">
+				<option>Show...</option>
+		        <option>CDS</option>
+		        <option>Notifications</option>
+			</select>
+		</div>
+		<div class="col-xs-4">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search">
+				<span class="input-group-addon">
+					<img src="images/search_icon.png">
+				</span>
+			</div>
+		</div>
+
+		<div class="col-xs-5 text-right">
+			<button class="button_orange">Start Encounter</button>
+		</div>
+	</div>
+
+	<div class="cds" ng-class="{cds_open:showCDS}">
+    <div class="row">
+      <div class="col-xs-9">{{patient.cds.cds}}</div>
+      <div class="col-xs-2">
+        <a ng-click="cdsMore=true">Learn More</a>
+      </div>
+      <div class="col-xs-1 text-right">
+        <a class="button_close" ng-click="showCDS=!showCDS"><img src="images/icon_close.png"></a>
+      </div>
+    </div>
+    <div ng-show="cdsMore">
+      <div class="row">
+        <p class="col-xs-12">Intervention Developer: {{patient.cds.interventor}}</p>
+      </div>
+      <div class="row">
+        <p class="col-xs-12">Citation: {{patient.cds.citor}}</p>
+      </div>
+      <div class="row">
+        <p class="col-xs-12">Sponsored By: {{patient.cds.sponsor}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
+    <div class="row">
+      <div class="col-xs-9">
+        <p class="section_row">{{notifications[notificationIndex].path}}</p>
+        <p>{{notifications[notificationIndex].description}}</p>
+      </div>
+      <div class="col-xs-3 text-right">
+        <a ng-click="nextNotification()">{{notifications.length}} remaining</a>
+      </div>
+    </div>
+  </div>
+
+	<div class="body">
+		
+		<div class="content scroll">
+
+ 			<section id="cc">
+				<div class="section_row">
+					<h1>Chief complaint</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Check on cholesterol</span>
+					</li>
+				</ul>
+			</section>
+
+ 			<section id="progress_note">
+				<div class="section_row">
+					<h1>Progress note</h1>
+				</div>
+				<div class="section_row">
+		          <h2>Subjective</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Here to check on cholesterol. Mother and brother have high cholesterol. Patient reports having trouble taking hypertension meds regularly, mentions recent chest pain, dizziness, and breathing problems.</span>
+					</li>
+				</ul>
+				<div class="section_row">
+		          <h2>Objective</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">
+						<span>BP 140/90 HT 63 WT 140 Temp 98.6 Pulse 72</span>
+					</li>
+				</ul>
+				<div class="section_row">
+		          <h2>Assessment</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Hypertension, benign may be uncontrolled</span>
+					</li>
+				</ul>
+				<div class="section_row">
+		          <h2>Plan</h2>
+		        </div>
+				<ul>
+					<li class="section_row_indent">Cholesterol check</li>
+					<li class="section_row_indent">Fasting lipid panel</li>
+					<li class="section_row_indent">Basic metabolic profile</li>
+					<li class="section_row_indent">Liver function</li>
+					<li class="section_row_indent">Urinalysis</li>
+					<li class="section_row_indent">Serum calcium</li>
+					<li class="section_row_indent">Follow-up in 3 months</li>
+ 				</ul>
+			</section>
+
+			<section id="orders">
+		        <div class="section_row">
+		            <h1>Orders</h1>
+		            <div class="section_row_menu"> 
+		              <select class="select_editor_blue select_no_border" ng-model="orderTypes.value" ng-options="o.value as o.label for o in orderTypes.options"></select>
+		            </div>
+		        </div>
+		        <div class="section_row">
+		          <h2>Drafts</h2>
+		        </div>
+		        <h3 ng-show="!hasDrafts()">None</h3>
+		        <ul>
+		          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: false}">
+		            <h3 ng-class="{editor_source:checkEditorSelectionForOrder(order)}">
+		              <a ng-click="showOrder(order)">{{order.name}}</a>
+		              <span class="section_row_date">
+		              	added on {{order.date | date:'MM/dd/yyyy'}}
+		              </span>
+		              <span ng-show="!hasNotification(order.id)">
+		                  <a class="button_text" ng-click="submitOrder(order)">Send</a>
+		              </span>
+		            </h3>
+		            <a ng-show="order.lab" ng-click="showLab(order.lab)"><h4 ng-class="{editor_source:checkEditorSelectionForLab(order.lab,order)}">{{order.lab.name}}</h4></a>
+		            <ul>
+		              <li ng-repeat="test in order.tests">
+		                <h5 ng-class="{editor_source:checkEditorSelectionForTest(test,order)}">
+		                  <a ng-click="showTest(test, order, $index)">{{test.name}}</a>
+		                  <span class="incomplete" ng-show="hasNotification(test.id)" ng-bind="hasNotification(test.id).description"></span>
+		                </h5>
+		              </li>
+		            </ul>
+		          </li>
+		        </ul>
+		        <div class="section_row">
+		          <h2>Pending</h2>
+		        </div>
+		        <h3 ng-show="!hasPending()">None</h3>
+		        <ul>
+		          <li class="section_row_indent" ng-repeat="order in patient.orders | filter:{sent: true}">
+		            <h3>
+		              <span>{{order.name}}</span>
+		              <span class="section_row_date">sent on {{order.date | date:'MM/dd/yyyy'}}</span>
+		            </h3>
+		            <h4>{{order.lab.name}}</h4>
+		            <ul>
+		              <li ng-repeat="test in order.tests">
+		                <h5>
+		                  <span>{{test.name}}</span>
+		                </h5>
+		              </li>
+		            </ul>
+		          </li>
+		        </ul>
+	 		</section>
+
+	 		<section id="social_history">
+				<div class="section_row">
+					<h1>Social history</h1>
+				</div>
+				<ul>
+					<li class="section_row_indent">
+						<span>Former smoker</span>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<div class="editors" ng-class="{editors_open:editor}">
+			<!-- <div class="editors_shadow"></div> -->
+			<!-- <editor-lab-detail class="editor_container" ng-show="editor.type=='lab_detail'"></editor-lab-detail> -->
+			<!-- <editor-lab-test-selection class="editor_container" ng-show="editor.type=='lab_test_selection'"></editor-lab-test-selection> -->
+		    <!-- <editor-lab-test-detail class="editor_container" ng-show="editor.type=='lab_test_detail'"></editor-lab-test-detail> -->
+		    <editor-order class="editor_container" ng-show="editor.type=='lab_test'"></editor-order>
+		</div>	
+
+	</div>
+
+
+
+</div>
