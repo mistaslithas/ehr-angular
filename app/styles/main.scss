@@ -283,6 +283,10 @@ button[disabled] {
 
 .form-horizontal .form-group {
 	margin: auto;
+
+	[class*="col-"] {
+		padding-right: 0;
+	}
 }
 
 
@@ -957,6 +961,25 @@ button[disabled] {
 		.form-group {
 			margin-bottom: 7px;
 		}
+
+		section:first-of-type {
+			padding-top: 20px;
+		}
+
+		section {
+			padding-bottom: 30px;
+		}
+
+		.form_section_header {
+			font-size: 16px;
+			color: #333;
+			font-weight: 200;
+		}
+
+		.form_flex_row {
+			display: flex;
+			justify-content: space-between;
+		}
 	}
 
 	.editor_section_name {
@@ -1016,7 +1039,7 @@ button[disabled] {
 	}
 
 	.test_label {
-		font-size: 22px;
+		font-size: 20px;
 		font-weight: normal;
 	}
 

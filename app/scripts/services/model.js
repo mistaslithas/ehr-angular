@@ -27,7 +27,7 @@ angular.module('ehrApp')
 	    lab_tests: [
 		    {
 				id:'lab_test_1',
-				name:'Complete Blood Count (CBC)',
+				name:'278.0 Complete Blood Count (CBC)',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -39,7 +39,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_2',
-				name:'Estrogen',
+				name:'796.4 Estradiol',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -51,7 +51,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_3',
-				name:'Lipids Panel',
+				name:'272.4 Lipids Panel',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -63,7 +63,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_4',
-				name:'Liver Function',
+				name:'794.8 Liver Function',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -75,7 +75,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_5',
-				name:'Urinalysis',
+				name:'791.9 Urinalysis',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -87,7 +87,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_6',
-				name:'Basic Metabolic Profile (BMP)',
+				name:'401.9 Basic Metabolic Profile (BMP)',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -99,7 +99,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_7',
-				name:'Serum Calcium',
+				name:'269.3 Serum Calcium',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -111,7 +111,7 @@ angular.module('ehrApp')
 			},
 		    {
 				id:'lab_test_8',
-				name:'Fasting Blood Glucose',
+				name:'790.21 Fasting Blood Glucose',
 				dx: '',
 				fasting: false,
 				cholesterol: false,
@@ -129,39 +129,25 @@ angular.module('ehrApp')
 				tests: [
 				    {
 						id:'lab_test_6',
-						name:'Basic Metabolic Profile (BMP)'
+						name:'401.9 Basic Metabolic Profile (BMP)'
 					},
 				    {
 						id:'lab_test_8',
-						name:'Fasting Blood Glucose'
+						name:'790.21 Fasting Blood Glucose'
 					},
 				    {
 						id:'lab_test_3',
-						name:'Lipids Panel'
+						name:'272.4 Lipids Panel'
 					},
 				    {
 						id:'lab_test_7',
-						name:'Serum Calcium'
+						name:'269.3 Serum Calcium'
 					},
 				    {
 						id:'lab_test_5',
-						name:'Urinalysis'
+						name:'791.9 Urinalysis'
 					}
 				]
-			}
-		],
-		lab_test_recents: [
-		    {
-				id:'lab_test_8',
-				name:'Fasting Blood Glucose'
-			},
-		    {
-				id:'lab_test_3',
-				name:'Lipids Panel'
-			},
-		    {
-				id:'lab_test_5',
-				name:'Urinalysis'
 			}
 		],
 		collected: ['Blood, venous','Blood, arterial','Urine, clean catch','Sputum'],
@@ -196,96 +182,6 @@ angular.module('ehrApp')
 	            ssn: '123-45-6789',
 	            address: {city:'Berkeley',state:'CA'},
 	            orders: [
-					// {
-				 //        id: '00000001-0',	//patient id - number of patient orders 
-				 //        sent: false,
-				 //        date: '2013-12-01T00:00:00.00',
-				 //        type:'lab_test',
-				 //        lab: {
-				 //        	id: 'lab-3',
-					//         name: 'Quest-3',
-					//         logo: 'images/quest.png'
-				 //        },
-				 //        insurance: {
-				 //        	primary: '',
-				 //        	secondary: '',
-				 //        	payment: ''
-				 //        },
-				 //        physician: '',
-				 //        ordering: '',
-				 //        dx_all: '',
-					// 	tests: [
-					// 		{
-					// 			id:'lab_test_1',
-					// 			name:'Complete Blood Count (CBC)',
-					// 			dx: '',
-					// 			fasting: false,
-					// 			cholesterol: false,
-					// 			test_date: {
-					// 				value: false,
-					// 				date: ''
-					// 			},
-					// 			note: ''
-					// 		},
-					// 	    {
-					// 			id:'lab_test_2',
-					// 			name:'Estrogen',
-					// 			dx: '',
-					// 			fasting: false,
-					// 			cholesterol: false,
-					// 			test_date: {
-					// 				value: false,
-					// 				date: ''
-					// 			},
-					// 			note: ''
-					// 		},
-				 //        ]
-					// },
-					// {
-				 //        id: '00000001-1',	//patient id - number of patient orders 
-				 //        sent: true,
-				 //        date: '2013-12-01T00:00:00.00',
-				 //        type:'lab_test',
-				 //        lab: {
-				 //        	id: 'lab-2',
-					//         name: 'Quest-2',
-					//         logo: 'images/quest.png'
-				 //        },
-				 //        insurance: {
-				 //        	primary: '',
-				 //        	secondary: '',
-				 //        	payment: ''
-				 //        },
-				 //        physician: '',
-				 //        ordering: '',
-				 //        dx_all: '',
-					// 	tests: [
-					// 		{
-					// 			id:'lab_test_1',
-					// 			name:'Complete Blood Count (CBC)',
-					// 			dx: '',
-					// 			fasting: false,
-					// 			cholesterol: false,
-					// 			test_date: {
-					// 				value: false,
-					// 				date: ''
-					// 			},
-					// 			note: ''
-					// 		},
-					// 	    {
-					// 			id:'lab_test_2',
-					// 			name:'Estrogen',
-					// 			dx: '',
-					// 			fasting: false,
-					// 			cholesterol: false,
-					// 			test_date: {
-					// 				value: false,
-					// 				date: ''
-					// 			},
-					// 			note: ''
-					// 		},
-				 //        ]
-					// }
 				]
 			},
 			{

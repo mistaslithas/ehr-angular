@@ -62,7 +62,7 @@ angular.module('ehrApp')
               $scope.removeNotification(test.id);
               testsComplete = true;
             } else {
-              $scope.createNotification('test',test,'missing dx');
+              $scope.createNotification('test',test,'DX missing from lab order test');
               testsComplete = false;
             }
           })
@@ -398,7 +398,9 @@ angular.module('ehrApp')
         if($scope.selected_order.dx_all)
           test.dx = $scope.selected_order.dx_all;
 
-        test.collection_date = new Date();
+        // var d = new Date();
+        // test.collection_date = moment(d).format('YYYY-MM-DD');
+        // test.collection_time = moment(d).format('HH:mm');
 
         $scope.selected_order.tests.push(test)
         this.test = undefined;
@@ -434,8 +436,6 @@ angular.module('ehrApp')
     $scope.hasPending = function() {
     	return _.findWhere($scope.patient.orders, {sent: true});
     }
-
-
 
 
     // SLIDES
@@ -477,31 +477,6 @@ angular.module('ehrApp')
 
       return val;
     }
-
-
-
-    // $scope.prevTest = function() {
-    //   var idx = _.indexOf($scope.selected_order.tests, $scope.selected_test);
-
-    //   if(idx > 0) {
-    //     $scope.selected_test = $scope.selected_order.tests[idx-1];
-    //   }
-    // }
-
-    // $scope.nextTest = function() {
-    //   var idx = _.indexOf($scope.selected_order.tests, $scope.selected_test);
-
-    //   if(idx < $scope.selected_order.tests.length-1) {
-    //     $scope.selected_test = $scope.selected_order.tests[idx+1];
-    //   }
-    // }
-
-    // $scope.test = function(idx) {
-    //   $('.carousel').carousel(idx);
-    // }
-
-
- $scope.oneAtATime = true;
 
   $scope.groups = [
     {

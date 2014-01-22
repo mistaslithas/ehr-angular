@@ -48,11 +48,11 @@
 		  <div class="notifications" ng-class="{notifications_open:notifications.length > 0}">
 		    <div class="row">
 		      <div class="col-xs-9">
-		        <p class="section_row">{{notifications[notificationIndex].path}}</p>
+		        <!-- <p class="section_row">{{notifications[notificationIndex].path}}</p> -->
 		        <p>{{notifications[notificationIndex].description}}</p>
 		      </div>
 		      <div class="col-xs-3 text-right">
-		        <a ng-click="nextNotification()">{{notifications.length}} remaining</a>
+		        <a ng-click="nextNotification()">{{notifications.length}} total</a>
 		      </div>
 		    </div>
 		  </div>
@@ -100,7 +100,6 @@
 			          <h2>Plan</h2>
 			        </div>
 					<ul>
-						<li class="section_row_indent">Cholesterol check</li>
 						<li class="section_row_indent">Fasting lipid panel</li>
 						<li class="section_row_indent">Basic metabolic profile</li>
 						<li class="section_row_indent">Liver function</li>
@@ -128,7 +127,7 @@
 			              	added on {{order.date | date:'MM/dd/yyyy'}}
 			              </span>
 			              <span ng-show="!hasNotification(order.id)">
-			                  <a class="button_text" ng-click="submitOrder(order)">Send</a>
+			                  <a class="button_text btn" ng-click="submitOrder(order)" ng-disabled="isOrderComplete(selected_order.id)">Send</a>
 			              </span>
 			            </h3>
 			            <a ng-show="order.lab" ng-click="showLab(order.lab)"><h4 ng-class="{editor_source:checkEditorSelectionForLab(order.lab,order)}">{{order.lab.name}}</h4></a>
