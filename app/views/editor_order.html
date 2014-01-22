@@ -67,7 +67,7 @@
 	        <div class="item" ng-repeat="test in selected_order.tests">
 	        	<form name="form_lab_test_detail" class="editor_form" role="form" novalidate>
 					<div class="form-group">
-						<label class="test_label">{{test.name}}</label>
+						<label class="test_label">{{selected_test.name}}</label>
 					</div>
 	        		<section>
 	 					<div class="form-group">
@@ -76,7 +76,7 @@
 						<div class="form-group">
 							<label class="field_label">Related DX</label>
 							<!-- <div class="input-group"> -->
-							  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
+							  	<input type="text" class="form-control" placeholder="Add a diagnoses" ng-model="selected_test.dx" typeahead="dx for dx in model.dx | filter:$viewValue | orderBy:'name'" required>
 								<!-- <span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span> -->
 							<!-- </div> -->
 						</div>
@@ -88,7 +88,7 @@
 						<div class="form-group">
 							<label class="field_label">Collected from</label>
 							<!-- <div class="input-group"> -->
-							  	<input type="text" class="form-control" placeholder="Collected from" ng-model="test.collected" typeahead="col for col in model.collected | filter:$viewValue | orderBy:'name'">
+							  	<input type="text" class="form-control" placeholder="Collected from" ng-model="selected_test.collected" typeahead="col for col in model.collected | filter:$viewValue | orderBy:'name'">
 								<!-- <span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span> -->
 							<!-- </div> -->
 						</div>
@@ -111,7 +111,7 @@
 						 <div class="form-group">
 							<div>
 								<div class="checkbox">
-									<input id="c1" type="checkbox" ng-model="test.fasting"/>
+									<input id="c1" type="checkbox" ng-model="selected_test.fasting"/>
 									<label for="c1"><span></span>Fasting for 8-12 hours</label>
 								</div>
 							</div>
@@ -119,14 +119,14 @@
 						 <div class="form-group">
 							<div>
 								<div class="checkbox">
-									<input id="c2" type="checkbox" ng-model="test.stet"/>
+									<input id="c2" type="checkbox" ng-model="selected_test.stet"/>
 									<label for="c2"><span></span>Stet</label>
 								</div>
 							</div>
 						</div>
 	 					<div class="form-group">
 							<label class="field_label">Notes</label>
-						  	<input type="text" class="form-control" placeholder="Add note" ng-model="test.note">
+						  	<input type="text" class="form-control" placeholder="Add note" ng-model="selected_test.note">
 						</div>
 					</section>
 				</form>
