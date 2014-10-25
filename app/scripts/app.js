@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehrApp', ['ngAnimate','ui.router','ui.event','ui.keypress','ui.bootstrap'])
+angular.module('ehrApp', ['ui.router','ui.event','ui.keypress','ui.bootstrap'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -49,7 +49,8 @@ angular.module('ehrApp', ['ngAnimate','ui.router','ui.event','ui.keypress','ui.b
     .state('ehr.charts.patient', {
       url: '/:id',
       templateUrl: 'views/charts.patient.html',
-      controller: 'ChartsPatientCtrl'
+      controller: 'ChartsPatientCtrl',
+      // abstract: true
     })
     .state('ehr.charts.patient.facesheet', {
       url: '',
