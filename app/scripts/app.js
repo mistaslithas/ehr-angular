@@ -49,8 +49,7 @@ angular.module('ehrApp', ['ngAnimate','ui.router','ui.event','ui.keypress','ui.b
     .state('ehr.charts.patient', {
       url: '/:id',
       templateUrl: 'views/charts.patient.html',
-      controller: 'ChartsPatientCtrl',
-      abstract: true
+      controller: 'ChartsPatientCtrl'
     })
     .state('ehr.charts.patient.facesheet', {
       url: '',
