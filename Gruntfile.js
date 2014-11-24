@@ -267,7 +267,7 @@ htmlmin: {
       },
       pages: {
         options: {
-          remote: 'git@github.com:mistaslithas/ehr-angular.git',
+          remote: 'pages',
           branch: 'gh-pages'
         }
       }
