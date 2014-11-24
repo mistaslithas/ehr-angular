@@ -267,7 +267,7 @@ htmlmin: {
       },
       pages: {
         options: {
-          remote: 'origin',
+          remote: 'pages',
           branch: 'gh-pages'
         }
       }
