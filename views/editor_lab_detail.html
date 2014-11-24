@@ -1,0 +1,96 @@
+<div class="editor" ng-class="{editor_slide: editor.type=='lab_detail'}">
+	<div class="editor_header">
+<!-- 
+		<div class="row editor_header_1">
+			<a class="col-xs-11" ng-click="scrollToSelection()">Orders: Order {{selected_order.id}}</a>
+			<a class="col-xs-1 text-right" ng-click="closeEditor()"><img src="images/icon_close.png"></a>
+		</div>
+ -->
+		<div class="row editor_header_2">
+			<a class="col-xs-1 text-right" ng-click="scrollToSelection()"><img src="images/icon_editor_back.png"></a>
+			<a class="col-xs-11" ng-click="scrollToSelection()">{{selected_order.lab.name}}</a>
+		</div>
+	</div>
+	<div class="editor_body">
+		<div class="row centered_row">
+			<div class="col-xs-8">Order {{selected_order.id}}</div>
+			<div class="col-xs-4 text-right">{{selected_order.date | date:'mediumDate'}}</div>
+		</div>
+
+		<form name="form_lab_detail" class="form-horizontal editor_form" role="form" novalidate="">
+			<div class="form-group">
+				<label class="col-sm-12 editor_section_header">Required</label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-12 editor_section_name">Primary Insurance</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<select class="select_editor_gray col-sm-12" tabindex="1" ng-model="selected_order.insurance.primary" ng-options="i for i in model.insurance" required="">
+						<option value="">Select primary insurance</option>
+					</select>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label class="col-sm-12 editor_section_header temp_margin">Optional</label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-11">Dx for all tests</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<div class="input-group">
+					  	<input type="text" class="form-control" placeholder="Type to add a diagnoses" tabindex="1" ng-model="selected_order.dx_all" typeahead="dx for dx in model.dx | filter:$viewValue" typeahead-on-select="checkDxNotification(selected_test.dx)" ng-change="checkDxNotification(selected_test.dx)">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><img src="images/icon_dx.png"></button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Insurance</label>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Secondary</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="1" ng-model="selected_order.insurance.secondary" ng-options="i for i in model.insurance">
+						<option value="">Select secondary insurance</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Payment</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="1" ng-model="selected_order.insurance.payer" ng-options="i for i in model.insurance">
+						<option value="">Select payer</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Physician</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="1" ng-model="selected_order.physician" ng-options="d for d in model.doctors">
+						<option value="">Select physician</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Ordering</label>
+				<div class="col-sm-9">
+					<select class="select_editor_blue col-sm-12" tabindex="1" ng-model="selected_order.ordering" ng-options="d for d in model.doctors">
+						<option value="">Select physician</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>			
+	<footer class="row">
+		<div class="col-xs-3">
+			<button class="button_blue_border" tabindex="1" ng-click="deleteOrder()">Delete</button>
+		</div>
+		<div class="col-xs-9 text-right">
+			<button class="button_blue" tabindex="1" ng-click="closeEditor()">Done</button>
+		</div>
+	</footer>
+</div>
