@@ -205,11 +205,11 @@ htmlmin: {
         }]
       }
     },
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/*.html']
-      }
-    },
+    // cdnify: {
+    //   dist: {
+    //     html: ['<%= yeoman.dist %>/*.html']
+    //   }
+    // },
     ngmin: {
       dist: {
         files: [{
@@ -306,7 +306,7 @@ grunt.registerTask('build', [
     'cssmin',
     'htmlmin',
     'copy',
-    'cdnify',
+    // 'cdnify',
     'ngmin',
     'uglify',
     'rev',
